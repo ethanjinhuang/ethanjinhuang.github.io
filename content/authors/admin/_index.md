@@ -52,7 +52,7 @@ skills:
         description: ''
         percent: 80
         icon: {{< icon name="devicon/cplusplus" >}} C++
-        icon_pack: 
+        icon_pack: ''
       - name: MATLAB
         description: ''
         percent: 90
