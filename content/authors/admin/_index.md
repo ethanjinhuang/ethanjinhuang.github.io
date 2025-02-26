@@ -55,9 +55,9 @@ education:
   - area: Ph.D. Candidate
     institution: Zhejiang University
     date_start: 2022-09-01
-    date_end: now
+    date_end: 2027-07-31
     summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
+      Supervised by [Prof Ying Chen](https://person.zju.edu.cn/0089096/754914.html).
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
