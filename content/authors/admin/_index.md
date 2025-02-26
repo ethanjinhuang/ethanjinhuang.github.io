@@ -145,7 +145,7 @@ languages:
 awards:
   - title: National Scholarship
     # url: https://www.coursera.org/learn/neural-networks-deep-learning
-    date: '2021'
+    date: '2021-11-30'
     awarder: Ministry of Education of the People's Republic of China
     # icon: coursera
     # summary: |
