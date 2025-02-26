@@ -64,7 +64,7 @@ education:
   - area: BSc Surveying and Mapping Engineering
     institution: Shandong University of Science and Technology
     date_start: 2018-09-01
-    date_end: 2022-6-30
+    date_end: 2022-06-30
     summary: |
       GPA: 3.4/4.0
       
