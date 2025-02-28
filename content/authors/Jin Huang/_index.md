@@ -49,7 +49,7 @@ profiles:
 interests:
   - Underwater Navigation
   - Integrated Navigation System
-  - Underwater Acoustic Localization
+  - Underwater Acoustics Localization
   - Underwater Robotics
 
 education:
@@ -172,4 +172,4 @@ awards:
 
 ## About Me
 
-Jin Huang is a Ph.D. Candidate of Ocean Engineering at the Zhejiang University. His research interests include underwater robotics, underwater integrated navigation system, and underwater acoutics localization system. He developed plenty of navigation & localization system, like visualized underwater navigation integrated navigation system (VUWINS), real-time underwater navigation integrated navigation system (RTUINS), and Raspberry pi based passive-inverted Ultar-Short Baseline System (RaspiUSBL).
+Jin Huang is a Ph.D. Candidate of Ocean Engineering at the Zhejiang University. His research interests include underwater robotics, underwater integrated navigation system, and underwater acoustics localization system. He developed plenty of navigation & localization system, like visualized underwater navigation integrated navigation system (VUWINS), real-time underwater navigation integrated navigation system (RTUINS), and Raspberry pi based passive-inverted Ultar-Short Baseline System (RaspiUSBL).
