@@ -15,22 +15,23 @@ sections:
       username: admin
       text: ""
       # Show a call-to-action button under your biography? (optional)
-      button:
-        text: Download CV
-        url: uploads/resume.pdf
+      # button:
+      #   text: Download CV
+      #   url: uploads/resume.pdf
     design:
       css_class: dark
       # Avatar customization
       avatar:
-        size: medium  # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
+        size: medium  # Options: small (150px), medium (200px, default),  large(320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
       background:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: stacked-peaks.svg
+          # filename: stacked-peaks.svg 
+          filename: background.jpg
           filters:
-            brightness: 1.0
+            brightness: 0.7
           size: cover
           position: center
           parallax: false
