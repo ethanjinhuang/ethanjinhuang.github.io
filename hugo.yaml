@@ -1,3 +1,32 @@
 baseURL: https://ethanjinhuang.github.io/
 languageCode: en-us
-title: My New Hugo Site
+title: Jin Huang's Personal Site
+theme: hugo-profile
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 3
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+params:
+
+  hero:
+      enable: true
+      intro: "Hi, my name is"
+      title: "Jin Huang."
+      subtitle: "Ph.D. Candidate @ ZJU"
+      content: "I am a Ph.D Candidate in Ocean Engineering and Technology at Zhejiang University. My research interests include marine robotics."
