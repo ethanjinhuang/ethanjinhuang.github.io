@@ -15,6 +15,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
 
 # 仅允许一个并发部署，跳过在进行中的运行与最新排队的运行之间排队的运行。
 # 但是，请不要取消进行中的运行，因为我们希望这些生产部署能够完成。
@@ -60,6 +61,10 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"          
+      - name: 检查构建输出（可选）
+        run: |
+          ls -lah ./public
+          test -e ./public/index.html
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
         with:
