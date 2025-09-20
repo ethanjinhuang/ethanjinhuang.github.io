@@ -61,10 +61,6 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"          
-      - name: 检查构建输出（可选）
-        run: |
-          ls -lah ./public
-          test -e ./public/index.html
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
         with:
