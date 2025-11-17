@@ -1,0 +1,139 @@
+baseURL: "https://hugo-profile.netlify.app"
+languageCode: "en-us"
+title: "Jin Huang's Profile"
+theme: hugo-profile
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 3
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+
+Menus:
+  main:
+    - identifier: gallery
+      name: Gallery
+      title: Blog posts
+      url: /gallery
+      weight: 2
+
+
+params:
+  title: "Jin Huang's Profile"
+  discription: "Welcome to my personal profile website!"
+  # Whether the fade animations on the home page will be enabled
+  animate: true
+  # Whether to add mathjax support on all pages. Alternatively, you can opt-in per page by adding `mathjax: true` in the frontmatter.
+  mathjax: true
+  font:
+    fontSize: 1rem # default: 1rem
+    fontWeight: 400 # default: 400
+    lineHeight: 1.5 # default: 1.5
+    textAlign: left # default: left
+
+  navbar:
+    align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
+    brandName: "Jin Huang's Profile"
+    stickyNavBar:
+      enable : true
+      showOnScrollUp : true
+    menus:
+      disableAbout: true
+      disableExperience: false
+      disableEducation: false
+      disableProjects: false
+      disableAchievements: false
+      disableContact: false
+
+  # Hero
+  hero:
+    enable: true
+    intro: "Hi, I'm"
+    title: "Jin Huang (黄 瑾)"
+    subtitle: "Ph.D. Candidate"
+    contact: "From Zhejiang University."
+    bottomImage:
+      enable: true
+    socialLinks:
+      fontAwesomeIcons:
+        - icon: fas fa-envelope
+          url: "mailto:jin.huang@zju.edu.cn"
+        - icon: fab fa-researchgate
+          url: "https://www.researchgate.net/profile/Jin-Huang-84?ev=hdr_xprf"
+        - icon: fab fa-orcid
+          url: "https://orcid.org/0000-0003-1309-8329"
+        - icon: fab fa-google
+          url: "https://scholar.google.com/citations?hl=en&user=dFbcMfIAAAAJ&view_op=list_works&sortby=pubdate"
+        - icon: fab fa-github
+          url: "https://github.com/ethan-jin-huang"
+        - icon: fab fa-linkedin
+          url: "https://www.linkedin.com/in/jinhuang-zju"
+  
+  # About
+  about:
+    enable: true
+    title: "About Me"
+    image: "/images/profile/profile.jpg"
+    content: |-
+      I am a Ph.D. candidate supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096) at Zhejiang University. 
+      My reseasrch interests include marine robotics, underwater integrated navigation, and acoustic positioning systems.
+      I have developed several underwater navigation/positioning systems and algorithms, which have been successfully applied in real-world underwater scenarios, and validated through extensive sea trials.
+    skills:
+      enable: true
+      title: "Here are a few technologies I've been working with recently:"
+      items:
+        - "HTML"
+        - "CSS"
+        - "JavaScript"
+        - "React"
+        - "Node"
+        - "Express"
+
+  # Education
+  education:
+    enable: true
+    title: "Education"
+    index: false
+    items:
+      - title: "Ph.D. Candidate"
+        school: 
+          name: "Zhejiang University"
+          url: "https://www.zju.edu.cn/english/"
+        date: "2022.09 - Present"
+        content: |-
+          Majoring: Ocean Technology and Engineering
+      - title: "Visiting Student"
+        school: 
+          name: "The University of Tokyo"
+        date: "2025.12 - Present"
+      - title: "Bachelor of Engineering"
+        school: 
+          name: "Shandong University of Science and Technology"
+          url: "https://en.sdust.edu.cn/"
+        date: "2018.09 - 2022.06"
+        content: |-
+          Majoring: Ocean Technology and Engineering
+
+  # Projects
+  projects:
+    enable: true
+    title: "Selected Projects"
+
+
+
+
+
