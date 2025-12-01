@@ -1,4 +1,4 @@
-baseURL: "https://hugo-profile.netlify.app"
+baseURL: "https://ethanjinhuang.github.io/"
 languageCode: "en-us"
 title: "Jin Huang's Profile"
 theme: hugo-profile
@@ -96,16 +96,16 @@ params:
       I am a Ph.D. candidate supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096) at Zhejiang University. 
       My reseasrch interests include marine robotics, underwater integrated navigation, and acoustic positioning systems.
       I have developed several underwater navigation/positioning systems and algorithms, which have been successfully applied in real-world underwater scenarios, and validated through extensive sea trials.
-    skills:
-      enable: true
-      title: "Here are a few technologies I've been working with recently:"
-      items:
-        - "HTML"
-        - "CSS"
-        - "JavaScript"
-        - "React"
-        - "Node"
-        - "Express"
+    # skills:
+    #   enable: true
+    #   title: "Here are a few technologies I've been working with recently:"
+    #   items:
+    #     - "HTML"
+    #     - "CSS"
+    #     - "JavaScript"
+    #     - "React"
+    #     - "Node"
+    #     - "Express"
 
   # Education
   education:
@@ -123,19 +123,25 @@ params:
       - title: "Visiting Student"
         school: 
           name: "The University of Tokyo"
-        date: "2025.12 - Present"
+          url: "https://www.u-tokyo.ac.jp/en/"
+        date: "2025.11 - Present"
+        content: |-
+          Hosting: DRAGON LAB, Department of Mechanical Engineering
       - title: "Bachelor of Engineering"
         school: 
           name: "Shandong University of Science and Technology"
           url: "https://en.sdust.edu.cn/"
         date: "2018.09 - 2022.06"
         content: |-
-          Majoring: Ocean Technology and Engineering
+          Majoring: Ocean Surveying and Mapping Engineering
 
   # Projects
-  projects:
-    enable: true
-    title: "Selected Projects"
+  # projects:
+  #   enable: true
+  #   # title: "Selected Projects"
+
+  #   items:
+  #     - title: "Under Construction"
 
 
 
