@@ -3,6 +3,10 @@ languageCode: "en-us"
 title: "Jin Huang's Profile"
 theme: hugo-profile
 
+caches:
+  images:
+    dir: :cacheDir/images
+
 outputs:
   home:
     - "HTML"
