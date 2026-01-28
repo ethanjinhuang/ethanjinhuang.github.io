@@ -34,6 +34,11 @@ Menus:
       title: Blog posts
       url: /gallery
       weight: 2
+    - identifier: publications
+      name: Publications
+      title: Publications
+      url: /publications
+      weight: 3
 
 
 params:
@@ -59,7 +64,8 @@ params:
       disableAbout: true
       disableExperience: false
       disableEducation: false
-      disableProjects: false
+      disableResearch: false
+      disablePublications: true
       disableAchievements: false
       disableContact: false
 
@@ -133,15 +139,68 @@ params:
           url: "https://en.sdust.edu.cn/"
         date: "2018.09 - 2022.06"
         content: |-
-          Majoring: Ocean Surveying and Mapping Engineering
+          Major: Ocean Surveying and Mapping Engineering
 
-  # Projects
-  # projects:
-  #   enable: true
-  #   # title: "Selected Projects"
+  # Research
+  research:
+    enable: true
+    title: "Research"
 
-  #   items:
-  #     - title: "Under Construction"
+  # Publications
+  publications:
+    enable: true
+    title: "Publications"
+    sections:
+      - title: "Journal Articles"
+        items:
+          - title: "GNSS-Aided Installation Error Compensation for DVL/INS Integrated Navigation System Using Error-State Kalman Filter"
+            authors: "<strong>Jin Huang</strong>, Haoda Li, Zichen Liu, Zhikun Wang, Yingqiang Wang, Ying Chen"
+            venue: "Measurement"
+            year: "2025"
+            doi: "10.1016/j.measurement.2024.116224"
+          - title: "A DVL Aided Loosely Coupled Inertial Navigation Strategy for AUVs with Attitude Error Modeling and Variance Propagation"
+            authors: "<strong>Jin Huang</strong>, Zichen Liu, Haoda Li, Zhikun Wang, Ying Chen"
+            venue: "arXiv"
+            year: "2026"
+            doi: "10.48550/arXiv.2601.19509"
+          - title: "Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation"
+            authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen"
+            venue: "arXiv"
+            year: "2025"
+            doi: "10.48550/arXiv.2510.23286"
+          - title: "Raspi^2USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultra-Short Baseline Positioning System for Underwater Robotics"
+            authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Ying Chen"
+            venue: "arXiv"
+            year: "2025"
+            doi: "10.48550/arXiv.2511.06998"
+          - title: "Rapid Modeling of the Sound Speed Field in the South China Sea Based on a Comprehensive Optimal LM-BP Artificial Neural Network"
+            authors: "<strong>Jin Huang</strong>, Yu Luo, Jian Shi, Xin Ma, Qian-Qian Li, Yan-Yi Li"
+            venue: "Journal of Marine Science and Engineering"
+            year: "2021"
+            doi: "10.3390/jmse9050488"
+          - title: "Hybrid-Driven Disc-Shaped Autonomous Underwater Vehicle with High Maneuverability and Gliding Capability: Design and Experiments"
+            authors: "Haoda Li, Zhihang Jin, <strong>Jin Huang</strong>, Zichen Liu, Xianyu Peng, Zhikun Wang, Ying Chen"
+            venue: "IEEE Robotics and Automation Letters"
+            year: "2026"
+            doi: "10.1109/LRA.2025.3634890"
+          - title: "An Improved ESO-Based Line-of-Sight Guidance Law for Path Following of Underactuated Autonomous Underwater Helicopter with Nonlinear Tracking Differentiator and Anti-Saturation Controller"
+            authors: "Haoda Li, Zichen Liu, <strong>Jin Huang</strong>, Xinyu An, Ying Chen"
+            venue: "Ocean Engineering"
+            year: "2025"
+            doi: "10.1016/j.oceaneng.2025.120456"
+      - title: "Conference Papers"
+        items:
+          - title: "Analysis of Sound Speed Profile in the South China Sea Based on Empirical Orthogonal Function Algorithm"
+            authors: "<strong>Jin Huang</strong>, Yu Luo, Yanyi Li, Jian Shi, Xu Zheng, Jingjing Wang"
+            venue: "2021 OES China Ocean Acoustics (COA)"
+            year: "2021"
+            doi: "10.1109/COA50123.2021.9520009"
+      - title: "Presentations"
+        items:
+          - title: "Passive Inverted Ultra-Short Baseline Positioning for Autonomous Underwater Vehicles"
+            venue: "The 6th China Ocean Technology Conference, Zhoushan, China"
+            month: "May"
+            year: "2023"
 
 
 
