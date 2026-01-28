@@ -1,0 +1,44 @@
+<!--
+ * @Author: Jin Huang @ jin.huang@zju.edu.cn
+ * @Date: 2026-01-28 22:50:24
+ * @LastEditors: Jin's Macbook jin.huang@zju.edu.cn
+ * @LastEditTime: 2026-01-28 22:50:26
+ * @FilePath: /ethanjinhuang.github.io/themes/hugo-profile/layouts/partials/sections/publications.html
+ * @Description: 
+ * 
+ * Copyright (c) 2026 by Jin Huang @ jin.huang@zju.edu.cn, All Rights Reserved. 
+-->
+{{ if .Site.Params.publications.enable | default false }}
+<section id="publications" class="py-5">
+    <div class="container">
+        <h3 class="text-center">{{ .Site.Params.publications.title | default "Publications" }}</h3>
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ range .Site.Params.publications.sections }}
+                <div class="publications-group">
+                    <h4 class="publications-title">{{ .title }}</h4>
+                    <ul class="publications-list">
+                        {{ range .items }}
+                        <li class="publications-item">
+                            <div class="publications-item-title">{{ .title }}</div>
+                            <div class="publications-item-meta">
+                                {{ .authors }}
+                                <span class="publications-sep">·</span>
+                                {{ .venue }}
+                                <span class="publications-sep">·</span>
+                                {{ .year }}
+                                {{ if .doi }}
+                                <span class="publications-sep">·</span>
+                                <a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener">DOI</a>
+                                {{ end }}
+                            </div>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

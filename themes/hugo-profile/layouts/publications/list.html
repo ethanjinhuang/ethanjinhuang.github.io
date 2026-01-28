@@ -1,0 +1,89 @@
+<!--
+ * @Author: Jin Huang @ jin.huang@zju.edu.cn
+ * @Date: 2026-01-28 22:55:45
+ * @LastEditors: Jin's Macbook jin.huang@zju.edu.cn
+ * @LastEditTime: 2026-01-28 22:55:47
+ * @FilePath: /ethanjinhuang.github.io/themes/hugo-profile/layouts/publications/list.html
+ * @Description: 
+ * 
+ * Copyright (c) 2026 by Jin Huang @ jin.huang@zju.edu.cn, All Rights Reserved. 
+-->
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+
+<head>
+    {{- partial "head.html" . -}}
+    <meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+    <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+
+    <!-- fontawesome -->
+    <script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+</head>
+
+<body class="light">
+    {{- partial "sections/header.html" . -}}
+    <div id="content">
+        <section id="publications" class="py-5">
+            <div class="container">
+                <h2 class="text-center pb-2">{{ .Site.Params.publications.title | default "Publications" }}</h2>
+                {{ if .Content }}
+                <div class="row justify-content-center px-3 px-md-5">
+                    <div class="col-lg-10">
+                        {{ .Content }}
+                    </div>
+                </div>
+                {{ end }}
+                <div class="row justify-content-center px-3 px-md-5">
+                    <div class="col-lg-10">
+                        {{ range .Site.Params.publications.sections }}
+                        <div class="publications-group">
+                            <h4 class="publications-title">{{ .title }}</h4>
+                            <ul class="publications-list">
+                                {{ $items := sort .items "year" "desc" }}
+                                {{ range $items }}
+                                <li class="publications-item">
+                                    <div class="publications-item-meta">
+                                        {{ $date := .year }}
+                                        {{ if .month }}
+                                            {{ $date = printf "%s %s" .month .year }}
+                                        {{ end }}
+                                        {{ if .authors }}
+                                            <span class="pub-authors">{{ .authors | safeHTML }}</span>. 
+                                        {{ end }}
+                                        <span class="pub-title">{{ .title }}</span>.
+                                        {{ if .venue }}
+                                            <span class="pub-venue"><em>{{ .venue }}</em></span>
+                                        {{ end }}
+                                        {{ if $date }}
+                                            <span class="publications-sep">·</span>
+                                            {{ $date }}
+                                        {{ end }}
+                                        {{ if .doi }}
+                                            <span class="publications-sep">·</span>
+                                            <span>doi: </span><a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener">{{ .doi }}</a>
+                                        {{ end }}
+                                    </div>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {{- partial "sections/footer/index.html" . -}}
+
+    {{- if (or (eq .Site.Params.UseBootstrapCDN true) (eq .Site.Params.UseBootstrapCDN "js")) -}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    {{- else -}}
+    <script src="{{ .Site.Params.staticPath }}/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    {{- end -}}
+
+    {{- partial "scripts.html" . -}}
+</body>
+
+</html>
