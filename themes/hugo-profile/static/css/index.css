@@ -74,9 +74,38 @@ header .navbar.animate {
     min-height: 100vh;
     line-height: 2rem;
     max-width: 100%;
+    background-image: url("/images/startrail.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Background overlay for readability (does NOT affect text opacity) */
+    background: rgba(255, 255, 255, 0.55);
+    z-index: 0;
+    pointer-events: none;
+}
+
+body.dark #hero::before {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+#hero > .container {
+    position: relative;
+    z-index: 1;
 }
 #hero .content.animate {
     animation: fade-left 1s ease-out;
+}
+
+#hero .content {
+    position: relative;
+    z-index: 2;
 }
 
 #hero .hero-bottom-svg {
@@ -88,7 +117,7 @@ header .navbar.animate {
 
 #hero .subtitle {
     font-size: clamp(14px,5vw,16px);
-    opacity: 0.6;
+    opacity: 1;
 }
 
 #hero h1 {
@@ -98,13 +127,13 @@ header .navbar.animate {
 
 #hero h2 {
     font-size: clamp(40px, 8vw, 60px);
-    opacity: 0.5;
+    opacity: 1;
 }
 
 #hero p {
     margin: 20px 0px 0px;
     max-width: 640px;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 #hero .image img {
