@@ -2,7 +2,9 @@
 title: "GNSS-aided installation error compensation for DVL/INS integrated navigation system using error-state Kalman filter"
 date: 2026-01-28T00:00:00+08:00
 description: "GNSS-aided estimation and compensation of DVL installation errors for robust AUV navigation."
-image: "/images/gallary/zju.jpg"
+authors: "Jin Huang, Haoda Li, Zichen Liu, Zhikun Wang, Yingqiang Wang, Ying Chen"
+venue: "Measurement (2025)"
+image: "/images/research/gnss_aided_2025/abstractfig.png"
 badges:
   - "INS/DVL"
   - "ESKF"
@@ -17,9 +19,8 @@ tags:
   - "GNSS-aided calibration"
   - "Autonomous underwater vehicle"
 showInHome: true
+showTitle: true
 ---
-
-# GNSS-aided installation error compensation for DVL/INS integrated navigation system using error-state Kalman filter
 
 ## Research Overview
 This work addresses installation errors of Doppler Velocity Log (DVL) sensors in SINS/DVL integrated navigation for autonomous underwater vehicles (AUVs). It proposes a GNSS-aided strategy to estimate and compensate DVL misalignment and lever-arm errors rather than treating them as fixed biases. The core idea is to use surface-referenced GNSS information to infer installation errors and then apply compensation during underwater navigation. The motivation is to improve navigation reliability in real AUV deployments where precise mechanical alignment is difficult to guarantee.
