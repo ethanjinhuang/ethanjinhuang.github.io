@@ -84,6 +84,12 @@
     color: var(--text-color) !important;
 }
 
+#research .badge {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    margin: 0 1%;
+}
+
 #research .card .card-head {
     overflow: hidden;
     border-top-left-radius: 1rem;
