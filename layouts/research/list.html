@@ -1,0 +1,241 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/projects.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/research-filter.css" media="all">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ $researchPages := where .Site.RegularPages "Type" "research" }}
+{{ $researchPages = sort $researchPages "Date" "desc" }}
+
+{{ $keywordPool := slice }}
+{{ range $researchPages }}
+{{ with .Params.tags }}
+{{ range . }}
+{{ $keywordPool = $keywordPool | append . }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ $keywords := sort (uniq $keywordPool) }}
+
+<div class="container pt-5" id="researchPage">
+    <h2 class="text-center pb-2">{{ .Title }}</h2>
+
+    <div class="row g-3 align-items-end mb-4">
+        <div class="col-lg-8">
+            <label class="research-tools-label" for="researchSearchInput">Search by project title</label>
+            <input id="researchSearchInput" type="text" class="form-control"
+                placeholder="Type keywords from the project title...">
+        </div>
+        <div class="col-sm-6 col-lg-2">
+            <label class="research-tools-label" for="researchPageSize">Items per page</label>
+            <select id="researchPageSize" class="form-select">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+            <div id="researchResultMeta" class="research-result-meta"></div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-9">
+            <div class="row" id="researchCardsContainer">
+                {{ range $researchPages }}
+                {{ $tags := .Params.tags | default (slice) }}
+                <div class="col-xl-4 col-md-6 my-3 research-card-item" data-title="{{ lower .Title }}"
+                    data-tags="{{ lower (delimit $tags "||") }}">
+                    <div class="card my-3 h-100 position-relative" title="{{ .Title }}">
+                        <div class="card-head" style="--img-fit: {{ (.Params.imageFit | default " cover") | safeCSS }};
+                            --img-pos: {{ (.Params.imagePosition | default "50% 50%") | safeCSS }};">
+                            <img class="card-img-top" src="{{ .Params.image }}" alt="{{ .Title }}">
+                        </div>
+                        <div class="card-body bg-transparent p-3">
+                            <div class="pb-2 bg-transparent">
+                                {{ range .Params.badges }}
+                                <span class="badge badge-secondary">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                            <h5 class="card-title bg-transparent">{{ .Title | truncate 50 }}</h5>
+                            <div class="card-text bg-transparent secondary-font">
+                                {{ .Summary | plainify | truncate 120 }}
+                            </div>
+                            <a class="stretched-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
+                        </div>
+                        <div class="card-footer py-3">
+                            {{ range .Params.links }}
+                            <span class="m-1 mx-2">
+                                <a href="{{ .url }}" target="_blank" rel="noopener">
+                                    <i class="{{ .icon }}"></i>
+                                </a>
+                            </span>
+                            {{ end }}
+                            <span class="float-end">
+                                <a class="btn btn-sm" href="{{ .RelPermalink }}">
+                                    Know more
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+
+            <div id="researchNoResult" class="alert alert-light d-none">
+                No matching projects found.
+            </div>
+
+            <nav aria-label="Research pagination" class="mt-2">
+                <ul class="pagination justify-content-center" id="researchPagination"></ul>
+            </nav>
+        </div>
+
+        <div class="col-lg-3">
+            <aside class="research-keywords-panel">
+                <h5 class="mb-3">Keywords</h5>
+                <div class="d-flex flex-wrap gap-2" id="researchKeywords">
+                    <button type="button" class="btn btn-sm keyword-chip active" data-keyword="">All</button>
+                    {{ range $keywords }}
+                    <button type="button" class="btn btn-sm keyword-chip" data-keyword="{{ lower . }}">{{ . }}</button>
+                    {{ end }}
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const cards = Array.from(document.querySelectorAll(".research-card-item"));
+        const searchInput = document.getElementById("researchSearchInput");
+        const pageSizeSelect = document.getElementById("researchPageSize");
+        const keywordContainer = document.getElementById("researchKeywords");
+        const pagination = document.getElementById("researchPagination");
+        const resultMeta = document.getElementById("researchResultMeta");
+        const noResult = document.getElementById("researchNoResult");
+
+        if (!cards.length || !searchInput || !pageSizeSelect || !keywordContainer || !pagination || !resultMeta || !noResult) {
+            return;
+        }
+
+        const state = {
+            query: "",
+            keyword: "",
+            pageSize: 10,
+            page: 1,
+        };
+
+        function normalize(text) {
+            return (text || "").toLowerCase().trim();
+        }
+
+        function filteredCards() {
+            return cards.filter((card) => {
+                const title = card.dataset.title || "";
+                const tags = (card.dataset.tags || "").split("||").filter(Boolean);
+                const titleMatch = !state.query || title.includes(state.query);
+                const keywordMatch = !state.keyword || tags.includes(state.keyword);
+                return titleMatch && keywordMatch;
+            });
+        }
+
+        function createPageItem(label, targetPage, options) {
+            const li = document.createElement("li");
+            li.className = "page-item";
+            if (options.active) li.classList.add("active");
+            if (options.disabled) li.classList.add("disabled");
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "page-link";
+            button.textContent = label;
+
+            if (!options.disabled && !options.active) {
+                button.addEventListener("click", function () {
+                    state.page = targetPage;
+                    render();
+                });
+            }
+
+            li.appendChild(button);
+            return li;
+        }
+
+        function renderPagination(totalPages, totalItems) {
+            pagination.innerHTML = "";
+            if (totalItems === 0 || totalPages === 1) {
+                return;
+            }
+
+            pagination.appendChild(createPageItem("Prev", state.page - 1, { disabled: state.page === 1, active: false }));
+            for (let i = 1; i <= totalPages; i += 1) {
+                pagination.appendChild(createPageItem(String(i), i, { disabled: false, active: state.page === i }));
+            }
+            pagination.appendChild(createPageItem("Next", state.page + 1, { disabled: state.page === totalPages, active: false }));
+        }
+
+        function render() {
+            const filtered = filteredCards();
+            const totalItems = filtered.length;
+            const totalPages = Math.max(1, Math.ceil(totalItems / state.pageSize));
+            if (state.page > totalPages) state.page = totalPages;
+
+            cards.forEach((card) => {
+                card.style.display = "none";
+            });
+
+            const start = (state.page - 1) * state.pageSize;
+            const end = Math.min(start + state.pageSize, totalItems);
+            filtered.slice(start, end).forEach((card) => {
+                card.style.display = "";
+            });
+
+            noResult.classList.toggle("d-none", totalItems !== 0);
+            if (totalItems === 0) {
+                resultMeta.textContent = "0 results";
+            } else {
+                resultMeta.textContent = "Showing " + (start + 1) + "-" + end + " of " + totalItems;
+            }
+
+            renderPagination(totalPages, totalItems);
+        }
+
+        searchInput.addEventListener("input", function () {
+            state.query = normalize(searchInput.value);
+            state.page = 1;
+            render();
+        });
+
+        pageSizeSelect.addEventListener("change", function () {
+            state.pageSize = parseInt(pageSizeSelect.value, 10);
+            state.page = 1;
+            render();
+        });
+
+        keywordContainer.addEventListener("click", function (event) {
+            const button = event.target.closest("button[data-keyword]");
+            if (!button) return;
+
+            state.keyword = normalize(button.dataset.keyword);
+            state.page = 1;
+
+            keywordContainer.querySelectorAll("button[data-keyword]").forEach((chip) => {
+                chip.classList.remove("active");
+            });
+            button.classList.add("active");
+            render();
+        });
+
+        render();
+    })();
+</script>
+{{ end }}

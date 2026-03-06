@@ -1,0 +1,146 @@
+.research-tools-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+#researchPage .card {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0px 8px 56px rgb(15 80 100 / 16%);
+    overflow: hidden;
+    border-radius: 1rem;
+    border: none !important;
+}
+
+#researchPage .card:hover {
+    box-shadow: 0 0 11px rgb(15 80 100 / 20%);
+    transition: transform 0.3s;
+    transform: translateY(-7px);
+}
+
+#researchPage .card .card-title,
+#researchPage .card .card-text {
+    color: var(--text-color) !important;
+}
+
+#researchPage .card .card-head {
+    overflow: hidden;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border: none !important;
+    aspect-ratio: 16 / 9;
+}
+
+#researchPage .card .card-head .card-img-top {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: var(--img-fit, cover);
+    object-position: var(--img-pos, 50% 50%);
+}
+
+#researchPage .card:hover .card-img-top {
+    transform: scale(1.05);
+    transition: all 0.25s ease-out;
+}
+
+#researchPage .badge {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    margin: 0 1%;
+}
+
+#researchPage .float-end .btn {
+    color: var(--primary-color) !important;
+    background-color: transparent !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 0.5rem !important;
+}
+
+#researchPage .float-end .btn:hover,
+#researchPage .float-end .btn:focus {
+    color: var(--background-color) !important;
+    background-color: var(--primary-color) !important;
+    box-shadow: none !important;
+}
+
+#researchPage .card .card-footer {
+    background: transparent;
+    border-top: 0;
+}
+
+.research-result-meta {
+    min-height: 2.4rem;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    color: var(--text-secondary-color);
+    font-size: 0.95rem;
+}
+
+.research-keywords-panel {
+    position: sticky;
+    top: 96px;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: var(--secondary-color);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.keyword-chip {
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: transparent;
+    color: var(--text-color);
+}
+
+.keyword-chip:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.keyword-chip.active {
+    color: var(--background-color);
+    border-color: var(--text-color);
+    background: var(--text-color);
+}
+
+#researchPagination .page-link {
+    border-radius: 0.45rem;
+}
+
+.dark #researchPage .form-control,
+.dark #researchPage .form-select {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.dark #researchPage .form-control::placeholder {
+    color: var(--text-secondary-color);
+}
+
+.dark #researchPage .form-select option {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.dark .research-keywords-panel {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark .keyword-chip {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 991.98px) {
+    .research-keywords-panel {
+        position: static;
+    }
+
+    .research-result-meta {
+        justify-content: start;
+    }
+}

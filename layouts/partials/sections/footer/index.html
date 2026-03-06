@@ -1,0 +1,15 @@
+<footer>
+    <!-- Recent blog posts -->
+    {{- partial "sections/footer/recentBlogPosts.html" . -}}
+
+    <!-- Social Icons -->
+    {{- partial "sections/footer/socialNetwork.html" . -}}
+
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                &copy; {{ now.Format "2006" }} All Rights Reserved @ Jin Huang
+            </div>
+        </div>
+    </div>
+</footer>

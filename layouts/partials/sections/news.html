@@ -1,0 +1,101 @@
+{{ if .Site.Params.news.enable | default false }}
+{{ $newsTitle := .Site.Params.news.title | default "News" }}
+{{ $newsItems := .Site.Params.news.items | default (slice) }}
+{{ if fileExists "data/news/README.md" }}
+{{ $newsData := readFile "data/news/README.md" | transform.Unmarshal }}
+{{ with index $newsData "title" }}{{ $newsTitle = . }}{{ end }}
+{{ with index $newsData "items" }}{{ $newsItems = . }}{{ end }}
+{{ end }}
+<section id="news" class="py-5">
+    <div class="container">
+        <h3 class="text-center">{{ $newsTitle }}</h3>
+        <div class="row justify-content-center py-4">
+            <div class="col-lg-10">
+                <div class="news-container">
+                    <div class="news-scroll" id="newsScroll">
+                        {{ range $newsItems }}
+                        <div class="news-item">
+                            <div class="news-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>{{ .date }}</span>
+                            </div>
+                            <div class="news-content">
+                                {{ .content | markdownify }}
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    (function () {
+        var newsScroll = document.getElementById("newsScroll");
+        if (!newsScroll) return;
+
+        var originalItems = Array.prototype.slice.call(newsScroll.children);
+        if (!originalItems.length) return;
+
+        if (originalItems.length === 1) {
+            return;
+        }
+
+        var fragment = document.createDocumentFragment();
+        originalItems.forEach(function (item) {
+            fragment.appendChild(item.cloneNode(true));
+        });
+        newsScroll.appendChild(fragment);
+        var loopHeight = newsScroll.scrollHeight / 2;
+        var maxScrollTop = newsScroll.scrollHeight - newsScroll.clientHeight;
+        if (maxScrollTop <= 0) return;
+
+        var paused = false;
+        var speed = 10; // px per second
+        var rafId = null;
+        var lastTs = 0;
+        var position = 0;
+
+        function tick(ts) {
+            if (!lastTs) lastTs = ts;
+            var dt = (ts - lastTs) / 1000;
+            lastTs = ts;
+            if (!paused) {
+                position += speed * dt;
+                if (position >= maxScrollTop) {
+                    if (loopHeight < maxScrollTop) {
+                        position -= loopHeight;
+                    } else {
+                        position = 0;
+                    }
+                }
+                newsScroll.scrollTop = position;
+            }
+            rafId = window.requestAnimationFrame(tick);
+        }
+
+        newsScroll.addEventListener("mouseenter", function () {
+            paused = true;
+            lastTs = 0;
+        });
+        newsScroll.addEventListener("mouseleave", function () {
+            paused = false;
+            lastTs = 0;
+        });
+        newsScroll.addEventListener("touchstart", function () {
+            paused = true;
+            lastTs = 0;
+        }, { passive: true });
+        newsScroll.addEventListener("touchend", function () {
+            paused = false;
+            lastTs = 0;
+        }, { passive: true });
+
+        rafId = window.requestAnimationFrame(tick);
+        window.addEventListener("beforeunload", function () {
+            if (rafId) window.cancelAnimationFrame(rafId);
+        });
+    })();
+</script>
+{{ end }}

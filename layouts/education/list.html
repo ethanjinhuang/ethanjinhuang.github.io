@@ -1,0 +1,77 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<section id="education" class="py-5">
+    <div class="container">
+        <h2 class="text-center pb-2">{{ .Site.Params.education.title | default "Education" }}</h2>
+        {{ if .Content }}
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
+        <div class="row justify-content-center py-5">
+            {{ $indexMenu := .Site.Params.education.index }}
+            {{ range $index, $element := .Site.Params.education.items }}
+            <div class="col-12 p-0">
+                <div class="row row align-items-center justify-content-center m-1 mb-4">
+                    {{ if $indexMenu }}
+                    <div class="col-md-1 text-center me-2 p-0 d-none d-md-block">
+                        <div class="py-2">
+                            <span class="index shadow-lg">
+                                {{ add $index 1 }}
+                            </span>
+                        </div>
+                    </div>
+                    {{ end }}
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="float-end">
+                                    <small>{{ .date }}</small>
+                                </div>
+                                <h5 class="card-title">{{ .title }}</h5>
+                                {{ if .school.url }}
+                                <a href="{{ .school.url }}" target="_blank" rel="noopener">
+                                    <h6>{{ .school.name }}</h6>
+                                </a>
+                                {{ else }}
+                                <h6>{{ .school.name }}</h6>
+                                {{ end }}
+                                {{ if .GPA }}
+                                <div class="py-1">
+                                    GPA:
+                                    <i><small>{{ .GPA }}</small></i>
+                                </div>
+                                {{ end }}
+                                <div class="py-1 education-content">
+                                    {{ .content | markdownify }}
+                                </div>
+                                {{ if .featuredLink.enable }}
+                                <div class="py-1">
+                                    <a href="{{ .featuredLink.url }}" class="btn">
+                                        {{ .featuredLink.name | default "Featured" }}
+                                    </a>
+                                </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

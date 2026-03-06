@@ -115,3 +115,31 @@
     transform: scale(1.05);
     transition: all 0.25s ease-out;
 }
+
+#research .float-end .btn {
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    background-color: transparent !important;
+    border-radius: 0.5rem !important;
+}
+
+#research .float-end .btn:hover,
+#research .float-end .btn:focus {
+    color: var(--background-color) !important;
+    background-color: var(--primary-color) !important;
+    box-shadow: none !important;
+}
+
+#research .text-center .btn {
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    background-color: transparent !important;
+    border-radius: 0.5rem !important;
+}
+
+#research .text-center .btn:hover,
+#research .text-center .btn:focus {
+    color: var(--background-color) !important;
+    background-color: var(--primary-color) !important;
+    box-shadow: none !important;
+}
