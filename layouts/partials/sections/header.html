@@ -114,6 +114,12 @@
                     </li>
                     {{ end }}
 
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="{{ .Site.BaseURL | relURL }}" aria-label="home">
+                            Home
+                        </a>
+                    </li>
+
                     {{ if and (.Site.Params.news.enable | default false) (not (.Site.Params.navbar.menus.disableNews |
                     default false)) }}
                     <li class="nav-item navbar-text">
@@ -204,10 +210,10 @@
                     {{end}}
 
                     {{ if (not .Site.Params.theme.disableThemeToggle | default false) }}
-                    <li class="nav-item navbar-text">
+                    <li class="nav-item navbar-text theme-toggle-item">
                         <!-- darkmode mode toggle -->
-                        <div class="text-center">
-                            <button id="theme-toggle">
+                        <button id="theme-toggle" class="nav-link theme-toggle-btn" type="button"
+                            aria-label="Toggle theme">
                                 <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -226,8 +232,7 @@
                                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                                 </svg>
-                            </button>
-                        </div>
+                        </button>
                     </li>
                     {{ end }}
 

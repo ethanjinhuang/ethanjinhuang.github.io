@@ -1,0 +1,70 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/awards.css" media="all">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ $awardGroups := sort .RegularPages "Weight" "asc" }}
+{{ $allItems := slice }}
+{{ range $awardGroups }}
+{{ $groupName := .Title }}
+{{ range (.Params.items | default (slice)) }}
+{{ $entry := dict
+    "date" (.date | default "")
+    "title" (.title | default "")
+    "issuer" (.issuer | default "")
+    "description" (.description | default "")
+    "group" $groupName
+    "sortDate" (.sortDate | default (.date | default "")) }}
+{{ $allItems = $allItems | append $entry }}
+{{ end }}
+{{ end }}
+{{ $allItems = sort $allItems "sortDate" "desc" }}
+<section id="awards" class="py-5">
+    <div class="container">
+        <h2 class="text-center pb-2">{{ .Title }}</h2>
+        {{ if .Content }}
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
+
+        <div class="row justify-content-center py-4">
+            <div class="col-lg-10">
+                {{ if gt (len $allItems) 0 }}
+                <ul class="award-items">
+                    {{ range $allItems }}
+                    <li class="award-item">
+                        <div class="award-row">
+                            <span class="award-date">{{ .date }}</span>
+                            <span class="award-item-title">{{ .title }}</span>
+                        </div>
+                        {{ with .issuer }}
+                        <div class="award-meta">{{ . }}</div>
+                        {{ end }}
+                        {{ with .description }}
+                        <div class="award-desc">{{ . }}</div>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+                {{ else }}
+                <div class="alert alert-light mb-0" role="alert">
+                    No awards found.
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

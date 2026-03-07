@@ -49,6 +49,5 @@ By releasing the hardware designs, software implementation, and raw data, RaspiÂ
 ## Keywords
 - Underwater acoustic positioning
 - Passive inverted USBL (piUSBL)
-- Open-source hardware
-- Raspberry Pi
-- AUV swarm localization
+- Open-source
+- Swarm positioning

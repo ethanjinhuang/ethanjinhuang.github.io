@@ -49,8 +49,7 @@ Field experiments conducted in a freshwater lake further validate the approach u
 This work highlights that attitude errors in loosely coupled SINS/DVL systems affect not only velocity projection but also the statistical properties of measurement uncertainty. By jointly addressing both effects, the proposed framework provides a more reliable and theoretically consistent solution for long-term underwater navigation. The methodology is applicable to a wide range of DVL-aided inertial navigation systems and offers a principled pathway for improving robustness without increasing system complexity.
 
 ## Keywords
-- Underwater integrated navigation  
-- SINS/DVL loosely coupled fusion  
-- Attitude error modeling  
-- Variance propagation  
+- Underwater navigation
+- SINS/DVL
+- Attitude error
 - Autonomous underwater vehicle  

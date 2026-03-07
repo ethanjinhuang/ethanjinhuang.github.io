@@ -40,8 +40,8 @@ The study adopts an error-state Kalman filter (ESKF) within a SINS/DVL integrate
 Simulations and field experiments show that compensating installation errors reduces cumulative navigation error by roughly 50% compared with uncompensated integration. Lake tests and real AUV deployments demonstrate robust performance under practical operating conditions. The results indicate that the compensation approach remains effective when GNSS is only intermittently available.
 
 ## Keywords
-- INS/DVL integration
-- Installation error compensation
+- SINS/DVL
+- Installation error
 - Error-state Kalman filter
-- GNSS-aided calibration
+- Calibration
 - Autonomous underwater vehicle

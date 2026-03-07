@@ -91,6 +91,15 @@ header .navbar.animate {
     pointer-events: none;
 }
 
+body.light:not(.dark) #hero::before {
+    background: linear-gradient(
+        112deg,
+        rgba(248, 251, 255, 0.72) 10%,
+        rgba(243, 248, 255, 0.44) 48%,
+        rgba(236, 244, 255, 0.26) 100%
+    );
+}
+
 body.dark #hero::before {
     background: rgba(0, 0, 0, 0.45);
 }
@@ -128,6 +137,16 @@ body.dark #hero::before {
 #hero h2 {
     font-size: clamp(40px, 8vw, 60px);
     opacity: 1;
+}
+
+body.light:not(.dark) #hero h1,
+body.light:not(.dark) #hero h2 {
+    text-shadow: 0 3px 24px rgba(255, 255, 255, 0.35);
+}
+
+body.light:not(.dark) #hero .subtitle,
+body.light:not(.dark) #hero p {
+    color: rgba(27, 37, 52, 0.92) !important;
 }
 
 #hero p {

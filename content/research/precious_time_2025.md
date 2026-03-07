@@ -49,8 +49,8 @@ Field experiments conducted in a freshwater reservoir further confirm the method
 By leveraging synchronized clocks and exposing the timing structure of acoustic signal processing, this work provides a generalizable framework for addressing latency in acoustic-aided navigation systems. The methodology is applicable beyond piUSBL to other delay-sensitive underwater sensing modalities. It also lays the groundwork for deeper coupling between raw acoustic data and inertial navigation, supporting future research on high-precision and reproducible underwater navigation systems.
 
 ## Keywords
-- Underwater integrated navigation  
-- Passive inverted USBL (piUSBL)  
+- Underwater navigation
+- SINS/piUSBL
 - Time delay measurement and compensation  
-- Tightly coupled sensor fusion  
+- Tightly coupled
 - Autonomous underwater vehicle  
