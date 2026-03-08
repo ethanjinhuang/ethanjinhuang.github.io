@@ -1,10 +1,10 @@
 {{ if .Site.Params.news.enable | default false }}
 {{ $newsTitle := .Site.Params.news.title | default "News" }}
 {{ $newsItems := .Site.Params.news.items | default (slice) }}
-{{ if fileExists "data/news/README.md" }}
-{{ $newsData := readFile "data/news/README.md" | transform.Unmarshal }}
-{{ with index $newsData "title" }}{{ $newsTitle = . }}{{ end }}
-{{ with index $newsData "items" }}{{ $newsItems = . }}{{ end }}
+{{ $newsSection := .Site.GetPage "section" "news" }}
+{{ if $newsSection }}
+{{ with $newsSection.Title }}{{ $newsTitle = . }}{{ end }}
+{{ with $newsSection.Params.items }}{{ $newsItems = . }}{{ end }}
 {{ end }}
 <section id="news" class="py-5">
     <div class="container">

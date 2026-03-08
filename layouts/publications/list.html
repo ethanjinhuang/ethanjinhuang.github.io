@@ -1,0 +1,84 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Description | default (printf "%s of %s" .Title .Site.Title) }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ $pubGroups := sort .RegularPages "Weight" "asc" }}
+<section id="publications" class="py-5">
+    <div class="container">
+        <h2 class="text-center pb-2">{{ .Title }}</h2>
+        {{ if .Content }}
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ if gt (len $pubGroups) 0 }}
+                {{ range $pubGroups }}
+                {{ $items := .Params.items | default (slice) }}
+                <div class="publications-group">
+                    <h4 class="publications-title">{{ .Title }}</h4>
+                    {{ with .Content }}
+                    <div class="pb-2">{{ . }}</div>
+                    {{ end }}
+                    {{ if gt (len $items) 0 }}
+                    <ul class="publications-list">
+                        {{ $sortedItems := sort $items "year" "desc" }}
+                        {{ range $sortedItems }}
+                        <li class="publications-item">
+                            <div class="publications-item-meta">
+                                {{ $date := .year }}
+                                {{ if .month }}
+                                    {{ $date = printf "%s %s" .month .year }}
+                                {{ end }}
+                                {{ if .authors }}
+                                    <span class="pub-authors">{{ .authors | safeHTML }}</span>.
+                                {{ end }}
+                                <span class="pub-title">{{ .title }}</span>.
+                                {{ if .venue }}
+                                    <span class="pub-venue"><em>{{ .venue }}</em></span>
+                                {{ end }}
+                                {{ if $date }}
+                                    <span class="publications-sep">·</span>
+                                    {{ $date }}
+                                {{ end }}
+                                {{ if .doi }}
+                                    <span class="publications-sep">·</span>
+                                    <span>doi: </span><a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener">{{ .doi }}</a>
+                                {{ end }}
+                                {{ if .url }}
+                                    <span class="publications-sep">·</span>
+                                    <a href="{{ .url }}" target="_blank" rel="noopener">{{ .urlText | default "Link" }}</a>
+                                {{ end }}
+                            </div>
+                        </li>
+                        {{ end }}
+                    </ul>
+                    {{ else }}
+                    <div class="alert alert-light mb-0" role="alert">
+                        No publication items found in this category.
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+                {{ else }}
+                <div class="alert alert-light mb-0" role="alert">
+                    No publications found. Add category files under <code>content/publications/</code>.
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

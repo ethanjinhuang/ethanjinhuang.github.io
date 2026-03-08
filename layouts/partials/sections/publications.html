@@ -1,0 +1,47 @@
+{{ if .Site.Params.publications.enable | default false }}
+{{ $pubSection := .Site.GetPage "section" "publications" }}
+{{ if $pubSection }}
+{{ $pubGroups := sort $pubSection.RegularPages "Weight" "asc" }}
+<section id="publications" class="py-5">
+    <div class="container">
+        <h3 class="text-center">{{ .Site.Params.publications.title | default "Publications" }}</h3>
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ range $pubGroups }}
+                {{ $items := .Params.items | default (slice) }}
+                <div class="publications-group">
+                    <h4 class="publications-title">{{ .Title }}</h4>
+                    <ul class="publications-list">
+                        {{ $sortedItems := sort $items "year" "desc" }}
+                        {{ range $sortedItems }}
+                        <li class="publications-item">
+                            <div class="publications-item-meta">
+                                {{ if .authors }}
+                                <span class="pub-authors">{{ .authors | safeHTML }}</span>
+                                <span class="publications-sep">·</span>
+                                {{ end }}
+                                <span class="pub-title">{{ .title }}</span>
+                                {{ if .venue }}
+                                <span class="publications-sep">·</span>
+                                <span class="pub-venue">{{ .venue }}</span>
+                                {{ end }}
+                                {{ if .year }}
+                                <span class="publications-sep">·</span>
+                                {{ if .month }}{{ .month }} {{ end }}{{ .year }}
+                                {{ end }}
+                                {{ if .doi }}
+                                <span class="publications-sep">·</span>
+                                <a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener">DOI</a>
+                                {{ end }}
+                            </div>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+{{ end }}
