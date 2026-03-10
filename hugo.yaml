@@ -28,10 +28,10 @@ markup:
 
 Menus:
   main:
-    - identifier: education
-      name: Education
-      title: Education
-      url: /education
+    - identifier: experience
+      name: Experience
+      title: Experience
+      url: /experience
       weight: 2
     - identifier: award
       name: Award
@@ -52,6 +52,7 @@ Menus:
 params:
   title: "Jin Huang's Profile"
   favicon: "/favicon.svg"
+  description: "Welcome to my personal profile website!"
   discription: "Welcome to my personal profile website!"
   # Whether the fade animations on the home page will be enabled
   animate: true
@@ -85,6 +86,7 @@ params:
     intro: "Hi, I'm"
     title: "Jin Huang (黄 瑾)"
     subtitle: "Ph.D. Candidate"
+    content: "From Zhejiang University."
     contact: "From Zhejiang University."
     bottomImage:
       enable: true
@@ -110,7 +112,7 @@ params:
     image: "/images/profile/profile.jpg"
     content: |-
       I am a Ph.D. candidate supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096) at Zhejiang University. 
-      My reseasrch interests include marine robotics, underwater integrated navigation, and acoustic positioning systems.
+      My research interests include marine robotics, underwater integrated navigation, and acoustic positioning systems.
       I have developed several underwater navigation/positioning systems and algorithms, which have been successfully applied in real-world underwater scenarios, and validated through extensive sea trials.
     # skills:
     #   enable: true
@@ -129,33 +131,33 @@ params:
     title: "News"
     # News items are managed in content/news/_index.md
 
+  # LinkedIn Feed
+  linkedinFeed:
+    enable: true
+    provider: "sociablekit"
+    title: "LinkedIn Feed"
+    profileUrl: "https://www.linkedin.com/in/jinhuang-zju/"
+    activityUrl: "https://www.linkedin.com/in/jinhuang-zju/recent-activity/all/"
+    badgeVanity: "jinhuang-zju"
+    badgeLocale: "en_US"
+    # SociableKIT option 1: full JS embed snippet (div + script)
+    embedCode: |-
+      <div class="sk-ww-linkedin-profile-post" data-embed-id="25660874"></div><script src="https://widgets.sociablekit.com/linkedin-profile-posts/widget.js" defer></script>
+    # SociableKIT option 2: iframe URL from widget share/embed settings
+    iframeUrl: ""
+
   # Education
   education:
     enable: true
     title: "Education"
-    index: false
-    items:
-      - title: "Ph.D. Candidate"
-        school:
-          name: "Zhejiang University"
-          url: "https://www.zju.edu.cn/english/"
-        date: "2022.09 - Present"
-        content: |-
-          Major: Ocean Technology and Engineering
-      - title: "Visiting Student"
-        school:
-          name: "The University of Tokyo"
-          url: "https://www.u-tokyo.ac.jp/en/"
-        date: "2025.11 - Present"
-        content: |-
-          Host Lab: DRAGON LAB, Department of Mechanical Engineering
-      - title: "Bachelor of Engineering"
-        school:
-          name: "Shandong University of Science and Technology"
-          url: "https://en.sdust.edu.cn/"
-        date: "2018.09 - 2022.06"
-        content: |-
-          Major: Ocean Surveying and Mapping Engineering
+    # Education list page data is maintained in content/experience/*.md (section: education).
+
+  # Experience (for /experience page)
+  # `enable` controls homepage section only.
+  experience:
+    enable: false
+    title: "Experience"
+    # Experience list page data is maintained in content/experience/*.md (section: experience).
 
   # Research
   research:

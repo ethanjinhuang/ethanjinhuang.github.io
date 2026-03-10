@@ -1,8 +1,11 @@
 {{ define "head" }}
-<meta name="description" content={{ .Site.Params.description }}>
+{{ $siteDescription := .Site.Params.description | default .Site.Params.discription | default .Site.Title }}
+<meta name="description" content="{{ $siteDescription }}">
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/about-home.css" media="all">
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/projects.css" media="all">
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/news.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/linkedin-feed.css" media="all">
 
 <!-- fontawesome -->
 <script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
@@ -17,7 +20,154 @@
 {{- partial "sections/about.html" . -}}
 {{- partial "sections/experience.html" . -}}
 {{- partial "sections/news.html" . -}}
+{{- partial "sections/linkedin-feed.html" . -}}
 {{- partial "sections/projects.html" . -}}
 {{- partial "sections/achievements.html" . -}}
 {{- partial "sections/contact.html" . -}}
+
+{{- $beamerImages := slice -}}
+{{- if fileExists "static/images/beamer" -}}
+{{- range readDir "static/images/beamer" -}}
+{{- if and (not .IsDir) (gt (len (findRE "(?i)\\.(png|jpe?g|webp|avif|gif)$" .Name)) 0) -}}
+{{- $beamerImages = $beamerImages | append (printf "/images/beamer/%s" .Name | relURL) -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $beamerImages = sort $beamerImages -}}
+{{ if gt (len $beamerImages) 0 }}
+<script>
+    (function () {
+        var hero = document.getElementById("hero");
+        if (!hero) return;
+
+        // Remove empty hero image placeholder to avoid clickable broken-dot artifact.
+        var heroImg = hero.querySelector(".image img");
+        if (heroImg) {
+            var heroImgSrc = (heroImg.getAttribute("src") || "").trim();
+            if (!heroImgSrc) {
+                var heroImgCol = heroImg.closest(".col-lg-4");
+                if (heroImgCol) heroImgCol.remove();
+            }
+        }
+
+        var beamerImages = {{ $beamerImages | jsonify | safeJS }};
+        if (!Array.isArray(beamerImages) || !beamerImages.length) return;
+
+        var wall = hero.querySelector(".hero-beamer-wall");
+        if (!wall) {
+            wall = document.createElement("div");
+            wall.className = "hero-beamer-wall";
+            hero.insertBefore(wall, hero.firstChild);
+        }
+
+        if (!wall.querySelector(".hero-beamer-stage")) {
+            var stage = document.createElement("div");
+            stage.className = "hero-beamer-stage";
+
+            var track = document.createElement("div");
+            track.className = "hero-beamer-track";
+            stage.appendChild(track);
+            wall.appendChild(stage);
+        }
+
+        var stageEl = wall.querySelector(".hero-beamer-stage");
+        var trackEl = wall.querySelector(".hero-beamer-track");
+        if (!stageEl || !trackEl) return;
+
+        beamerImages.forEach(function (src) {
+            var img = new Image();
+            img.src = src;
+        });
+
+        var len = beamerImages.length;
+        var windowStart = 0;
+        var visibleCount = 3;
+        var isAnimating = false;
+        var timer = null;
+        var resizeTimer = null;
+        var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function getVisibleCount() {
+            var width = window.innerWidth || document.documentElement.clientWidth || 1440;
+            if (width <= 760) return 1;
+            if (width <= 1180) return 2;
+            return 3;
+        }
+
+        function buildTrack(startIdx, count) {
+            wall.style.setProperty("--beamer-cols", String(count));
+            var html = "";
+            for (var i = 0; i < count + 1; i += 1) {
+                var src = beamerImages[(startIdx + i) % len];
+                html += '<div class="hero-beamer-cell"><div class="hero-beamer-media" style="background-image:url(\'' + src + '\')"></div></div>';
+            }
+            trackEl.innerHTML = html;
+            trackEl.classList.remove("is-animating");
+            trackEl.style.transform = "translateX(0)";
+        }
+
+        function renderWindow() {
+            visibleCount = getVisibleCount();
+            buildTrack(windowStart, visibleCount);
+        }
+
+        function resetShiftState() {
+            trackEl.classList.remove("is-animating");
+            trackEl.style.transform = "translateX(0)";
+            isAnimating = false;
+            renderWindow();
+        }
+
+        function tickShift() {
+            if (len < 2 || isAnimating) return;
+            if (reduceMotion) {
+                windowStart = (windowStart + 1) % len;
+                renderWindow();
+                return;
+            }
+            isAnimating = true;
+            trackEl.classList.add("is-animating");
+            requestAnimationFrame(function () {
+                trackEl.style.transform = "translateX(calc(-100% / " + visibleCount + "))";
+            });
+        }
+
+        function start() {
+            if (beamerImages.length < 2 || timer) return;
+            timer = window.setInterval(tickShift, reduceMotion ? 4600 : 3600);
+        }
+
+        function stop() {
+            if (!timer) return;
+            window.clearInterval(timer);
+            timer = null;
+        }
+
+        trackEl.addEventListener("transitionend", function (event) {
+            if (event.propertyName !== "transform") return;
+            if (!isAnimating) return;
+            windowStart = (windowStart + 1) % len;
+            buildTrack(windowStart, visibleCount);
+            isAnimating = false;
+        });
+
+        hero.addEventListener("mouseenter", stop);
+        hero.addEventListener("mouseleave", start);
+        window.addEventListener("resize", function () {
+            if (resizeTimer) window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(function () {
+                resetShiftState();
+            }, 140);
+        }, { passive: true });
+        document.addEventListener("visibilitychange", function () {
+            if (document.hidden) stop();
+            else start();
+        });
+
+        renderWindow();
+        start();
+        window.addEventListener("beforeunload", stop);
+    })();
+</script>
+{{ end }}
 {{ end }}

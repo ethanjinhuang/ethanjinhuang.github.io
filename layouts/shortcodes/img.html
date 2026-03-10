@@ -1,0 +1,25 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $width := .Get "width" -}}
+{{- $maxWidth := .Get "maxWidth" -}}
+{{- $align := lower (.Get "align" | default "center") -}}
+{{- $caption := .Get "caption" -}}
+{{- $class := .Get "class" -}}
+
+{{- if not $src -}}
+  {{- errorf "shortcode img requires src: %s" .Position -}}
+{{- end -}}
+
+{{- $styles := slice -}}
+{{- with $width -}}
+  {{- $styles = $styles | append (printf "width:%s" .) -}}
+{{- end -}}
+{{- with $maxWidth -}}
+  {{- $styles = $styles | append (printf "max-width:%s" .) -}}
+{{- end -}}
+{{- $styleAttr := delimit $styles ";" -}}
+
+<figure class="md-img-wrap align-{{ $align }}{{ with $class }} {{ . }}{{ end }}">
+  <img src="{{ $src }}" alt="{{ $alt }}" {{ with $styleAttr }}{{ printf "style=%q" (printf "%s;" .) | safeHTMLAttr }}{{ end }}>
+  {{ with $caption }}<figcaption class="md-img-caption">{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

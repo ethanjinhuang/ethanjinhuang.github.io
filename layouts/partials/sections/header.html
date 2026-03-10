@@ -89,7 +89,7 @@
                     {{ if not (.Site.Params.navbar.disableSearch | default false) }}
                     <li class="nav-item navbar-text d-block d-md-none">
                         <div class="nav-link">
-                            <input id="search" autocomplete="off" class="form-control mr-sm-2"
+                            <input id="search-mobile" autocomplete="off" class="form-control mr-sm-2"
                                 placeholder='{{ .Site.Params.navbar.searchPlaceholder | default "Ctrl + k to Search..."}}'
                                 aria-label="Search" oninput="searchOnChange(event)">
                         </div>
@@ -123,7 +123,7 @@
                     {{ if and (.Site.Params.news.enable | default false) (not (.Site.Params.navbar.menus.disableNews |
                     default false)) }}
                     <li class="nav-item navbar-text">
-                        <a class="nav-link" href="{{ .Site.BaseURL | relURL }}#news" aria-label="news">
+                        <a class="nav-link" href="{{ "/news/" | relURL }}" aria-label="news">
                             {{ .Site.Params.news.title | default "News" }}
                         </a>
                     </li>

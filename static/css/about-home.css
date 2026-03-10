@@ -1,0 +1,535 @@
+/* Hero beamer wall */
+#hero {
+    background-image: none !important;
+    background-color: var(--background-color) !important;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: clamp(360px, 52vh, 620px) !important;
+    line-height: 1.6rem !important;
+}
+
+#hero.py-5 {
+    padding-top: 1.65rem !important;
+    padding-bottom: 1.65rem !important;
+}
+
+#hero .container {
+    position: relative;
+    min-height: clamp(360px, 52vh, 620px);
+    padding-top: 0.4rem !important;
+}
+
+#hero .row {
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero .hero-info-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(780px, calc(100% - 2rem)) !important;
+    max-width: 780px;
+    margin: 0;
+    float: none;
+    flex: 0 0 auto;
+    z-index: 4;
+}
+
+#hero .hero-info-card.content {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: clamp(0.8rem, 1.4vw, 1.2rem) clamp(0.9rem, 1.7vw, 1.35rem);
+    border-radius: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: linear-gradient(
+        112deg,
+        rgba(249, 252, 255, 0.62) 0%,
+        rgba(246, 250, 255, 0.48) 56%,
+        rgba(244, 249, 255, 0.26) 100%
+    );
+    box-shadow: 0 10px 24px rgba(12, 22, 35, 0.1);
+    backdrop-filter: blur(1.8px) saturate(1.03);
+    -webkit-backdrop-filter: blur(1.8px) saturate(1.03);
+}
+
+body.dark #hero .hero-info-card.content {
+    border-color: rgba(180, 204, 235, 0.18);
+    background: linear-gradient(
+        112deg,
+        rgba(17, 25, 35, 0.58) 0%,
+        rgba(17, 25, 35, 0.44) 56%,
+        rgba(17, 25, 35, 0.28) 100%
+    );
+    box-shadow: 0 12px 26px rgba(2, 6, 12, 0.36);
+}
+
+#hero .subtitle {
+    color: rgba(27, 40, 58, 0.92) !important;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+#hero h1 {
+    font-size: clamp(2.1rem, 5.9vw, 4.8rem) !important;
+    line-height: 1.08;
+    margin-bottom: 0.45rem;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.45);
+}
+
+#hero h2 {
+    font-size: clamp(2rem, 5vw, 4.2rem) !important;
+    line-height: 1.08;
+    margin-bottom: 0.45rem;
+    color: var(--text-color) !important;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+#hero p,
+#hero .hero-content {
+    color: rgba(28, 41, 58, 0.9) !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+body.dark #hero .subtitle,
+body.dark #hero p,
+body.dark #hero .hero-content {
+    color: rgba(226, 234, 244, 0.92) !important;
+}
+
+body.dark #hero h1,
+body.dark #hero h2 {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+#hero a.btn,
+#hero a.btn.social-icon {
+    margin-top: 0.75rem !important;
+}
+
+#hero a.btn.social-icon {
+    padding: 0.58rem;
+}
+
+#hero .hero-beamer-wall {
+    --beamer-cols: 3;
+    position: absolute;
+    inset: clamp(1rem, 2vw, 1.65rem) clamp(1rem, 2.2vw, 1.8rem) clamp(1.35rem, 2.8vw, 2rem);
+    z-index: 0;
+    padding: 0.16rem;
+    border-radius: 1rem;
+    background-color: #15171b;
+    box-shadow: 0 16px 34px rgba(10, 16, 24, 0.24);
+    overflow: hidden;
+}
+
+#hero .hero-beamer-stage {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0.72rem;
+}
+
+#hero .hero-beamer-track {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transform: translateX(0);
+}
+
+#hero .hero-beamer-track.is-animating {
+    transition: transform 0.7s cubic-bezier(0.3, 0.05, 0.25, 1);
+}
+
+#hero .hero-beamer-wall::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(9, 11, 14, 0.42) 0%, rgba(9, 11, 14, 0.08) 38%, rgba(9, 11, 14, 0.22) 100%);
+}
+
+#hero .hero-beamer-wall::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 6;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent 16%, transparent 84%, rgba(0, 0, 0, 0.35)),
+        repeating-linear-gradient(to right, rgba(13, 16, 20, 0.9) 0 10px, transparent 10px 22px),
+        repeating-linear-gradient(to right, rgba(13, 16, 20, 0.9) 0 10px, transparent 10px 22px);
+    background-size: 100% 100%, 100% 11px, 100% 11px;
+    background-position: center, top, bottom;
+    background-repeat: no-repeat;
+    opacity: 0.82;
+    pointer-events: none;
+}
+
+#hero .hero-beamer-cell {
+    position: relative;
+    flex: 0 0 calc(100% / var(--beamer-cols));
+    max-width: calc(100% / var(--beamer-cols));
+    height: 100%;
+    padding-right: 0.18rem;
+    border-radius: 0.52rem;
+    overflow: hidden;
+    background: #11151c;
+}
+
+#hero .hero-beamer-cell:last-child {
+    padding-right: 0;
+}
+
+#hero .hero-beamer-media {
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+    opacity: 1;
+    animation: hero-beamer-kenburns 7.2s linear forwards;
+    will-change: transform, opacity;
+}
+
+#hero::before {
+    background: transparent !important;
+    z-index: 1 !important;
+}
+
+#hero > .container {
+    z-index: 2 !important;
+}
+
+@keyframes hero-beamer-kenburns {
+    0% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+/* Unified width for homepage core sections */
+#about,
+#news,
+#linkedin-feed,
+#research {
+    padding-top: 2.1rem !important;
+    padding-bottom: 2.1rem !important;
+}
+
+#about .home-section-inner,
+#news .home-section-inner,
+#linkedin-feed .home-section-inner,
+#research .home-section-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+#about h3,
+#news h3,
+#linkedin-feed h3,
+#research h3 {
+    color: var(--text-secondary-color) !important;
+    margin-bottom: 0 !important;
+}
+
+#news .pt-3,
+#linkedin-feed .pt-3 {
+    padding-top: 0.8rem !important;
+}
+
+#research .row.mt-1 {
+    margin-top: 0.45rem !important;
+}
+
+/* Unified home "Read more" buttons (News + Research) */
+#news .home-more-wrap,
+#research .home-more-wrap {
+    margin-top: 0.6rem !important;
+}
+
+#news .home-more-btn,
+#research .home-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 6.9rem;
+    padding: 0.28rem 0.92rem;
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    background-color: transparent !important;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+#news .home-more-btn:hover,
+#news .home-more-btn:focus,
+#research .home-more-btn:hover,
+#research .home-more-btn:focus {
+    color: var(--background-color) !important;
+    background-color: var(--primary-color) !important;
+    box-shadow: none !important;
+}
+
+/* About: academic and compact */
+#about .about-shell {
+    position: relative;
+    padding: 1rem 1.15rem;
+    border-radius: 0.75rem;
+    background: var(--secondary-color);
+    border: 1px solid rgba(127, 127, 127, 0.22);
+    box-shadow: 0 4px 20px rgba(15, 80, 100, 0.08);
+    overflow: hidden;
+}
+
+#about .about-shell::before {
+    content: none;
+}
+
+#about .about-avatar-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#about .about-avatar {
+    width: clamp(152px, 20vw, 212px);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(127, 127, 127, 0.32);
+    box-shadow: 0 6px 18px rgba(15, 80, 100, 0.12);
+}
+
+#about .about-content {
+    color: var(--text-color);
+    font-size: 0.96rem;
+    font-weight: 450;
+    line-height: 1.52;
+}
+
+#about .about-content > p {
+    margin-bottom: 0.5rem;
+}
+
+#about .about-content > p:last-child {
+    margin-bottom: 0;
+}
+
+#about .about-content > p:first-child {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+}
+
+#about .about-content a {
+    color: var(--text-link-color) !important;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+}
+
+#about .about-content a:hover,
+#about .about-content a:focus {
+    opacity: 0.86;
+}
+
+#about .about-content a::after {
+    content: none !important;
+    display: none !important;
+}
+
+#about .about-skills {
+    margin-top: 0.75rem;
+}
+
+#about .about-skills-title {
+    margin-bottom: 0.3rem !important;
+    font-size: 0.88rem;
+    color: var(--text-secondary-color);
+}
+
+#about .about-skill-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+#about .about-skill-list li {
+    margin: 0;
+    padding: 0.12rem 0.44rem;
+    border-radius: 0.35rem;
+    border: 1px solid rgba(127, 127, 127, 0.3);
+    background: var(--background-color);
+    font-size: 0.8rem;
+    line-height: 1.25;
+}
+
+#about .about-skill-list li::before {
+    content: none !important;
+}
+
+#about .about-avatar-wrap.animate {
+    animation: fade-in 0.65s ease-out;
+}
+
+#about .about-content.animate {
+    animation: fade-right 0.7s ease-out;
+}
+
+/* Research cards compactness on home */
+#research .card {
+    box-shadow: 0 5px 22px rgba(15, 80, 100, 0.12) !important;
+}
+
+#research .card .card-body {
+    padding: 0.75rem 0.82rem !important;
+}
+
+#research .card .card-title {
+    font-size: 0.98rem;
+    line-height: 1.28;
+}
+
+#research .card .card-text {
+    font-size: 0.86rem;
+    line-height: 1.32;
+    margin-bottom: 0.18rem;
+}
+
+#research .card .badge {
+    font-size: 0.73rem;
+}
+
+#research .card .card-footer {
+    padding: 0.5rem 0.72rem !important;
+}
+
+#research .card .float-end .btn {
+    padding: 0.24rem 0.6rem;
+}
+
+@media (max-width: 768px) {
+    #hero {
+        min-height: clamp(400px, 62vh, 700px) !important;
+    }
+
+    #hero.py-5 {
+        padding-top: 1.2rem !important;
+        padding-bottom: 1.2rem !important;
+    }
+
+    #about,
+    #news,
+    #linkedin-feed,
+    #research {
+        padding-top: 1.7rem !important;
+        padding-bottom: 1.7rem !important;
+    }
+
+    #hero .container {
+        min-height: clamp(400px, 62vh, 700px);
+    }
+
+    #hero .hero-info-card {
+        width: calc(100% - 1.1rem) !important;
+    }
+
+    #hero .hero-beamer-wall {
+        inset: 0.72rem 0.58rem 1.15rem;
+        border-radius: 0.72rem;
+        padding: 0.12rem;
+    }
+
+    #hero .hero-beamer-stage {
+        border-radius: 0.58rem;
+    }
+
+    #hero .hero-info-card.content {
+        padding: 0.72rem 0.78rem;
+        border-radius: 0.72rem;
+        background: linear-gradient(
+            120deg,
+            rgba(249, 252, 255, 0.72) 0%,
+            rgba(246, 250, 255, 0.6) 58%,
+            rgba(244, 249, 255, 0.4) 100%
+        );
+    }
+
+    body.dark #hero .hero-info-card.content {
+        background: linear-gradient(
+            120deg,
+            rgba(17, 25, 35, 0.64) 0%,
+            rgba(17, 25, 35, 0.54) 58%,
+            rgba(17, 25, 35, 0.38) 100%
+        );
+    }
+
+    #hero .hero-beamer-cell {
+        padding-right: 0.14rem;
+    }
+
+    #hero .hero-beamer-wall::after {
+        background-size: 100% 100%, 100% 9px, 100% 9px;
+    }
+
+    #hero .hero-beamer-cell {
+        border-radius: 0.44rem;
+    }
+
+    #hero .hero-beamer-media {
+        animation-duration: 6.2s;
+    }
+
+    #hero h1 {
+        margin-bottom: 0.32rem;
+    }
+
+    #hero h2 {
+        margin-bottom: 0.32rem;
+    }
+
+    #about .about-shell {
+        padding: 0.82rem 0.88rem;
+        border-radius: 0.68rem;
+    }
+
+    #about .about-avatar {
+        width: 144px;
+    }
+
+    #about .about-content {
+        font-size: 0.92rem;
+        line-height: 1.47;
+    }
+
+    #about .about-content > p {
+        margin-bottom: 0.42rem;
+    }
+
+    #research .card .card-body {
+        padding: 0.7rem 0.74rem !important;
+    }
+
+    #news .home-more-btn,
+    #research .home-more-btn {
+        min-width: 6.4rem;
+        padding: 0.24rem 0.8rem;
+    }
+}

@@ -1,8 +1,11 @@
 <span>
     {{ range .Site.Params.hero.socialLinks.fontAwesomeIcons }}
     <span class="px-1">
+        {{ $isExternal := or (hasPrefix .url "https://") (hasPrefix .url "http://") }}
+        {{ $label := .label | default .url }}
         <a href="{{ .url }}"
-            {{ if not (hasPrefix .url "#") }} target="_blank" {{ end }}
+            {{ if $isExternal }} target="_blank" rel="noopener noreferrer" {{ end }}
+            aria-label="{{ $label }}"
             class="btn social-icon"
         >
             <i class="{{ .icon }}"></i>
@@ -12,11 +15,14 @@
 
     {{ range .Site.Params.hero.socialLinks.customIcons }}
     <span class="px-1">
+        {{ $isExternal := or (hasPrefix .url "https://") (hasPrefix .url "http://") }}
+        {{ $label := .label | default .url }}
         <a href="{{ .url }}"
-            {{ if not (hasPrefix .url "#") }} target="_blank" {{ end }}
+            {{ if $isExternal }} target="_blank" rel="noopener noreferrer" {{ end }}
+            aria-label="{{ $label }}"
             class="btn social-icon"
         >
-            <img src="{{ .icon }}">
+            <img src="{{ .icon }}" alt="">
         </a>
     </span>
     {{ end }}

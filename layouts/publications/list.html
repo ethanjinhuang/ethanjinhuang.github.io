@@ -55,11 +55,11 @@
                                 {{ end }}
                                 {{ if .doi }}
                                     <span class="publications-sep">·</span>
-                                    <span>doi: </span><a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener">{{ .doi }}</a>
+                                    <span>doi: </span><a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener noreferrer">{{ .doi }}</a>
                                 {{ end }}
                                 {{ if .url }}
                                     <span class="publications-sep">·</span>
-                                    <a href="{{ .url }}" target="_blank" rel="noopener">{{ .urlText | default "Link" }}</a>
+                                    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .urlText | default "Link" }}</a>
                                 {{ end }}
                             </div>
                         </li>

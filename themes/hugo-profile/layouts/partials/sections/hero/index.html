@@ -2,7 +2,9 @@
 <section id="hero" class="py-5 align-middle">
     <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-8 content {{ if .Site.Params.animate }}animate{{ end }}" id="primary-font">
+            {{ $heroContent := .Site.Params.hero.content | default .Site.Params.hero.contact }}
+            <div class="col-sm-12 col-md-12 col-lg-8 content hero-info-card" id="primary-font"
+                style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(780px,calc(100% - 2rem));max-width:780px;margin:0;z-index:4;">
                 <span class="subtitle">
                     {{ .Site.Params.hero.intro }}
                 </span>
@@ -12,15 +14,17 @@
                 <h2>
                     {{ .Site.Params.hero.subtitle }}
                 </h2>
+                {{ with $heroContent }}
                 <p class="hero-content">
-                    {{ .Site.Params.hero.content | markdownify }}
+                    {{ . | markdownify }}
                 </p>
+                {{ end }}
                 <div class="row">
                     <div class="col-auto h-100">
                         {{ if .Site.Params.hero.button.enable }}
                         <a href="{{ .Site.Params.hero.button.url }}" class="btn" {{ cond .Site.Params.hero.button.download "download" "" }}
 			  {{ if .Site.Params.hero.button.newPage | default true }}
-                          target="_blank"
+                          target="_blank" rel="noopener noreferrer"
                           {{ end }}>
                             {{ .Site.Params.hero.button.name }}
                         </a>
@@ -31,6 +35,7 @@
                     </div>
                 </div>
             </div>
+            {{ if .Site.Params.hero.image }}
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-9 pt-5 image {{ if .Site.Params.animate }}animate{{ end }} px-5 px-md-5 px-lg-0 text-center">
@@ -41,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            {{ end }}
         </div>
     </div>
     {{ if .Site.Params.hero.bottomImage.enable | default true }}

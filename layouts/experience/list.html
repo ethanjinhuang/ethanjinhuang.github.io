@@ -1,0 +1,115 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Description | default (printf "%s of %s" .Title .Site.Title) }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/experience-page.css" media="all">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ $allItems := sort .RegularPages "Weight" "asc" }}
+{{ $educationPages := where $allItems "Params.section" "education" }}
+{{ $experiencePages := where $allItems "Params.section" "experience" }}
+{{ $educationItems := slice }}
+{{ $experienceItems := slice }}
+{{ if gt (len $educationPages) 0 }}
+{{ $educationItems = (index $educationPages 0).Params.items | default (slice) }}
+{{ end }}
+{{ if gt (len $experiencePages) 0 }}
+{{ $experienceItems = (index $experiencePages 0).Params.items | default (slice) }}
+{{ end }}
+
+<section id="experiencePage" class="py-5">
+    <div class="container">
+        <h2 class="text-center pb-2">{{ .Title }}</h2>
+        {{ if .Content }}
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
+
+        <div class="row justify-content-center pt-4">
+            <div class="col-lg-10">
+                <h4 class="exp-page-section-title">Education</h4>
+                {{ if gt (len $educationItems) 0 }}
+                <div class="exp-page-list">
+                    {{ range $educationItems }}
+                    {{ $role := .title | default (.role | default "") }}
+                    {{ $date := .period | default (.date | default "") }}
+                    {{ $logo := .logo | default "" }}
+                    {{ $orgName := .organization.name | default (.organization | default "") }}
+                    {{ $orgUrl := .organization.url | default (.organizationUrl | default "") }}
+                    <article class="exp-page-item">
+                        <div class="exp-page-item-main">
+                            <div class="exp-page-item-date">{{ $date }}</div>
+                            <h5 class="exp-page-item-role">{{ $role }}</h5>
+                            {{ if $orgUrl }}
+                            <a class="exp-page-item-org" href="{{ $orgUrl }}" target="_blank" rel="noopener noreferrer">{{ $orgName }}</a>
+                            {{ else }}
+                            <div class="exp-page-item-org">{{ $orgName }}</div>
+                            {{ end }}
+                            {{ with .content }}
+                            <div class="exp-page-item-content">{{ . | markdownify }}</div>
+                            {{ end }}
+                        </div>
+                        {{ with $logo }}
+                        <div class="exp-page-item-logo-wrap">
+                            <img class="exp-page-item-logo" src="{{ . }}" alt="Education logo">
+                        </div>
+                        {{ end }}
+                    </article>
+                    {{ end }}
+                </div>
+                {{ else }}
+                <div class="alert alert-light mb-0" role="alert">No education items found.</div>
+                {{ end }}
+            </div>
+        </div>
+
+        <div class="row justify-content-center pt-4">
+            <div class="col-lg-10">
+                <h4 class="exp-page-section-title">Experience</h4>
+                {{ if gt (len $experienceItems) 0 }}
+                <div class="exp-page-list">
+                    {{ range $experienceItems }}
+                    {{ $role := .title | default (.role | default (.name | default "")) }}
+                    {{ $date := .period | default (.date | default "") }}
+                    {{ $logo := .logo | default (.companyLogo | default "") }}
+                    {{ $orgName := .organization.name | default (.organization | default (.company | default "")) }}
+                    {{ $orgUrl := .organization.url | default (.organizationUrl | default (.companyUrl | default "")) }}
+                    <article class="exp-page-item">
+                        <div class="exp-page-item-main">
+                            <div class="exp-page-item-date">{{ $date }}</div>
+                            <h5 class="exp-page-item-role">{{ $role }}</h5>
+                            {{ if $orgUrl }}
+                            <a class="exp-page-item-org" href="{{ $orgUrl }}" target="_blank" rel="noopener noreferrer">{{ $orgName }}</a>
+                            {{ else }}
+                            <div class="exp-page-item-org">{{ $orgName }}</div>
+                            {{ end }}
+                            {{ with .content }}
+                            <div class="exp-page-item-content">{{ . | markdownify }}</div>
+                            {{ end }}
+                        </div>
+                        {{ with $logo }}
+                        <div class="exp-page-item-logo-wrap">
+                            <img class="exp-page-item-logo" src="{{ . }}" alt="Experience logo">
+                        </div>
+                        {{ end }}
+                    </article>
+                    {{ end }}
+                </div>
+                {{ else }}
+                <div class="alert alert-light mb-0" role="alert">No experience items found.</div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

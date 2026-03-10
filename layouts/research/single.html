@@ -1,0 +1,301 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Params.description }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/single.css">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/research-single.css">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<section id="single">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="pr-lg-4">
+          {{ if .Params.showTitle | default true }}
+          <header class="research-hero mb-4">
+            <h1 class="research-hero-title">{{ .Title }}</h1>
+
+            {{ with .Params.authors }}
+            <div class="research-hero-authors">{{ . | safeHTML }}</div>
+            {{ end }}
+
+            {{ if .Params.links }}
+            <div class="research-hero-links">
+              {{ range .Params.links }}
+              {{ $url := .url | default "#" }}
+              {{ $icon := lower (.icon | default "") }}
+              {{ $label := .name | default (.label | default "") }}
+              {{ if eq $label "" }}
+                {{ if or (in $icon "pdf") (in (lower $url) ".pdf") }}
+                  {{ $label = "PDF" }}
+                {{ else if or (in $icon "video") (in (lower $url) "youtube") (in (lower $url) "bilibili") }}
+                  {{ $label = "Video" }}
+                {{ else if or (in $icon "quote") (in $icon "book") }}
+                  {{ $label = "Cite" }}
+                {{ else if or (in $icon "doi") (in (lower $url) "doi.org") }}
+                  {{ $label = "DOI" }}
+                {{ else }}
+                  {{ $label = "Link" }}
+                {{ end }}
+              {{ end }}
+              {{ if eq (lower $label) "cite" }}
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-primary research-link-btn"
+                data-cite-trigger="true"
+                data-cite-url="{{ $url }}">
+                {{ $label }}
+              </button>
+              {{ else }}
+              <a class="btn btn-sm btn-outline-primary research-link-btn" href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
+              {{ end }}
+              {{ end }}
+            </div>
+            {{ end }}
+
+            {{ if or (.Site.Params.singlePages.readTime.enable | default true) (.Params.enableReadingTime) }}
+            <span id="readingTime" class="d-none">{{ .Site.Params.singlePages.readTime.content | default "min read" }}</span>
+            {{ end }}
+          </header>
+          {{ end }}
+
+          {{ if .Params.image }}
+          {{ $imageStyles := slice }}
+          {{ with .Params.imageWidth }}
+          {{ $imageStyles = $imageStyles | append (printf "width:%s" .) }}
+          {{ end }}
+          {{ with .Params.imageMaxWidth }}
+          {{ $imageStyles = $imageStyles | append (printf "max-width:%s" .) }}
+          {{ end }}
+          {{ $imageStyleAttr := delimit $imageStyles ";" }}
+          <div class="featured-image">
+            <img class="img-fluid mx-auto d-block" src="{{ .Params.image }}" alt="{{ .Title }}" {{ with $imageStyleAttr }}{{ printf "style=%q" (printf "%s;" .) | safeHTMLAttr }}{{ end }}>
+          </div>
+          {{ end }}
+
+          <article class="page-content p-2">
+            {{ .Content | emojify }}
+          </article>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div id="stickySideBar" class="sticky-sidebar">
+          {{ if .Params.toc | default true }}
+          <aside class="toc">
+            <h5>{{ .Site.Params.terms.toc | default "Table Of Contents" }}</h5>
+            <div class="toc-content">
+              {{ .TableOfContents }}
+            </div>
+          </aside>
+          {{ end }}
+
+          {{ if .Params.tags }}
+          <aside class="tags">
+            <h5>{{ .Site.Params.terms.tags | default "Tags" }}</h5>
+            <ul class="tags-ul list-unstyled list-inline">
+              {{ range .Params.tags }}
+              <li class="list-inline-item"><a href="{{ `tags` | absURL }}/{{ . | urlize }}" {{ if site.Params.singlePages.tags.openInNewTab | default true }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ . }}</a></li>
+              {{ end }}
+            </ul>
+          </aside>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div id="citeModal" class="cite-modal-backdrop d-none" role="dialog" aria-modal="true" aria-labelledby="citeModalTitle">
+      <div class="cite-modal-panel">
+        <div class="cite-modal-head">
+          <h3 id="citeModalTitle" class="mb-0">Cite</h3>
+          <button type="button" class="cite-modal-close" aria-label="Close" data-cite-close="true">&times;</button>
+        </div>
+        <div class="cite-modal-body">
+          <textarea id="citeModalText" class="cite-modal-text" spellcheck="false" readonly></textarea>
+        </div>
+        <div class="cite-modal-actions">
+          <button id="citeCopyBtn" type="button" class="btn btn-sm btn-outline-primary research-link-btn">Copy</button>
+          <button id="citeDownloadBtn" type="button" class="btn btn-sm btn-outline-primary research-link-btn">Download</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9 p-4">
+        {{ template "_internal/disqus.html" . }}
+      </div>
+    </div>
+  </div>
+
+  <button class="p-2 px-3" onclick="topFunction()" id="topScroll">
+    <i class="fas fa-angle-up"></i>
+  </button>
+</section>
+
+{{ if or (.Site.Params.singlePages.scrollprogress.enable | default true) (.Params.enableScrollProgress) }}
+<div class="progress">
+  <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<script src="{{ .Site.Params.staticPath }}/js/scrollProgressBar.js"></script>
+{{ end }}
+
+<script>
+  var topScroll = document.getElementById("topScroll");
+  window.onscroll = function () { scrollFunction() };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      topScroll.style.display = "block";
+    } else {
+      topScroll.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  // To set height of sticky sidebar dynamically
+  let stickySideBarElem = document.getElementById("stickySideBar");
+  let stickyNavBar = {{ .Site.Params.navbar.stickyNavBar.enable | default false }};
+  if (stickySideBarElem) {
+    if (stickyNavBar) {
+      let headerElem = document.getElementById("profileHeader");
+      let headerHeight = headerElem.offsetHeight + 15;
+      stickySideBarElem.style.top = headerHeight + "px";
+    } else {
+      stickySideBarElem.style.top = "50px";
+    }
+  }
+
+  const citeTriggers = document.querySelectorAll('[data-cite-trigger="true"]');
+  const citeModal = document.getElementById("citeModal");
+  const citeModalText = document.getElementById("citeModalText");
+  const citeCopyBtn = document.getElementById("citeCopyBtn");
+  const citeDownloadBtn = document.getElementById("citeDownloadBtn");
+  const citeCloseEls = document.querySelectorAll('[data-cite-close="true"]');
+  const rawPageCitation = {{ .Params.citation | default "" | jsonify }};
+  const rawCitationFilename = {{ .Params.citationFileName | default (printf "%s.bib" .File.BaseFileName) | jsonify }};
+
+  function normalizeParamString(value) {
+    if (value === null || value === undefined) return "";
+    let out = String(value);
+    for (let i = 0; i < 2; i += 1) {
+      if (!(out.startsWith("\"") && out.endsWith("\""))) break;
+      try {
+        out = JSON.parse(out);
+      } catch (err) {
+        break;
+      }
+    }
+    return out;
+  }
+
+  const pageCitation = normalizeParamString(rawPageCitation);
+  const citationFilename = normalizeParamString(rawCitationFilename) || "citation.bib";
+
+  async function getCitationText(citeUrl) {
+    if (pageCitation && pageCitation.trim()) {
+      return pageCitation;
+    }
+    if (!citeUrl || citeUrl === "#") {
+      return "Citation text is not configured.";
+    }
+    const resp = await fetch(citeUrl);
+    if (!resp.ok) {
+      throw new Error("Failed to fetch citation text.");
+    }
+    return await resp.text();
+  }
+
+  function openCiteModal(text) {
+    if (!citeModal || !citeModalText) return;
+    citeModalText.value = text || "";
+    citeModal.classList.remove("d-none");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeCiteModal() {
+    if (!citeModal) return;
+    citeModal.classList.add("d-none");
+    document.body.style.overflow = "";
+  }
+
+  if (citeTriggers.length && citeModal) {
+    citeTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", async function () {
+        const citeUrl = trigger.getAttribute("data-cite-url") || "";
+        openCiteModal("Loading citation...");
+        try {
+          const text = await getCitationText(citeUrl);
+          citeModalText.value = text || "Citation text is empty.";
+        } catch (err) {
+          citeModalText.value = "Unable to load citation automatically. Please configure `citation` in front matter.";
+        }
+      });
+    });
+  }
+
+  if (citeCopyBtn) {
+    citeCopyBtn.addEventListener("click", async function () {
+      const text = (citeModalText && citeModalText.value) ? citeModalText.value : "";
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        citeCopyBtn.textContent = "Copied";
+        setTimeout(function () { citeCopyBtn.textContent = "Copy"; }, 1200);
+      } catch (err) {
+        citeModalText.select();
+        document.execCommand("copy");
+        citeCopyBtn.textContent = "Copied";
+        setTimeout(function () { citeCopyBtn.textContent = "Copy"; }, 1200);
+      }
+    });
+  }
+
+  if (citeDownloadBtn) {
+    citeDownloadBtn.addEventListener("click", function () {
+      const text = (citeModalText && citeModalText.value) ? citeModalText.value : "";
+      if (!text) return;
+      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = citationFilename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  citeCloseEls.forEach((el) => {
+    el.addEventListener("click", closeCiteModal);
+  });
+
+  if (citeModal) {
+    citeModal.addEventListener("click", function (e) {
+      if (e.target === citeModal) {
+        closeCiteModal();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeCiteModal();
+    }
+  });
+</script>
+
+{{ if or (.Site.Params.singlePages.readTime.enable | default true) (.Params.enableReadingTime) }}
+<script src="{{ .Site.Params.staticPath }}/js/readingTime.js"></script>
+{{ end }}
+{{ end }}

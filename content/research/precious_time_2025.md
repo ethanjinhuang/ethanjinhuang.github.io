@@ -1,18 +1,32 @@
 ---
 title: "Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation"
-date: 2026-01-30T00:00:00+08:00
+date: 2026-03-09T00:00:00+08:00
 description: "A tightly coupled SINS/piUSBL navigation framework with precise time delay measurement and compensation using synchronized clocks, validated through simulations and field experiments."
-authors: "Jin Huang, Yingqiang Wang, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen"
-venue: "Preprint / Journal manuscript (2025)"
+authors: "Jin Huang, Yingqiang Wang*, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen*"
+venue: "IEEE Transactions on Instrumentation and Measurement / Journal manuscript (2026)"
 image: "/images/research/precious_time_2025/abstractfig.png"
-badges:
-  - "SINS/piUSBL"
-  - "Time delay compensation"
-  - "Tightly coupled navigation"
-  - "OCXO synchronization"
+imageWidth: "78%"
+imageMaxWidth: "920px"
 links:
   - icon: fas fa-file-pdf
-    url: "https://example.com"
+    name: "PDF"
+    url: "https://arxiv.org/pdf/2510.23286"
+  - icon: fas fa-quote-right
+    name: "CITE"
+    url: "https://arxiv.org/bibtex/2510.23286"
+  - icon: fas fa-link
+    name: "DOI"
+    url: "https://doi.org/10.48550/arXiv.2510.23286"
+citationFileName: "precious_time_2025.bib"
+citation: |-
+  @article{huang2025precise,
+    title   = {Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation},
+    author  = {Huang, Jin and Wang, Yingqiang and Li, Haoda and Liu, Zichen and Wang, Zhikun and Chen, Ying},
+    journal = {arXiv preprint arXiv:2510.23286},
+    year    = {2025},
+    doi     = {10.48550/arXiv.2510.23286},
+    url     = {https://doi.org/10.48550/arXiv.2510.23286}
+  }
 tags:
   - "Underwater integrated navigation"
   - "Passive inverted USBL (piUSBL)"

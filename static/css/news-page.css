@@ -1,0 +1,306 @@
+#newsPage .news-filter-panel {
+    margin-bottom: 0.88rem;
+    padding: 0 0 0.42rem;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+#newsPage .news-filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.44rem;
+    flex-wrap: wrap;
+    text-align: right;
+}
+
+#newsPage .news-filter-title {
+    font-size: 0.96rem;
+    color: var(--text-secondary-color);
+    font-weight: 700;
+}
+
+#newsPage .news-filter-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+#newsPage .news-filter-label {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-secondary-color);
+    opacity: 0.86;
+}
+
+#newsPage .news-range-wrap {
+    --range-start: 0%;
+    --range-end: 100%;
+    min-width: min(22rem, 72vw);
+}
+
+#newsPage .news-range-values {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.28rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary-color);
+}
+
+#newsPage .news-range-values #newsYearFromLabel,
+#newsPage .news-range-values #newsYearToLabel {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+#newsPage .news-range-sep {
+    opacity: 0.72;
+}
+
+#newsPage .news-range-track {
+    position: relative;
+    width: 100%;
+    height: 1.15rem;
+    margin-top: 0.26rem;
+}
+
+#newsPage .news-range-track::before,
+#newsPage .news-range-track::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    border-radius: 999px;
+}
+
+#newsPage .news-range-track::before {
+    left: 0;
+    right: 0;
+    background: rgba(127, 127, 127, 0.28);
+}
+
+#newsPage .news-range-track::after {
+    left: var(--range-start);
+    right: calc(100% - var(--range-end));
+    background: var(--primary-color);
+}
+
+#newsPage .news-range-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    margin: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
+}
+
+#newsPage .news-range-input-from {
+    z-index: 4;
+}
+
+#newsPage .news-range-input-to {
+    z-index: 3;
+}
+
+#newsPage .news-range-input::-webkit-slider-runnable-track {
+    height: 4px;
+    background: transparent;
+}
+
+#newsPage .news-range-input::-moz-range-track {
+    height: 4px;
+    border: 0;
+    background: transparent;
+}
+
+#newsPage .news-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    margin-top: -5px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 2px solid var(--background-color);
+    box-shadow: 0 0 0 1px rgba(13, 110, 253, 0.2);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#newsPage .news-range-input::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 2px solid var(--background-color);
+    box-shadow: 0 0 0 1px rgba(13, 110, 253, 0.2);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#newsPage .news-filter-reset {
+    min-width: 3.4rem;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: transparent;
+    font-size: 0.82rem;
+    padding: 0.2rem 0.52rem;
+}
+
+#newsPage .news-filter-reset:hover,
+#newsPage .news-filter-reset:focus {
+    color: var(--background-color);
+    background: var(--primary-color);
+}
+
+#newsPage .news-tl-row[hidden] {
+    display: none !important;
+}
+
+#newsPage .news-timeline {
+    display: grid;
+    gap: 0;
+}
+
+#newsPage .news-tl-row {
+    display: grid;
+    grid-template-columns: 84px 56px 1fr;
+    align-items: stretch;
+    column-gap: 0.68rem;
+    padding: 0.18rem 0;
+}
+
+#newsPage .news-tl-year {
+    color: var(--text-secondary-color);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.1;
+    text-align: right;
+    padding-top: 0.45rem;
+    padding-right: 0.2rem;
+}
+
+#newsPage .news-tl-month {
+    position: relative;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.1;
+    text-align: center;
+    padding-top: 0.4rem;
+}
+
+#newsPage .news-tl-month::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.2rem;
+    bottom: -0.2rem;
+    width: 2px;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    opacity: 0.42;
+}
+
+#newsPage .news-tl-row:first-child .news-tl-month::before {
+    top: 50%;
+}
+
+#newsPage .news-tl-row:last-child .news-tl-month::before {
+    bottom: 50%;
+}
+
+#newsPage .news-tl-month-label {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 2.05rem;
+    padding: 0.05rem 0.2rem;
+    border-radius: 0.35rem;
+    background: var(--background-color);
+}
+
+#newsPage .news-tl-events {
+    display: grid;
+    gap: 0.18rem;
+    padding: 0.38rem 0.58rem;
+    border-radius: 0.58rem;
+    background: var(--secondary-color);
+    border: 1px solid rgba(127, 127, 127, 0.12);
+}
+
+#newsPage .news-tl-event {
+    margin: 0;
+    padding-left: 0.55rem;
+    border-left: 2px solid var(--primary-color);
+    line-height: 1.32;
+    font-size: 0.92rem;
+}
+
+#newsPage .news-tl-event p {
+    margin: 0;
+    line-height: 1.32;
+}
+
+@media (max-width: 768px) {
+    #newsPage .news-filter-panel {
+        padding: 0 0 0.34rem;
+        margin-bottom: 0.7rem;
+    }
+
+    #newsPage .news-filter-title {
+        font-size: 0.9rem;
+    }
+
+    #newsPage .news-filter-controls {
+        gap: 0.24rem;
+        justify-content: flex-end;
+    }
+
+    #newsPage .news-range-wrap {
+        min-width: min(20.5rem, 100%);
+    }
+
+    #newsPage .news-range-values {
+        font-size: 0.78rem;
+    }
+
+    #newsPage .news-filter-reset {
+        min-width: 3rem;
+        font-size: 0.78rem;
+        padding: 0.18rem 0.48rem;
+    }
+
+    #newsPage .news-tl-row {
+        grid-template-columns: 62px 42px 1fr;
+        column-gap: 0.42rem;
+        padding: 0.14rem 0;
+    }
+
+    #newsPage .news-tl-year {
+        font-size: 0.88rem;
+        padding-top: 0.42rem;
+    }
+
+    #newsPage .news-tl-month {
+        font-size: 0.82rem;
+        padding-top: 0.36rem;
+    }
+
+    #newsPage .news-tl-events {
+        gap: 0.15rem;
+        padding: 0.34rem 0.5rem;
+    }
+
+    #newsPage .news-tl-event {
+        font-size: 0.88rem;
+        line-height: 1.28;
+    }
+}

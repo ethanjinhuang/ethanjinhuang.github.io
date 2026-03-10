@@ -5,11 +5,6 @@ description: "An open-source Raspberry Pi–based passive inverted USBL (piUSBL)
 authors: "Jin Huang, Yingqiang Wang, Ying Chen"
 venue: "Preprint / Journal manuscript (2025)"
 image: "/images/research/raspi2usbl_open_2025/abstractfig.png"
-badges:
-  - "piUSBL"
-  - "OWTT"
-  - "Raspberry Pi"
-  - "Open-source"
 links:
   - icon: fas fa-file-pdf
     url: "https://example.com"

@@ -5,11 +5,6 @@ description: "A DVL-aided loosely coupled SINS navigation strategy that explicit
 authors: "Jin Huang, Zichen Liu, Haoda Li, Zhikun Wang, Ying Chen"
 venue: "Preprint / Journal manuscript (2026)"
 image: "/images/research/a_dvl_adied_2026/abstractfig.png"
-badges:
-  - "SINS/DVL"
-  - "Loosely coupled navigation"
-  - "Attitude error modeling"
-  - "Variance propagation"
 links:
   - icon: fas fa-file-pdf
     url: "https://example.com"

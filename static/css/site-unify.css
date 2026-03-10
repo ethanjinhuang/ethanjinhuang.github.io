@@ -1,0 +1,96 @@
+:root {
+    --academic-radius: 0.74rem;
+    --academic-border: rgba(110, 124, 142, 0.28);
+    --academic-shadow: 0 8px 22px rgba(17, 34, 55, 0.08);
+    --academic-shadow-hover: 0 12px 28px rgba(17, 34, 55, 0.13);
+}
+
+body {
+    letter-spacing: 0.002em;
+}
+
+#content section[id] {
+    scroll-margin-top: 90px;
+}
+
+#content section[id]:not(#hero) .container > h2,
+#content section[id]:not(#hero) .container > h3 {
+    position: relative;
+    display: block;
+    margin-bottom: 0.95rem !important;
+    font-weight: 700;
+    letter-spacing: 0.012em;
+    text-align: center;
+}
+
+#content section[id]:not(#hero) .container > h2::after,
+#content section[id]:not(#hero) .container > h3::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 0.42rem auto 0;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary-color) 65%, transparent);
+}
+
+#content p {
+    line-height: 1.55;
+}
+
+.btn {
+    border-radius: 0.56rem !important;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.btn.btn-sm {
+    padding: 0.27rem 0.82rem;
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.card {
+    border: 1px solid var(--academic-border) !important;
+    border-radius: var(--academic-radius) !important;
+    box-shadow: var(--academic-shadow) !important;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--academic-shadow-hover) !important;
+}
+
+.badge {
+    border-radius: 999px;
+}
+
+#news .news-container,
+#linkedin-feed .linkedin-feed-widget,
+#about .about-shell,
+#experiencePage .exp-page-item,
+#newsPage .news-tl-events {
+    border: 1px solid var(--academic-border);
+    box-shadow: var(--academic-shadow);
+}
+
+#research .card .card-title,
+#projects .card .card-title,
+#publications .publications-item-title {
+    font-weight: 650;
+}
+
+@media (max-width: 768px) {
+    #content section[id]:not(#hero) .container > h2,
+    #content section[id]:not(#hero) .container > h3 {
+        margin-bottom: 0.78rem !important;
+    }
+
+    #content section[id]:not(#hero) .container > h2::after,
+    #content section[id]:not(#hero) .container > h3::after {
+        width: 52px;
+        margin-top: 0.34rem;
+    }
+}

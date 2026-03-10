@@ -1,0 +1,36 @@
+{{- $section := .section -}}
+{{- $fallback := .fallback | default (slice) -}}
+{{- $items := slice -}}
+
+{{- if $section -}}
+  {{- $pages := sort $section.RegularPages "File.BaseFileName" "desc" -}}
+  {{- range $pages -}}
+    {{- $year := printf "%v" (.Params.year | default "") -}}
+    {{- if and (eq $year "") (gt (len (findRE "^news_[0-9]{4}$" .File.BaseFileName)) 0) -}}
+      {{- $year = replaceRE "^news_([0-9]{4})$" "$1" .File.BaseFileName -}}
+    {{- end -}}
+
+    {{- range (.Params.items | default (slice)) -}}
+      {{- $date := printf "%v" (.date | default "") -}}
+      {{- $date = replaceRE "[/-]" "." $date -}}
+      {{- if and (ne $year "") (eq (len (findRE "^[0-9]{4}(\\.|$)" $date)) 0) -}}
+        {{- if eq $date "" -}}
+          {{- $date = $year -}}
+        {{- else -}}
+          {{- $date = printf "%s.%s" $year $date -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- $items = $items | append (dict
+        "date" $date
+        "content" (.content | default "")
+      ) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if and (eq (len $items) 0) (gt (len $fallback) 0) -}}
+  {{- $items = $fallback -}}
+{{- end -}}
+
+{{- return $items -}}

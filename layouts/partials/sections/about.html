@@ -1,0 +1,38 @@
+{{ if .Site.Params.about.enable | default false }}
+<section id="about" class="py-4">
+    <div class="container bg-transparent">
+        <div class="home-section-inner">
+            <h3 class="text-center bg-transparent mb-4">{{ .Site.Params.about.title }}</h3>
+            <div class="about-shell">
+                <div class="row justify-content-center align-items-center g-3 bg-transparent">
+                    {{ if .Site.Params.about.image }}
+                    <div class="col-12 col-md-5 col-lg-4">
+                        <div class="about-avatar-wrap {{ if .Site.Params.animate }}animate{{ end }}">
+                            <img src="{{ .Site.Params.about.image }}" class="about-avatar img-fluid" alt="{{ .Site.Params.about.title }}">
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    <div class="col-12 {{ if .Site.Params.about.image }}col-md-7 col-lg-8{{ else }}col-lg-10{{ end }}">
+                        <div class="about-content {{ if .Site.Params.animate }}animate{{ end }}">
+                            {{ .Site.Params.about.content | markdownify }}
+
+                            {{ if .Site.Params.about.skills.enable }}
+                            <div class="about-skills">
+                                <p class="about-skills-title mb-2">{{ .Site.Params.about.skills.title }}</p>
+                                <ul class="about-skill-list">
+                                    {{ range .Site.Params.about.skills.items }}
+                                    <li>{{ . | markdownify }}</li>
+                                    {{ end }}
+                                </ul>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+{{ end }}

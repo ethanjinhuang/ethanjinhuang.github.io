@@ -1,0 +1,37 @@
+{{- $items := .items | default (slice) -}}
+{{- $records := slice -}}
+{{- range $idx, $it := $items -}}
+  {{- $dateRaw := printf "%v" ($it.date | default "") -}}
+  {{- $normalized := replaceRE "[/-]" "." $dateRaw -}}
+  {{- $parts := split $normalized "." -}}
+  {{- $year := 0 -}}
+  {{- $month := 0 -}}
+  {{- $yearLabel := "" -}}
+  {{- $monthLabel := "--" -}}
+
+  {{- if ge (len $parts) 1 -}}
+    {{- $yearLabel = index $parts 0 -}}
+    {{- $year = int $yearLabel -}}
+  {{- end -}}
+  {{- if ge (len $parts) 2 -}}
+    {{- $month = int (index $parts 1) -}}
+    {{- if gt $month 0 -}}
+      {{- $monthLabel = printf "%02d" $month -}}
+    {{- else -}}
+      {{- $monthLabel = index $parts 1 -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $sortKey := add (mul $year 100) $month -}}
+  {{- $records = $records | append (dict
+    "date" $dateRaw
+    "content" ($it.content | default "")
+    "year" $yearLabel
+    "month" $monthLabel
+    "sortKey" $sortKey
+    "idx" $idx
+  ) -}}
+{{- end -}}
+
+{{- $records = sort $records "sortKey" "desc" -}}
+{{- return $records -}}

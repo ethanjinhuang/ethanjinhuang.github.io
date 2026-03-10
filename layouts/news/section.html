@@ -1,0 +1,238 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Description | default (printf "%s of %s" .Title .Site.Title) }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/news.css" media="all">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/news-page.css" media="all">
+
+<!-- fontawesome -->
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ $newsItems := partial "news/news-items.html" (dict "section" . "fallback" (.Params.items | default (slice))) }}
+{{ $newsRecords := partial "news/news-records.html" (dict "items" $newsItems) }}
+
+{{ $builder := newScratch }}
+{{ $builder.Set "groups" (slice) }}
+{{ $builder.Set "curYear" "" }}
+{{ $builder.Set "curMonth" "" }}
+{{ $builder.Set "curItems" (slice) }}
+
+{{ range $newsRecords }}
+  {{ $year := .year }}
+  {{ $month := .month }}
+  {{ $curYear := $builder.Get "curYear" }}
+  {{ $curMonth := $builder.Get "curMonth" }}
+  {{ if eq $curYear "" }}
+    {{ $builder.Set "curYear" $year }}
+    {{ $builder.Set "curMonth" $month }}
+    {{ $builder.Set "curItems" (slice .) }}
+  {{ else if and (eq $curYear $year) (eq $curMonth $month) }}
+    {{ $builder.Set "curItems" (($builder.Get "curItems") | append .) }}
+  {{ else }}
+    {{ $groups := $builder.Get "groups" }}
+    {{ $groups = $groups | append (dict
+      "year" $curYear
+      "month" $curMonth
+      "items" ($builder.Get "curItems")
+    ) }}
+    {{ $builder.Set "groups" $groups }}
+    {{ $builder.Set "curYear" $year }}
+    {{ $builder.Set "curMonth" $month }}
+    {{ $builder.Set "curItems" (slice .) }}
+  {{ end }}
+{{ end }}
+
+{{ if ne ($builder.Get "curYear") "" }}
+  {{ $groups := $builder.Get "groups" }}
+  {{ $groups = $groups | append (dict
+    "year" ($builder.Get "curYear")
+    "month" ($builder.Get "curMonth")
+    "items" ($builder.Get "curItems")
+  ) }}
+  {{ $builder.Set "groups" $groups }}
+{{ end }}
+{{ $newsGroups := $builder.Get "groups" }}
+{{ $yearState := newScratch }}
+{{ $yearState.Set "seen" (dict) }}
+{{ $yearState.Set "years" (slice) }}
+{{ range $newsRecords }}
+  {{ $yearLabel := printf "%v" .year }}
+  {{ if and (ne $yearLabel "") (eq (len (findRE "^[0-9]{4}$" $yearLabel)) 1) }}
+    {{ $seenYears := $yearState.Get "seen" }}
+    {{ if not (index $seenYears $yearLabel) }}
+      {{ $yearState.Set "years" (($yearState.Get "years") | append $yearLabel) }}
+      {{ $yearState.Set "seen" (merge $seenYears (dict $yearLabel true)) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $newsYears := $yearState.Get "years" }}
+{{ $latestYear := "" }}
+{{ $earliestYear := "" }}
+{{ if gt (len $newsYears) 0 }}
+  {{ $latestYear = index $newsYears 0 }}
+  {{ $earliestYear = index $newsYears (sub (len $newsYears) 1) }}
+{{ end }}
+
+<section id="newsPage" class="py-5">
+    <div class="container">
+        <h2 class="text-center pb-2">{{ .Title }}</h2>
+        {{ if .Content }}
+        <div class="row justify-content-center px-3 px-md-5">
+            <div class="col-lg-10">
+                {{ .Content }}
+            </div>
+        </div>
+        {{ end }}
+
+        <div class="row justify-content-center pt-4">
+            <div class="col-lg-11">
+                {{ if gt (len $newsGroups) 0 }}
+                {{ if gt (len $newsYears) 0 }}
+                <div class="news-filter-panel" id="newsFilterPanel" data-news-earliest="{{ $earliestYear }}" data-news-latest="{{ $latestYear }}">
+                    <div class="news-filter-header">
+                        <h5 class="news-filter-title mb-0">Year Range</h5>
+                        <div class="news-filter-controls">
+                            <div class="news-range-wrap" id="newsYearRangeWrap">
+                                <div class="news-range-values">
+                                    <span class="news-filter-label">Range</span>
+                                    <span id="newsYearFromLabel">{{ $earliestYear }}</span>
+                                    <span class="news-range-sep">-</span>
+                                    <span id="newsYearToLabel">{{ $latestYear }}</span>
+                                </div>
+                                <div class="news-range-track">
+                                    <input class="news-range-input news-range-input-from" id="newsYearFrom" type="range" min="{{ $earliestYear }}" max="{{ $latestYear }}" step="1" value="{{ $earliestYear }}" aria-label="Start year">
+                                    <input class="news-range-input news-range-input-to" id="newsYearTo" type="range" min="{{ $earliestYear }}" max="{{ $latestYear }}" step="1" value="{{ $latestYear }}" aria-label="End year">
+                                </div>
+                            </div>
+                            <button class="btn btn-sm news-filter-reset" id="newsYearReset" type="button">All</button>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+                <div class="news-timeline" id="newsTimeline">
+                    {{ $state := newScratch }}
+                    {{ $state.Set "prevYear" "" }}
+                    {{ range $newsGroups }}
+                    {{ $yearStart := ne .year ($state.Get "prevYear") }}
+                    <div class="news-tl-row" data-news-year="{{ .year }}" {{ if $yearStart }}id="news-year-{{ .year }}"{{ end }}>
+                        <div class="news-tl-year">
+                            {{ if $yearStart }}{{ .year }}{{ end }}
+                        </div>
+                        <div class="news-tl-month"><span class="news-tl-month-label">{{ .month }}</span></div>
+                        <div class="news-tl-events">
+                            {{ range .items }}
+                            <div class="news-tl-event">
+                                {{ .content | markdownify }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ $state.Set "prevYear" .year }}
+                    {{ end }}
+                </div>
+                <div id="newsRangeEmpty" class="alert alert-light mt-3 mb-0 d-none" role="alert">No news in the selected year range.</div>
+                {{ else }}
+                <div class="alert alert-light mb-0" role="alert">No news items found.</div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    (function () {
+        var page = document.getElementById("newsPage");
+        if (!page) return;
+
+        var filterPanel = document.getElementById("newsFilterPanel");
+        var rangeWrap = document.getElementById("newsYearRangeWrap");
+        var fromInput = document.getElementById("newsYearFrom");
+        var toInput = document.getElementById("newsYearTo");
+        var fromLabel = document.getElementById("newsYearFromLabel");
+        var toLabel = document.getElementById("newsYearToLabel");
+        var resetBtn = document.getElementById("newsYearReset");
+        var emptyState = document.getElementById("newsRangeEmpty");
+        var timelineRows = Array.prototype.slice.call(page.querySelectorAll(".news-tl-row[data-news-year]"));
+        if (!filterPanel || !fromInput || !toInput || !timelineRows.length) return;
+
+        var earliest = parseInt(filterPanel.getAttribute("data-news-earliest"), 10);
+        var latest = parseInt(filterPanel.getAttribute("data-news-latest"), 10);
+        if (Number.isNaN(earliest) || Number.isNaN(latest)) return;
+
+        function clampRange(activeHandle) {
+            var fromYear = parseInt(fromInput.value, 10);
+            var toYear = parseInt(toInput.value, 10);
+
+            if (Number.isNaN(fromYear)) fromYear = earliest;
+            if (Number.isNaN(toYear)) toYear = latest;
+
+            if (fromYear < earliest) fromYear = earliest;
+            if (toYear > latest) toYear = latest;
+
+            if (fromYear > toYear) {
+                if (activeHandle === "from") {
+                    toYear = fromYear;
+                } else {
+                    fromYear = toYear;
+                }
+            }
+
+            fromInput.value = String(fromYear);
+            toInput.value = String(toYear);
+            return { from: fromYear, to: toYear };
+        }
+
+        function syncRangeVisual(range) {
+            var total = Math.max(latest - earliest, 1);
+            var startPct = ((range.from - earliest) / total) * 100;
+            var endPct = ((range.to - earliest) / total) * 100;
+            if (rangeWrap) {
+                rangeWrap.style.setProperty("--range-start", startPct.toFixed(4) + "%");
+                rangeWrap.style.setProperty("--range-end", endPct.toFixed(4) + "%");
+            }
+            if (fromLabel) fromLabel.textContent = String(range.from);
+            if (toLabel) toLabel.textContent = String(range.to);
+        }
+
+        function applyYearRange(activeHandle) {
+            var range = clampRange(activeHandle);
+            syncRangeVisual(range);
+            var visibleRows = 0;
+
+            timelineRows.forEach(function (row) {
+                var year = parseInt(row.getAttribute("data-news-year"), 10);
+                var inRange = Number.isNaN(year) || (year >= range.from && year <= range.to);
+                row.hidden = !inRange;
+                if (inRange) visibleRows += 1;
+            });
+
+            if (emptyState) {
+                emptyState.classList.toggle("d-none", visibleRows > 0);
+            }
+        }
+
+        fromInput.value = String(earliest);
+        toInput.value = String(latest);
+
+        fromInput.addEventListener("input", function () {
+            applyYearRange("from");
+        });
+        toInput.addEventListener("input", function () {
+            applyYearRange("to");
+        });
+        if (resetBtn) {
+            resetBtn.addEventListener("click", function () {
+                fromInput.value = String(earliest);
+                toInput.value = String(latest);
+                applyYearRange();
+            });
+        }
+
+        applyYearRange();
+    })();
+</script>
+{{ end }}

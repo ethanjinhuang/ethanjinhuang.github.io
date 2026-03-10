@@ -5,10 +5,6 @@ description: "GNSS-aided estimation and compensation of DVL installation errors 
 authors: "Jin Huang, Haoda Li, Zichen Liu, Zhikun Wang, Yingqiang Wang, Ying Chen"
 venue: "Measurement (2025)"
 image: "/images/research/gnss_aided_2025/abstractfig.png"
-badges:
-  - "INS/DVL"
-  - "ESKF"
-  - "GNSS-aided"
 links:
   - icon: fas fa-file-pdf
     url: "https://example.com"

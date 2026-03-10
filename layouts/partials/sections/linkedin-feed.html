@@ -1,0 +1,62 @@
+{{ $cfg := .Site.Params.linkedinFeed }}
+{{ $provider := lower ($cfg.provider | default "sociablekit") }}
+{{ if $cfg.enable | default false }}
+<section id="linkedin-feed" class="py-4">
+    <div class="container">
+        <div class="home-section-inner">
+            <h3 class="text-center">{{ $cfg.title | default "LinkedIn Feed" }}</h3>
+            <div class="pt-3">
+                {{ if and (eq $provider "sociablekit") $cfg.embedCode }}
+                <div class="linkedin-feed-widget">
+                    {{ $cfg.embedCode | safeHTML }}
+                </div>
+                {{ else if and (eq $provider "sociablekit") $cfg.iframeUrl }}
+                <div class="linkedin-feed-widget">
+                    <iframe
+                        src="{{ $cfg.iframeUrl }}"
+                        title="SociableKIT LinkedIn Feed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                {{ else }}
+                <div class="linkedin-feed-widget linkedin-feed-fallback">
+                    <div class="linkedin-feed-fallback-head">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        <span>SociableKIT LinkedIn Feed</span>
+                    </div>
+                    <p class="mb-3">
+                        Create a free SociableKIT "LinkedIn Profile Posts" widget, then paste either
+                        <code>embedCode</code> or <code>iframeUrl</code> into <code>params.linkedinFeed</code> in <code>hugo.yaml</code>.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="btn btn-sm btn-primary" href="https://www.sociablekit.com/generators/linkedin-profile-posts-embed-code-generator/" target="_blank" rel="noopener noreferrer">Create SociableKIT Widget</a>
+                        {{ with $cfg.activityUrl }}
+                        <a class="btn btn-sm" href="{{ . }}" target="_blank" rel="noopener noreferrer">View Recent Activity</a>
+                        {{ end }}
+                        {{ with $cfg.profileUrl }}
+                        <a class="btn btn-sm btn-outline-primary" href="{{ . }}" target="_blank" rel="noopener noreferrer">Open LinkedIn Profile</a>
+                        {{ end }}
+                    </div>
+                    {{ if and $cfg.badgeVanity $cfg.profileUrl }}
+                    <div class="linkedin-badge-wrap mt-3">
+                        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+                        <div class="badge-base LI-profile-badge"
+                            data-locale="{{ $cfg.badgeLocale | default "en_US" }}"
+                            data-size="large"
+                            data-theme="light"
+                            data-type="VERTICAL"
+                            data-vanity="{{ $cfg.badgeVanity }}"
+                            data-version="v1">
+                            <a class="badge-base__link LI-simple-link" href="{{ $cfg.profileUrl }}"></a>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
