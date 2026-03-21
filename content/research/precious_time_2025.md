@@ -16,17 +16,20 @@ links:
     url: "https://arxiv.org/bibtex/2510.23286"
   - icon: fas fa-link
     name: "DOI"
-    url: "https://doi.org/10.48550/arXiv.2510.23286"
+    url: "https://doi.org/10.1109/TIM.2026.3676179"
 citationFileName: "precious_time_2025.bib"
 citation: |-
-  @article{huang2025precise,
-    title   = {Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation},
-    author  = {Huang, Jin and Wang, Yingqiang and Li, Haoda and Liu, Zichen and Wang, Zhikun and Chen, Ying},
-    journal = {arXiv preprint arXiv:2510.23286},
-    year    = {2025},
-    doi     = {10.48550/arXiv.2510.23286},
-    url     = {https://doi.org/10.48550/arXiv.2510.23286}
-  }
+  @ARTICLE{11449348,
+  author={Huang, Jin and Wang, Yingqiang and Li, Haoda and Liu, Zichen and Wang, Zhikun and Chen, Ying},
+  journal={IEEE Transactions on Instrumentation and Measurement}, 
+  title={Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Underwater navigation;passive inverted ultra-short baseline (piUSBL);integrated navigation system (INS);clock synchronization;time delay measurement},
+  doi={10.1109/TIM.2026.3676179}}
+
 tags:
   - "Underwater integrated navigation"
   - "Passive inverted USBL (piUSBL)"

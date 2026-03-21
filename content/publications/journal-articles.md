@@ -2,6 +2,11 @@
 title: "Journal Articles"
 weight: 1
 items:
+  - title: "Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation"
+    authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen"
+    venue: "IEEE Transactions on Instrumentation and Measurement"
+    year: "2026"
+    doi: "10.1109/TIM.2026.3676179"
   - title: "A DVL Aided Loosely Coupled Inertial Navigation Strategy for AUVs with Attitude Error Modeling and Variance Propagation"
     authors: "<strong>Jin Huang</strong>, Zichen Liu, Haoda Li, Zhikun Wang, Ying Chen"
     venue: "arXiv"
@@ -17,11 +22,6 @@ items:
     venue: "Measurement"
     year: "2025"
     doi: "10.1016/j.measurement.2024.116224"
-  - title: "Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation"
-    authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen"
-    venue: "IEEE Transactions on Instrumentation and Measurement"
-    year: "2025"
-    doi: "Accepted for publication, in press"
   - title: "Raspi^2USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultra-Short Baseline Positioning System for Underwater Robotics"
     authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Ying Chen"
     venue: "arXiv"
