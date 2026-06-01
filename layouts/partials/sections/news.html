@@ -17,12 +17,12 @@
                     <div class="news-scroll" id="newsScroll">
                         {{ range $homeNews }}
                         <div class="news-item">
+                            <div class="news-content">
+                                {{ .content | markdownify }}
+                            </div>
                             <div class="news-date">
                                 <i class="fas fa-calendar-alt"></i>
                                 <span>{{ .date }}</span>
-                            </div>
-                            <div class="news-content">
-                                {{ .content | markdownify }}
                             </div>
                         </div>
                         {{ end }}

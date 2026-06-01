@@ -1,16 +1,132 @@
 :root {
-    --academic-radius: 0.74rem;
-    --academic-border: rgba(110, 124, 142, 0.28);
-    --academic-shadow: 0 8px 22px rgba(17, 34, 55, 0.08);
-    --academic-shadow-hover: 0 12px 28px rgba(17, 34, 55, 0.13);
+    --academic-radius: 0.5rem;
+    --academic-border: rgba(100, 116, 139, 0.24);
+    --academic-shadow: 0 4px 14px rgba(20, 35, 55, 0.06);
+    --academic-shadow-hover: 0 7px 18px rgba(20, 35, 55, 0.1);
 }
 
 body {
     letter-spacing: 0.002em;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 #content section[id] {
     scroll-margin-top: 90px;
+}
+
+#profileHeader .navbar {
+    min-height: 64px;
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+body.light:not(.dark) #profileHeader .navbar {
+    border: 0;
+    border-bottom: 1px solid rgba(22, 35, 57, 0.08);
+    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.96);
+}
+
+#profileHeader.showHeaderOnTop {
+    box-shadow: none;
+}
+
+#profileHeader .container-fluid {
+    width: min(100% - 1.5rem, 1340px);
+    max-width: 1340px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(0.45rem, 1.2vw, 1rem) !important;
+    padding-right: clamp(0.45rem, 1.2vw, 1rem) !important;
+    min-height: 48px;
+}
+
+#profileHeader .navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+    max-width: min(32vw, 18rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap !important;
+    font-size: 1.04rem;
+    line-height: 1.2;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#profileHeader .navbar-brand img {
+    width: 24px;
+    height: 24px;
+}
+
+#profileHeader #search {
+    width: clamp(10rem, 14vw, 14rem);
+    min-height: 2.35rem;
+    border-radius: 999px !important;
+    font-size: 0.94rem;
+}
+
+#profileHeader .navbar-nav {
+    align-items: center;
+}
+
+#profileHeader .navbar-text {
+    font-size: 0.97rem !important;
+}
+
+#profileHeader .nav-link {
+    line-height: 1.2;
+    padding-left: clamp(0.36rem, 0.7vw, 0.62rem) !important;
+    padding-right: clamp(0.36rem, 0.7vw, 0.62rem) !important;
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+}
+
+#profileHeader button#theme-toggle.theme-toggle-btn {
+    width: 2.15rem;
+    height: 2.15rem;
+    padding: 0 !important;
+    transform: none;
+}
+
+@media (max-width: 1199.98px) {
+    #profileHeader .container-fluid {
+        width: min(100% - 1rem, 1120px);
+    }
+
+    #profileHeader .navbar-brand {
+        max-width: min(44vw, 20rem);
+    }
+
+    #profileHeader #search {
+        width: min(34vw, 17rem);
+    }
+
+    #profileHeader .navbar-collapse {
+        width: 100%;
+        margin-top: 0.35rem;
+        padding: 0.25rem 0 0.35rem;
+    }
+
+    #profileHeader .navbar-nav {
+        align-items: stretch;
+        gap: 0.1rem;
+    }
+
+    #profileHeader .navbar-text {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #profileHeader .navbar-brand {
+        max-width: calc(100vw - 5.2rem);
+    }
 }
 
 #content section[id]:not(#hero) .container > h2,
@@ -31,7 +147,7 @@ body {
     height: 2px;
     margin: 0.42rem auto 0;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--primary-color) 65%, transparent);
+    background: color-mix(in srgb, var(--primary-color) 72%, transparent);
 }
 
 #content p {
@@ -39,7 +155,7 @@ body {
 }
 
 .btn {
-    border-radius: 0.56rem !important;
+    border-radius: 0.42rem !important;
     font-weight: 500;
     letter-spacing: 0.01em;
 }
@@ -68,7 +184,8 @@ body {
 }
 
 #news .news-container,
-#linkedin-feed .linkedin-feed-widget,
+#linkedin-feed .linkedin-static-card,
+#linkedin-feed .linkedin-static-empty,
 #about .about-shell,
 #experiencePage .exp-page-item,
 #newsPage .news-tl-events {

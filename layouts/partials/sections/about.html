@@ -3,17 +3,31 @@
     <div class="container bg-transparent">
         <div class="home-section-inner">
             <h3 class="text-center bg-transparent mb-4">{{ .Site.Params.about.title }}</h3>
-            <div class="about-shell">
-                <div class="row justify-content-center align-items-center g-3 bg-transparent">
-                    {{ if .Site.Params.about.image }}
-                    <div class="col-12 col-md-5 col-lg-4">
-                        <div class="about-avatar-wrap {{ if .Site.Params.animate }}animate{{ end }}">
-                            <img src="{{ .Site.Params.about.image }}" class="about-avatar img-fluid" alt="{{ .Site.Params.about.title }}">
-                        </div>
+            <div class="about-shell academic-profile-shell">
+                <div class="row g-4 bg-transparent">
+                    <div class="col-12 col-lg-4">
+                        <aside class="academic-profile-card {{ if .Site.Params.animate }}animate{{ end }}">
+                            {{ if .Site.Params.about.image }}
+                            <div class="about-avatar-wrap">
+                                <img src="{{ .Site.Params.about.image }}" class="about-avatar img-fluid" alt="{{ .Site.Params.hero.title | default .Site.Title }}">
+                            </div>
+                            {{ end }}
+                            <div class="academic-profile-title">
+                                <h4>{{ .Site.Params.hero.title | default .Site.Title }}</h4>
+                                {{ with .Site.Params.hero.subtitle }}
+                                <p class="academic-profile-role">{{ . }}</p>
+                                {{ end }}
+                                {{ with (.Site.Params.hero.content | default .Site.Params.hero.contact) }}
+                                <p class="academic-profile-affiliation">{{ . | markdownify }}</p>
+                                {{ end }}
+                            </div>
+                            <div class="academic-profile-social" aria-label="Social links">
+                                {{- partial "sections/hero/social.html" . -}}
+                            </div>
+                        </aside>
                     </div>
-                    {{ end }}
 
-                    <div class="col-12 {{ if .Site.Params.about.image }}col-md-7 col-lg-8{{ else }}col-lg-10{{ end }}">
+                    <div class="col-12 col-lg-8">
                         <div class="about-content {{ if .Site.Params.animate }}animate{{ end }}">
                             {{ .Site.Params.about.content | markdownify }}
 
@@ -27,11 +41,44 @@
                                 </ul>
                             </div>
                             {{ end }}
+
+                            {{ if or (.Site.Params.about.interests.enable | default false) (.Site.Params.about.education.enable | default false) }}
+                            <div class="academic-profile-facts {{ if not (.Site.Params.about.education.enable | default false) }}academic-profile-facts-single{{ end }}">
+                                {{ if .Site.Params.about.interests.enable | default false }}
+                                <div class="academic-fact-group">
+                                    <p class="academic-fact-title">{{ .Site.Params.about.interests.title | default "Interests" }}</p>
+                                    <ul class="academic-fact-list">
+                                        {{ range .Site.Params.about.interests.items }}
+                                        <li>{{ . | markdownify }}</li>
+                                        {{ end }}
+                                    </ul>
+                                </div>
+                                {{ end }}
+
+                                {{ if .Site.Params.about.education.enable | default false }}
+                                <div class="academic-fact-group">
+                                    <p class="academic-fact-title">{{ .Site.Params.about.education.title | default "Education" }}</p>
+                                    <ul class="academic-education-list">
+                                        {{ range .Site.Params.about.education.items }}
+                                        <li>
+                                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                                            <span>
+                                                <strong>{{ .degree | markdownify }}</strong>
+                                                {{ with .institution }}
+                                                <small>{{ . | markdownify }}</small>
+                                                {{ end }}
+                                            </span>
+                                        </li>
+                                        {{ end }}
+                                    </ul>
+                                </div>
+                                {{ end }}
+                            </div>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </section>

@@ -1,0 +1,135 @@
+/* Projects and research cards */
+#projects h3,
+#research h3 {
+    color: var(--text-color) !important;
+}
+
+#projects a,
+#research a {
+    text-decoration: none;
+}
+
+#projects .badge,
+#research .badge {
+    margin: 0 0.12rem 0.18rem 0;
+    padding: 0.22rem 0.42rem;
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    border-radius: 999px;
+    background-color: var(--background-color) !important;
+    color: var(--text-secondary-color) !important;
+    font-weight: 500;
+}
+
+#projects .card,
+#research .card {
+    min-height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--academic-border) !important;
+    border-radius: var(--academic-radius) !important;
+    background-color: var(--secondary-color) !important;
+    box-shadow: var(--academic-shadow) !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+#projects .card:hover,
+#research .card:hover {
+    border-color: color-mix(in srgb, var(--primary-color) 40%, var(--academic-border)) !important;
+    box-shadow: var(--academic-shadow-hover) !important;
+    transform: translateY(-2px);
+}
+
+#projects .card .card-head,
+#research .card .card-head {
+    overflow: hidden;
+    border: 0 !important;
+    border-top-left-radius: var(--academic-radius);
+    border-top-right-radius: var(--academic-radius);
+    aspect-ratio: 16 / 9;
+    background: var(--background-color);
+}
+
+#projects .card .card-head .card-img-top,
+#research .card .card-head .card-img-top,
+#projects .card-img-top,
+#research .card-img-top {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: var(--img-fit, cover);
+    object-position: var(--img-pos, 50% 50%);
+    transition: transform 0.22s ease;
+}
+
+#projects .card:hover .card-img-top,
+#research .card:hover .card-img-top {
+    transform: scale(1.025);
+}
+
+#projects .row > [class^="col-"],
+#research .row > [class^="col-"] {
+    display: flex;
+}
+
+#projects .row > [class^="col-"] > .card,
+#research .row > [class^="col-"] > .card {
+    flex: 1 1 auto;
+    width: 100%;
+}
+
+#projects .card .card-body,
+#research .card .card-body {
+    padding: 0.9rem 0.95rem !important;
+}
+
+#projects .card .card-title,
+#research .card .card-title {
+    margin-bottom: 0.42rem !important;
+    color: var(--text-color) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.32;
+}
+
+#projects .card .card-text,
+#research .card .card-text {
+    color: var(--text-secondary-color) !important;
+    font-size: 0.87rem;
+    line-height: 1.4;
+}
+
+#projects .card .card-footer,
+#research .card .card-footer {
+    padding: 0.62rem 0.85rem !important;
+    border-top: 1px solid var(--academic-border);
+    background-color: transparent !important;
+}
+
+#projects .float-end .btn,
+#research .float-end .btn,
+#projects .text-center .btn,
+#research .text-center .btn {
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    background-color: transparent !important;
+    border-radius: 0.42rem !important;
+}
+
+#projects .float-end .btn:hover,
+#projects .float-end .btn:focus,
+#research .float-end .btn:hover,
+#research .float-end .btn:focus,
+#projects .text-center .btn:hover,
+#projects .text-center .btn:focus,
+#research .text-center .btn:hover,
+#research .text-center .btn:focus {
+    color: var(--secondary-color) !important;
+    background-color: var(--primary-color) !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+    #projects .card .card-body,
+    #research .card .card-body {
+        padding: 0.78rem 0.82rem !important;
+    }
+}

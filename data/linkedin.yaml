@@ -1,0 +1,27 @@
+posts:
+  - dateLabel: "Recent"
+    source: "LinkedIn"
+    title: "Research update"
+    summary: "Shared recent progress on underwater integrated navigation and acoustic positioning research."
+    tags:
+      - Marine robotics
+      - Navigation
+    url: "https://www.linkedin.com/in/jinhuang-zju/recent-activity/all/"
+
+  - dateLabel: "Recent"
+    source: "LinkedIn"
+    title: "Open-source underwater positioning"
+    summary: "Highlighted ongoing work around Raspberry Pi based underwater positioning systems for practical field deployment."
+    tags:
+      - USBL
+      - Open source
+    url: "https://www.linkedin.com/in/jinhuang-zju/recent-activity/all/"
+
+  - dateLabel: "Recent"
+    source: "LinkedIn"
+    title: "Field validation and sea trials"
+    summary: "Posted notes from real-world validation work for underwater navigation and positioning systems."
+    tags:
+      - Sea trials
+      - AUV
+    url: "https://www.linkedin.com/in/jinhuang-zju/recent-activity/all/"

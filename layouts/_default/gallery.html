@@ -1,0 +1,69 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Params.description | default .Title }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/gallery.css">
+{{ if .Params.viewer | default true }}
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/viewer/viewer.min.css">
+<script src="{{ .Site.Params.staticPath }}/viewer/viewer.min.js"></script>
+{{ end }}
+{{ end }}
+
+{{ define "title" }}
+{{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{- $galleryImages := slice -}}
+{{- if .Params.galleryImages -}}
+  {{- with .Params.galleryImages -}}
+    {{- range . -}}
+      {{- $galleryImages = $galleryImages | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+{{- if fileExists "static/images/beamer" -}}
+  {{- range readDir "static/images/beamer" -}}
+    {{- if and (not .IsDir) (gt (len (findRE "(?i)\\.(png|jpe?g|webp|avif|gif)$" .Name)) 0) -}}
+      {{- $galleryImages = $galleryImages | append (dict "src" (printf "/images/beamer/%s" .Name | relURL) "alt" (replaceRE "\\.[^.]+$" "" .Name | humanize)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $galleryImages = sort $galleryImages "src" -}}
+
+<main class="gallery-page" id="gallery-page">
+    <section class="gallery-heading">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+    </section>
+
+    {{ with .Content }}
+    <section class="gallery-intro">
+        {{ . }}
+    </section>
+    {{ end }}
+
+    <section class="gallery-grid" aria-label="{{ .Title }}">
+        {{ range $galleryImages }}
+        <figure class="gallery-item">
+            <img
+                class="{{ if $.Params.viewer | default true }}viewer-enabled-image{{ end }}"
+                src="{{ .src }}"
+                alt="{{ .alt | default $.Title }}"
+                loading="lazy"
+            >
+        </figure>
+        {{ end }}
+    </section>
+</main>
+
+{{ if .Params.viewer | default true }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var gallery = document.getElementById("gallery-page");
+        if (gallery && window.Viewer) {
+            new Viewer(gallery, {{ .Params.viewerOptions | default dict | jsonify | safeJS }});
+        }
+    });
+</script>
+{{ end }}
+{{ end }}

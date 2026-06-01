@@ -43,11 +43,16 @@ Menus:
       title: Research
       url: /research
       weight: 4
+    - identifier: gallery
+      name: Gallery
+      title: Gallery
+      url: /gallery
+      weight: 5
     - identifier: publications
       name: Publications
       title: Publications
       url: /publications
-      weight: 5
+      weight: 6
 
 params:
   title: "Jin Huang's Profile"
@@ -63,6 +68,20 @@ params:
     fontWeight: 400 # default: 400
     lineHeight: 1.5 # default: 1.5
     textAlign: left # default: left
+  color:
+    textColor: "#2d3742"
+    secondaryTextColor: "#5c6b78"
+    textLinkColor: "#1565c0"
+    backgroundColor: "#f7f8fa"
+    secondaryColor: "#ffffff"
+    primaryColor: "#1565c0"
+    darkmode:
+      textColor: "#e8edf3"
+      secondaryTextColor: "#b6c0cc"
+      textLinkColor: "#8ab4f8"
+      backgroundColor: "#101419"
+      secondaryColor: "#171d24"
+      primaryColor: "#8ab4f8"
 
   navbar:
     align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
@@ -82,7 +101,7 @@ params:
 
   # Hero
   hero:
-    enable: true
+    enable: false
     intro: "Hi, I'm"
     title: "Jin Huang (黄 瑾)"
     subtitle: "Ph.D. Candidate"
@@ -111,9 +130,16 @@ params:
     title: "About Me"
     image: "/images/profile/profile.jpg"
     content: |-
-      I am a Ph.D. candidate supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096) at Zhejiang University. 
+      I am a Ph.D. candidate supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096) at Zhejiang University.
       My research interests include marine robotics, underwater integrated navigation, and acoustic positioning systems.
       I have developed several underwater navigation/positioning systems and algorithms, which have been successfully applied in real-world underwater scenarios, and validated through extensive sea trials.
+    interests:
+      enable: true
+      title: "Interests"
+      items:
+        - "Underwater Navigation & Positioning"
+        - "Deep integrated Sensor Fusion"
+        - "Underwater Acoustic Sensing"
     # skills:
     #   enable: true
     #   title: "Here are a few technologies I've been working with recently:"
@@ -134,17 +160,16 @@ params:
   # LinkedIn Feed
   linkedinFeed:
     enable: true
-    provider: "sociablekit"
-    title: "LinkedIn Feed"
+    title: "LinkedIn Updates"
+    description: "Recent LinkedIn activity and research notes."
+    provider: "elfsight"
+    elfsight:
+      enable: true
+      scriptUrl: "https://elfsightcdn.com/platform.js"
+      appId: "e26aa956-bf1d-429f-ac7e-9cd292868163"
+    maxPosts: 3
     profileUrl: "https://www.linkedin.com/in/jinhuang-zju/"
     activityUrl: "https://www.linkedin.com/in/jinhuang-zju/recent-activity/all/"
-    badgeVanity: "jinhuang-zju"
-    badgeLocale: "en_US"
-    # SociableKIT option 1: full JS embed snippet (div + script)
-    embedCode: |-
-      <div class="sk-ww-linkedin-profile-post" data-embed-id="25660874"></div><script src="https://widgets.sociablekit.com/linkedin-profile-posts/widget.js" defer></script>
-    # SociableKIT option 2: iframe URL from widget share/embed settings
-    iframeUrl: ""
 
   # Education
   education:

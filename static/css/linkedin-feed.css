@@ -2,17 +2,132 @@
     background-color: var(--background-color);
 }
 
-#linkedin-feed .linkedin-feed-widget {
-    background-color: var(--secondary-color);
-    border-radius: 0.72rem;
-    padding: 0.78rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+#linkedin-feed .linkedin-feed-head {
+    position: relative;
 }
 
-#linkedin-feed .linkedin-feed-widget iframe {
+#linkedin-feed .linkedin-feed-head h3 {
+    margin-bottom: 0;
+}
+
+#linkedin-feed .linkedin-feed-profile {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 0.42rem;
+    color: #0a66c2 !important;
+    text-decoration: none;
+}
+
+#linkedin-feed .linkedin-feed-description {
+    max-width: 680px;
+    margin: 0.55rem auto 0;
+    color: var(--text-secondary-color);
+    text-align: center;
+    font-size: 0.94rem;
+}
+
+#linkedin-feed .linkedin-static-wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+#linkedin-feed .linkedin-elfsight-wrap {
+    max-width: 1040px;
+    min-height: 260px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#linkedin-feed .linkedin-elfsight-wrap > div {
     width: 100%;
-    min-height: 392px;
-    border: 0;
+}
+
+#linkedin-feed .linkedin-static-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+#linkedin-feed .linkedin-static-card,
+#linkedin-feed .linkedin-static-empty {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--academic-border);
+    border-radius: var(--academic-radius);
+    padding: 0.85rem 0.9rem;
+    box-shadow: var(--academic-shadow);
+}
+
+#linkedin-feed .linkedin-static-card {
+    min-height: 12rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#linkedin-feed .linkedin-static-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary-color);
+    font-size: 0.78rem;
+}
+
+#linkedin-feed .linkedin-static-meta span::before {
+    content: "/";
+    margin-right: 0.45rem;
+    opacity: 0.55;
+}
+
+#linkedin-feed .linkedin-static-card h4 {
+    margin: 0 0 0.42rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.28;
+}
+
+#linkedin-feed .linkedin-static-card p {
+    margin: 0;
+    color: var(--text-secondary-color);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#linkedin-feed .linkedin-static-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.72rem;
+}
+
+#linkedin-feed .linkedin-static-tags span {
+    padding: 0.08rem 0.42rem;
+    border-radius: 999px;
+    border: 1px solid rgba(10, 102, 194, 0.22);
+    color: #0a66c2;
+    font-size: 0.74rem;
+    line-height: 1.35;
+}
+
+#linkedin-feed .linkedin-static-link {
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 0.72rem;
+    color: var(--text-link-color) !important;
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 #linkedin-feed .linkedin-feed-fallback-head {
@@ -28,26 +143,37 @@
     font-size: 1.2rem;
 }
 
-#linkedin-feed .linkedin-badge-wrap {
-    overflow-x: auto;
-}
-
 #linkedin-feed code {
     background-color: rgba(127, 127, 127, 0.12);
     padding: 0.1rem 0.35rem;
     border-radius: 0.3rem;
 }
 
-.dark #linkedin-feed .linkedin-feed-widget {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+.dark #linkedin-feed .linkedin-static-card,
+.dark #linkedin-feed .linkedin-static-empty {
+    box-shadow: var(--academic-shadow);
+}
+
+@media (max-width: 991.98px) {
+    #linkedin-feed .linkedin-static-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
-    #linkedin-feed .linkedin-feed-widget {
-        padding: 0.62rem;
+    #linkedin-feed .linkedin-feed-profile {
+        position: static;
+        transform: none;
+        margin: 0.45rem auto 0;
     }
 
-    #linkedin-feed .linkedin-feed-widget iframe {
-        min-height: 340px;
+    #linkedin-feed .linkedin-static-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #linkedin-feed .linkedin-static-card,
+    #linkedin-feed .linkedin-static-empty {
+        min-height: 0;
+        padding: 0.74rem;
     }
 }
