@@ -62,6 +62,13 @@
         var lastTs = 0;
         var position = 0;
 
+        function syncPositionFromScroll() {
+            position = newsScroll.scrollTop;
+            if (position > maxScrollTop) {
+                position = maxScrollTop;
+            }
+        }
+
         function tick(ts) {
             if (!lastTs) lastTs = ts;
             var dt = (ts - lastTs) / 1000;
@@ -80,19 +87,29 @@
             rafId = window.requestAnimationFrame(tick);
         }
 
+        newsScroll.addEventListener("scroll", function () {
+            if (paused) {
+                syncPositionFromScroll();
+            }
+        }, { passive: true });
+
         newsScroll.addEventListener("mouseenter", function () {
+            syncPositionFromScroll();
             paused = true;
             lastTs = 0;
         });
         newsScroll.addEventListener("mouseleave", function () {
+            syncPositionFromScroll();
             paused = false;
             lastTs = 0;
         });
         newsScroll.addEventListener("touchstart", function () {
+            syncPositionFromScroll();
             paused = true;
             lastTs = 0;
         }, { passive: true });
         newsScroll.addEventListener("touchend", function () {
+            syncPositionFromScroll();
             paused = false;
             lastTs = 0;
         }, { passive: true });

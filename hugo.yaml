@@ -86,6 +86,7 @@ params:
   navbar:
     align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
     brandName: "Jin Huang's Profile"
+    disableSearch: true
     stickyNavBar:
       enable: true
       showOnScrollUp: false

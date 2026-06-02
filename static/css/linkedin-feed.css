@@ -49,6 +49,23 @@
     width: 100%;
 }
 
+#linkedin-feed .linkedin-elfsight-wrap a[href*="elfsight.com"],
+#linkedin-feed .linkedin-elfsight-wrap [class*="eapps-link"],
+#linkedin-feed .linkedin-elfsight-wrap [class*="EappsLink"],
+#linkedin-feed .linkedin-elfsight-wrap [class*="elfsight"] a[href*="elfsight.com"],
+#linkedin-feed .linkedin-elfsight-wrap [aria-label*="Elfsight"],
+#linkedin-feed .linkedin-elfsight-wrap [title*="Elfsight"],
+#linkedin-feed .linkedin-elfsight-wrap [class*="badge"][href*="elfsight.com"] {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
 #linkedin-feed .linkedin-static-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
