@@ -51,7 +51,8 @@
 #projects .card .card-head .card-img-top,
 #research .card .card-head .card-img-top,
 #projects .card-img-top,
-#research .card-img-top {
+#research .card-img-top,
+#research .research-pdf-preview {
     width: 100%;
     height: 100%;
     display: block;
@@ -61,8 +62,25 @@
 }
 
 #projects .card:hover .card-img-top,
-#research .card:hover .card-img-top {
+#research .card:hover .card-img-top,
+#research .card:hover .research-pdf-preview {
     transform: scale(1.025);
+}
+
+#research .research-pdf-preview {
+    border: 0;
+    background: var(--background-color);
+    pointer-events: none;
+}
+
+#research .research-pdf-fallback {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: var(--text-secondary-color);
+    font-size: 0.9rem;
+    font-weight: 650;
 }
 
 #projects .row > [class^="col-"],

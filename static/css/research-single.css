@@ -65,6 +65,20 @@
     height: auto;
 }
 
+#single .research-featured-image-link {
+    display: inline-block;
+}
+
+#single .research-featured-pdf {
+    width: min(100%, 860px);
+    height: min(72vh, 680px);
+    min-height: 420px;
+    border: 1px solid var(--academic-border);
+    border-radius: var(--academic-radius);
+    background: var(--background-color);
+    box-shadow: var(--academic-shadow);
+}
+
 #single .page-content img {
     display: block;
     max-width: min(860px, 100%);

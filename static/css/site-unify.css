@@ -11,6 +11,18 @@ body {
     overflow-x: hidden;
 }
 
+#profileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    isolation: isolate;
+}
+
+#content {
+    position: relative;
+    z-index: 1;
+}
+
 #content section[id] {
     scroll-margin-top: 90px;
 }
@@ -32,6 +44,8 @@ body.light:not(.dark) #profileHeader .navbar {
 
 #profileHeader.showHeaderOnTop {
     box-shadow: none;
+    z-index: 1100;
+    top: 0;
 }
 
 #profileHeader .container-fluid {
@@ -197,19 +211,6 @@ body.light:not(.dark) #profileHeader .navbar {
 #projects .card .card-title,
 #publications .publications-item-title {
     font-weight: 650;
-}
-
-#publications .pub-status {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.08rem 0.42rem;
-    border: 1px solid rgba(21, 101, 192, 0.28);
-    border-radius: 999px;
-    color: var(--primary-color);
-    background: color-mix(in srgb, var(--primary-color) 8%, transparent);
-    font-size: 0.78rem;
-    font-weight: 650;
-    line-height: 1.35;
 }
 
 @media (max-width: 768px) {

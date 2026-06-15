@@ -1,0 +1,36 @@
+{{- $src := .Get 0 -}}
+{{- $caption := .Get 1 -}}
+{{- $size := lower (.Get 2 | default "medium") -}}
+
+{{- if not $src -}}
+  {{- errorf "shortcode fig requires an image path: %s" .Position -}}
+{{- end -}}
+
+{{- $width := "" -}}
+{{- if eq $size "small" -}}
+  {{- $width = "clamp(240px, 56vw, 560px)" -}}
+{{- else if eq $size "large" -}}
+  {{- $width = "clamp(280px, 74vw, 760px)" -}}
+{{- else if eq $size "wide" -}}
+  {{- $width = "min(100%, 860px)" -}}
+{{- else if or (in $size "px") (in $size "%") (in $size "vw") (in $size "clamp(") (in $size "min(") -}}
+  {{- $width = $size -}}
+{{- else -}}
+  {{- $width = "clamp(260px, 68vw, 700px)" -}}
+{{- end -}}
+
+{{- $figureNumber := 0 -}}
+{{- if $caption -}}
+  {{- $.Page.Scratch.Add "researchFigureNumber" 1 -}}
+  {{- $figureNumber = $.Page.Scratch.Get "researchFigureNumber" -}}
+{{- end -}}
+
+<figure class="md-img-wrap md-figure align-center">
+  <img src="{{ $src }}" alt="{{ $caption | plainify }}" {{ printf "style=%q" (printf "width:%s;" $width) | safeHTMLAttr }}>
+  {{- with $caption }}
+  <figcaption class="md-img-caption">
+    {{- if gt $figureNumber 0 -}}<strong>Figure {{ $figureNumber }}.</strong>&nbsp;{{- end -}}
+    {{ . | markdownify }}
+  </figcaption>
+  {{- end }}
+</figure>

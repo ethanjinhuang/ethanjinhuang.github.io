@@ -40,16 +40,35 @@
     background: var(--background-color);
 }
 
-.research-list-thumb img {
+.research-list-thumb img,
+.research-list-thumb .research-pdf-preview {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: var(--img-fit, cover);
     object-position: var(--img-pos, 50% 50%);
     transition: transform 0.18s ease;
 }
 
-.research-list-item:hover .research-list-thumb img {
+.research-list-item:hover .research-list-thumb img,
+.research-list-item:hover .research-list-thumb .research-pdf-preview {
     transform: scale(1.025);
+}
+
+.research-list-thumb .research-pdf-preview {
+    border: 0;
+    background: var(--background-color);
+    pointer-events: none;
+}
+
+.research-list-thumb .research-pdf-fallback {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: var(--text-secondary-color);
+    font-size: 0.88rem;
+    font-weight: 650;
 }
 
 .research-list-body {

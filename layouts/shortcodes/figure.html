@@ -41,7 +41,7 @@
   {{- end -}}
   {{- with $caption }}
   <figcaption class="md-img-caption">
-    {{- if gt $figureNumber 0 -}}<strong>{{ $prefix }} {{ $figureNumber }}.</strong> {{- end -}}
+    {{- if gt $figureNumber 0 -}}<strong>{{ $prefix }} {{ $figureNumber }}.</strong>&nbsp;{{- end -}}
     {{ . | markdownify }}
   </figcaption>
   {{- end }}

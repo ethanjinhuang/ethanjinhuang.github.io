@@ -32,12 +32,12 @@ Menus:
       name: Experience
       title: Experience
       url: /experience
-      weight: 2
+      weight: 6
     - identifier: award
       name: Award
       title: Award
       url: /awards
-      weight: 3
+      weight: 5
     - identifier: research
       name: Research
       title: Research
@@ -47,12 +47,12 @@ Menus:
       name: Gallery
       title: Gallery
       url: /gallery
-      weight: 5
+      weight: 7
     - identifier: publications
       name: Publications
       title: Publications
       url: /publications
-      weight: 6
+      weight: 3
 
 params:
   title: "Jin Huang's Profile"

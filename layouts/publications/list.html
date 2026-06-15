@@ -38,32 +38,18 @@
                         {{ range $sortedItems }}
                         <li class="publications-item">
                             <div class="publications-item-meta">
-                                {{ $date := .year }}
-                                {{ if .month }}
-                                    {{ $date = printf "%s %s" .month .year }}
-                                {{ end }}
-                                {{ if .authors }}
-                                    <span class="pub-authors">{{ .authors | safeHTML }}</span>.
-                                {{ end }}
+                                {{- $date := .year -}}
+                                {{- if .month -}}{{- $date = printf "%s %s" .month .year -}}{{- end -}}
+                                {{- $note := .note | default (.remark | default (.remarks | default .status)) -}}
+                                {{- with .authors }}<span class="pub-authors">{{ . | safeHTML }}</span>. {{ end }}
                                 <span class="pub-title">{{ .title }}</span>.
-                                {{ if .status }}
-                                    <span class="pub-status">{{ .status }}</span>
-                                {{ end }}
-                                {{ if .venue }}
-                                    <span class="pub-venue"><em>{{ .venue }}</em></span>
-                                {{ end }}
-                                {{ if $date }}
-                                    <span class="publications-sep">·</span>
-                                    {{ $date }}
-                                {{ end }}
-                                {{ if .doi }}
-                                    <span class="publications-sep">·</span>
-                                    <span>doi: </span><a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener noreferrer">{{ .doi }}</a>
-                                {{ end }}
-                                {{ if .url }}
-                                    <span class="publications-sep">·</span>
-                                    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .urlText | default "Link" }}</a>
-                                {{ end }}
+                                {{- if .venue }} <span class="pub-venue"><em>{{ .venue }}</em></span>{{ if $date }}, {{ $date }}{{ end }}.{{ else if $date }} {{ $date }}.{{ end -}}
+                                {{- if .doi -}}
+                                    {{- $doiValue := printf "%v" .doi -}}
+                                    {{- $doiLower := lower $doiValue -}}
+                                    {{- if in $doiLower "arxiv.org" }} <a href="{{ $doiValue }}" target="_blank" rel="noopener noreferrer">arXiv</a>.{{ else if or (hasPrefix $doiLower "http://") (hasPrefix $doiLower "https://") }} <a href="{{ $doiValue }}" target="_blank" rel="noopener noreferrer">Link</a>.{{ else }} <span>doi: </span><a href="https://doi.org/{{ $doiValue }}" target="_blank" rel="noopener noreferrer">{{ $doiValue }}</a>.{{ end -}}
+                                {{- end -}}
+                                {{- if $note }} ({{ $note }}).{{ end -}}
                             </div>
                         </li>
                         {{ end }}
