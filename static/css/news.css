@@ -1,4 +1,4 @@
-/* Compact news layout with optional auto-scroll */
+/* Compact static news layout */
 #news {
     background-color: var(--secondary-color);
 }
@@ -9,38 +9,11 @@
     border-radius: var(--academic-radius);
     padding: 0.5rem 0.58rem;
     box-shadow: var(--academic-shadow);
-    max-height: 244px;
-    overflow: hidden;
 }
 
-.news-scroll {
-    max-height: 220px;
-    overflow-y: auto;
-    padding-right: 0.22rem;
-    scroll-behavior: auto;
-    scrollbar-width: none;
-}
-
-.news-scroll::-webkit-scrollbar {
-    width: 0;
-}
-
-.news-scroll::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
-}
-
-.news-scroll::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
-}
-
-.news-scroll:hover {
-    scrollbar-width: thin;
-}
-
-.news-scroll:hover::-webkit-scrollbar {
-    width: 5px;
+.news-list {
+    display: grid;
+    gap: 0.24rem;
 }
 
 .news-item {
@@ -49,7 +22,6 @@
     align-items: baseline;
     gap: 0.9rem;
     padding: 0.34rem 0.48rem;
-    margin-bottom: 0.24rem;
     border-left: 2px solid var(--primary-color);
     background-color: var(--background-color);
     border-radius: 0.32rem;
@@ -58,10 +30,6 @@
 
 .news-item:hover {
     background-color: color-mix(in srgb, var(--background-color) 92%, var(--primary-color));
-}
-
-.news-item:last-child {
-    margin-bottom: 0;
 }
 
 .news-date {
@@ -124,11 +92,6 @@
 @media (max-width: 768px) {
     .news-container {
         padding: 0.46rem;
-        max-height: 276px;
-    }
-
-    .news-scroll {
-        max-height: 252px;
     }
 
     .news-item {

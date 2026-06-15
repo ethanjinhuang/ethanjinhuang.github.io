@@ -56,7 +56,7 @@ Menus:
 
 params:
   title: "Jin Huang's Profile"
-  favicon: "/favicon.svg"
+  favicon: "/icons/wave.svg"
   description: "Welcome to my personal profile website!"
   # Whether the fade animations on the home page will be enabled
   animate: true

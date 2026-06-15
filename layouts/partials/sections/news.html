@@ -7,14 +7,14 @@
 {{ $newsItems = partial "news/news-items.html" (dict "section" $newsSection "fallback" ($newsSection.Params.items | default $newsItems)) }}
 {{ end }}
 {{ $newsRecords := partial "news/news-records.html" (dict "items" $newsItems) }}
-{{ $homeNews := first 10 $newsRecords }}
+{{ $homeNews := first 5 $newsRecords }}
 <section id="news" class="py-4">
     <div class="container">
         <div class="home-section-inner">
             <h3 class="text-center">{{ $newsTitle }}</h3>
             <div class="pt-3">
                 <div class="news-container">
-                    <div class="news-scroll" id="newsScroll">
+                    <div class="news-list">
                         {{ range $homeNews }}
                         <div class="news-item">
                             <div class="news-content">
@@ -35,89 +35,4 @@
         </div>
     </div>
 </section>
-<script>
-    (function () {
-        var newsScroll = document.getElementById("newsScroll");
-        if (!newsScroll) return;
-
-        var originalItems = Array.prototype.slice.call(newsScroll.children);
-        if (!originalItems.length) return;
-
-        if (originalItems.length === 1) {
-            return;
-        }
-
-        var fragment = document.createDocumentFragment();
-        originalItems.forEach(function (item) {
-            fragment.appendChild(item.cloneNode(true));
-        });
-        newsScroll.appendChild(fragment);
-        var loopHeight = newsScroll.scrollHeight / 2;
-        var maxScrollTop = newsScroll.scrollHeight - newsScroll.clientHeight;
-        if (maxScrollTop <= 0) return;
-
-        var paused = false;
-        var speed = 10; // px per second
-        var rafId = null;
-        var lastTs = 0;
-        var position = 0;
-
-        function syncPositionFromScroll() {
-            position = newsScroll.scrollTop;
-            if (position > maxScrollTop) {
-                position = maxScrollTop;
-            }
-        }
-
-        function tick(ts) {
-            if (!lastTs) lastTs = ts;
-            var dt = (ts - lastTs) / 1000;
-            lastTs = ts;
-            if (!paused) {
-                position += speed * dt;
-                if (position >= maxScrollTop) {
-                    if (loopHeight < maxScrollTop) {
-                        position -= loopHeight;
-                    } else {
-                        position = 0;
-                    }
-                }
-                newsScroll.scrollTop = position;
-            }
-            rafId = window.requestAnimationFrame(tick);
-        }
-
-        newsScroll.addEventListener("scroll", function () {
-            if (paused) {
-                syncPositionFromScroll();
-            }
-        }, { passive: true });
-
-        newsScroll.addEventListener("mouseenter", function () {
-            syncPositionFromScroll();
-            paused = true;
-            lastTs = 0;
-        });
-        newsScroll.addEventListener("mouseleave", function () {
-            syncPositionFromScroll();
-            paused = false;
-            lastTs = 0;
-        });
-        newsScroll.addEventListener("touchstart", function () {
-            syncPositionFromScroll();
-            paused = true;
-            lastTs = 0;
-        }, { passive: true });
-        newsScroll.addEventListener("touchend", function () {
-            syncPositionFromScroll();
-            paused = false;
-            lastTs = 0;
-        }, { passive: true });
-
-        rafId = window.requestAnimationFrame(tick);
-        window.addEventListener("beforeunload", function () {
-            if (rafId) window.cancelAnimationFrame(rafId);
-        });
-    })();
-</script>
 {{ end }}

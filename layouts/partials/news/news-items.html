@@ -11,7 +11,7 @@
     {{- end -}}
 
     {{- range (.Params.items | default (slice)) -}}
-      {{- $date := printf "%v" (.date | default "") -}}
+      {{- $date := printf "%v" (.date | default (.month | default "")) -}}
       {{- $date = replaceRE "[/-]" "." $date -}}
       {{- if and (ne $year "") (eq (len (findRE "^[0-9]{4}(\\.|$)" $date)) 0) -}}
         {{- if eq $date "" -}}
