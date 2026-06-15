@@ -3,11 +3,43 @@ title: "Raspi²USBL: An open-source Raspberry Pi–Based Passive Inverted Ultra-
 date: 2026-01-30T00:00:00+08:00
 description: "An open-source Raspberry Pi–based passive inverted USBL (piUSBL) system for reproducible underwater acoustic positioning experiments, validated across tank, lake, and sea trials."
 authors: "Jin Huang, Yingqiang Wang, Ying Chen"
-venue: "Preprint / Journal manuscript (2025)"
+venue: "arXiv preprint (2025)"
+publication: "arXiv:2511.06998"
+status: "Preprint"
+typeLabel: "Preprint"
+dateLabel: "November 2025"
+doi: "10.48550/arXiv.2511.06998"
+zoteroKey: "UIMNH9KM"
+abstract: >-
+  Precise underwater positioning remains a fundamental challenge for underwater robotics since global navigation satellite system (GNSS) signals cannot penetrate the sea surface. This paper presents Raspi²USBL, an open-source, Raspberry Pi-based passive inverted ultra-short baseline (piUSBL) positioning system designed to provide a low-cost and accessible solution for underwater robotic research. The system comprises a passive acoustic receiver and an active beacon. The receiver adopts a modular hardware architecture that integrates a hydrophone array, a multichannel preamplifier, an oven-controlled crystal oscillator (OCXO), a Raspberry Pi 5, and an MCC-series data acquisition (DAQ) board. Apart from the Pi 5, OCXO, and MCC board, the beacon comprises an impedance-matching network, a power amplifier, and a transmitting transducer. An open-source C++ software framework provides high-precision clock synchronization and triggering for one-way travel-time (OWTT) messaging, while performing real-time signal processing, including matched filtering, array beamforming, and adaptive gain control, to estimate the time of flight (TOF) and direction of arrival (DOA) of received signals. The Raspi²USBL system was experimentally validated in an anechoic tank, freshwater lake, and open-sea trials. Results demonstrate a slant-range accuracy better than 0.1%, a bearing accuracy within 0.1°, and stable performance over operational distances up to 1.3 km. These findings confirm that low-cost, reproducible hardware can deliver research-grade underwater positioning accuracy. By releasing both the hardware and software as open-source, Raspi²USBL provides a unified reference platform that lowers the entry barrier for underwater robotics laboratories, fosters reproducibility, and promotes collaborative innovation in underwater acoustic navigation and swarm robotics.
 image: "/images/research/raspi2usbl_open_2025/abstractfig.png"
 links:
   - icon: fas fa-file-pdf
-    url: "https://example.com"
+    name: "PDF"
+    url: "https://arxiv.org/pdf/2511.06998"
+  - icon: fas fa-link
+    name: "arXiv"
+    url: "https://arxiv.org/abs/2511.06998"
+  - icon: fas fa-quote-right
+    name: "CITE"
+    url: "https://arxiv.org/bibtex/2511.06998"
+  - icon: fas fa-link
+    name: "DOI"
+    url: "https://doi.org/10.48550/arXiv.2511.06998"
+citationFileName: "raspi2usbl_open_2025.bib"
+citation: |-
+  @misc{huangRaspi2USBLOpensourceRaspberry2025,
+    title = {Raspi2USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultra-Short Baseline Positioning System for Underwater Robotics},
+    author = {Huang, Jin and Wang, Yingqiang and Chen, Ying},
+    year = 2025,
+    number = {arXiv:2511.06998},
+    eprint = {2511.06998},
+    primaryclass = {cs},
+    publisher = {arXiv},
+    doi = {10.48550/arXiv.2511.06998},
+    urldate = {2025-11-11},
+    archiveprefix = {arXiv}
+  }
 tags:
   - "Underwater acoustic positioning"
   - "Passive inverted USBL (piUSBL)"

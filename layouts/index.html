@@ -1,5 +1,5 @@
 {{ define "head" }}
-{{ $siteDescription := .Site.Params.description | default .Site.Params.discription | default .Site.Title }}
+{{ $siteDescription := .Site.Params.description | default .Site.Title }}
 <meta name="description" content="{{ $siteDescription }}">
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
 <link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/about-home.css" media="all">

@@ -4,6 +4,14 @@ date: 2026-03-09T00:00:00+08:00
 description: "A tightly coupled SINS/piUSBL navigation framework with precise time delay measurement and compensation using synchronized clocks, validated through simulations and field experiments."
 authors: "Jin Huang, Yingqiang Wang*, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen*"
 venue: "IEEE Transactions on Instrumentation and Measurement / Journal manuscript (2026)"
+publication: "IEEE Transactions on Instrumentation and Measurement, Volume 75, pp. 1-14"
+status: "Journal article"
+typeLabel: "Journal article"
+dateLabel: "March 2026"
+doi: "10.1109/TIM.2026.3676179"
+zoteroKey: "58K2R5VX"
+abstract: >-
+  In multisensor systems, time synchronization is particularly challenging for underwater integrated navigation systems incorporating acoustic positioning, where time delays can significantly degrade accuracy when measurement and fusion epochs are misaligned. This article introduces a tightly coupled navigation framework that integrates a passive inverted ultra-short baseline (piUSBL) acoustic positioning system, a strapdown inertial navigation system (SINS), and a depth gauge under precise time synchronization. The framework fuses piUSBL azimuth and slant range with depth measurements, avoiding poor vertical-angle observability in planar arrays. By combining synchronized timing with acoustic signal processing, the proposed method transforms delay from an unobservable error into a measurable parameter, enabling explicit quantification of both acoustic propagation and system processing delays. Field experiments demonstrate that the proposed approach reduces position RMSE by 44.02% and maximum error (MAXERR) by 40.79% compared to the uncompensated baseline while achieving further RMSE reductions of 37.66% and 35.82% in horizontal directions relative to filter-based delay compensation. The results confirm that explicit delay measurement outperforms filter-based estimation though instantaneous performance remains sensitive to acoustic signal quality, emphasizing the need for robust signal processing alongside accurate time synchronization in latency-sensitive multisensor systems.
 image: "/images/research/precious_time_2025/abstractfig.png"
 imageWidth: "78%"
 imageMaxWidth: "920px"
@@ -19,16 +27,18 @@ links:
     url: "https://doi.org/10.1109/TIM.2026.3676179"
 citationFileName: "precious_time_2025.bib"
 citation: |-
-  @ARTICLE{11449348,
-  author={Huang, Jin and Wang, Yingqiang and Li, Haoda and Liu, Zichen and Wang, Zhikun and Chen, Ying},
-  journal={IEEE Transactions on Instrumentation and Measurement}, 
-  title={Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation}, 
-  year={2026},
-  volume={},
-  number={},
-  pages={1-1},
-  keywords={Underwater navigation;passive inverted ultra-short baseline (piUSBL);integrated navigation system (INS);clock synchronization;time delay measurement},
-  doi={10.1109/TIM.2026.3676179}}
+  @article{huangPreciseTimeDelay2026a,
+    title = {Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation},
+    author = {Huang, Jin and Wang, Yingqiang and Li, Haoda and Liu, Zichen and Wang, Zhikun and Chen, Ying},
+    year = 2026,
+    journal = {IEEE Transactions on Instrumentation and Measurement},
+    volume = {75},
+    pages = {1--14},
+    issn = {1557-9662},
+    doi = {10.1109/TIM.2026.3676179},
+    urldate = {2026-04-13},
+    lccn = {2}
+  }
 
 tags:
   - "Underwater integrated navigation"

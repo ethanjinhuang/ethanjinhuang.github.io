@@ -49,44 +49,48 @@
 
     <div class="row g-4">
         <div class="col-lg-9">
-            <div class="row" id="researchCardsContainer">
+            <div class="research-publication-list" id="researchCardsContainer">
                 {{ range $researchPages }}
                 {{ $tags := .Params.tags | default (slice) }}
-                <div class="col-xl-4 col-md-6 my-3 research-card-item" data-title="{{ lower .Title }}"
+                <article class="research-list-item research-card-item" data-title="{{ lower .Title }}"
                     data-tags="{{ lower (delimit $tags "||") }}">
-                    <div class="card my-3 h-100 position-relative" title="{{ .Title }}">
-                        <div class="card-head" style="--img-fit: {{ (.Params.imageFit | default " cover") | safeCSS }};
+                    {{ if .Params.image }}
+                    <a class="research-list-thumb" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"
+                        style="--img-fit: {{ (.Params.imageFit | default "cover") | safeCSS }};
                             --img-pos: {{ (.Params.imagePosition | default "50% 50%") | safeCSS }};">
-                            <img class="card-img-top" src="{{ .Params.image }}" alt="{{ .Title }}">
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                    </a>
+                    {{ end }}
+
+                    <div class="research-list-body">
+                        <div class="research-list-meta">
+                            {{ with (.Params.status | default .Params.typeLabel) }}<span>{{ . }}</span>{{ end }}
+                            <span>{{ .Params.dateLabel | default (.Date.Format "Jan 2006") }}</span>
+                            {{ with (.Params.publication | default .Params.venue) }}<span>{{ . | plainify }}</span>{{ end }}
                         </div>
-                        <div class="card-body bg-transparent p-3">
-                            <div class="pb-2 bg-transparent">
-                                {{ range .Params.tags }}
-                                <span class="badge badge-secondary">{{ . }}</span>
-                                {{ end }}
-                            </div>
-                            <h5 class="card-title bg-transparent">{{ .Title | truncate 50 }}</h5>
-                            <div class="card-text bg-transparent secondary-font">
-                                {{ .Summary | plainify | truncate 120 }}
-                            </div>
-                            <a class="stretched-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
-                        </div>
-                        <div class="card-footer py-3">
-                            {{ range .Params.links }}
-                            <span class="m-1 mx-2">
-                                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
-                                    <i class="{{ .icon }}"></i>
-                                </a>
-                            </span>
+                        <h3 class="research-list-title">
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                        </h3>
+                        {{ with .Params.authors }}
+                        <div class="research-list-authors">{{ . | safeHTML }}</div>
+                        {{ end }}
+                        <p class="research-list-summary">
+                            {{ with .Params.abstract }}{{ . | plainify | truncate 260 }}{{ else }}{{ .Summary | plainify | truncate 220 }}{{ end }}
+                        </p>
+                        <div class="research-list-tags">
+                            {{ range first 5 $tags }}
+                            <span>{{ . }}</span>
                             {{ end }}
-                            <span class="float-end">
-                                <a class="btn btn-sm" href="{{ .RelPermalink }}">
-                                    Know more
-                                </a>
-                            </span>
+                        </div>
+                        <div class="research-list-actions">
+                            <a class="btn btn-sm" href="{{ .RelPermalink }}">Details</a>
+                            {{ range first 3 (where .Params.links "url" "!=" "#") }}
+                            {{ $label := .name | default (.label | default "Link") }}
+                            <a class="btn btn-sm btn-outline-primary" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
+                            {{ end }}
                         </div>
                     </div>
-                </div>
+                </article>
                 {{ end }}
             </div>
 

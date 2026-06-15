@@ -1,5 +1,5 @@
 baseURL: "https://ethanjinhuang.github.io/"
-languageCode: "en-us"
+locale: "en-US"
 title: "Jin Huang | Zhejiang University"
 theme: hugo-profile
 
@@ -58,7 +58,6 @@ params:
   title: "Jin Huang's Profile"
   favicon: "/favicon.svg"
   description: "Welcome to my personal profile website!"
-  discription: "Welcome to my personal profile website!"
   # Whether the fade animations on the home page will be enabled
   animate: true
   # Whether to add mathjax support on all pages. Alternatively, you can opt-in per page by adding `mathjax: true` in the frontmatter.

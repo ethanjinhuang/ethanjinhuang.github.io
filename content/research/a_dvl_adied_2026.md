@@ -3,11 +3,43 @@ title: "A DVL-Aided Loosely Coupled Inertial Navigation Strategy for AUVs with A
 date: 2026-01-30T00:00:00+08:00
 description: "A DVL-aided loosely coupled SINS navigation strategy that explicitly models attitude-induced velocity projection errors and statistically consistent variance propagation, achieving robust long-term accuracy for AUVs."
 authors: "Jin Huang, Zichen Liu, Haoda Li, Zhikun Wang, Ying Chen"
-venue: "Preprint / Journal manuscript (2026)"
+venue: "arXiv preprint (2026)"
+publication: "arXiv:2601.19509"
+status: "Preprint"
+typeLabel: "Preprint"
+dateLabel: "January 2026"
+doi: "10.48550/arXiv.2601.19509"
+zoteroKey: "NP5FFPZL"
+abstract: >-
+  In underwater navigation systems, strap-down inertial navigation system/Doppler velocity log (SINS/DVL)-based loosely coupled architectures are widely adopted. Conventional approaches project DVL velocities from the body coordinate system to the navigation coordinate system using SINS-derived attitude; however, accumulated attitude estimation errors introduce biases into velocity projection and degrade navigation performance during long-term operation. To address this issue, two complementary improvements are introduced. First, a vehicle attitude error-aware DVL velocity transformation model is formulated by incorporating attitude error terms into the observation equation to reduce projection-induced velocity bias. Second, a covariance matrix-based variance propagation method is developed to transform DVL measurement uncertainty across coordinate systems, introducing an expectation-based attitude error compensation term to achieve statistically consistent noise modeling. Simulation and field experiment results demonstrate that both improvements individually enhance navigation accuracy and confirm that accumulated attitude errors affect both projected velocity measurements and their associated uncertainty. When jointly applied, long-term error divergence is effectively suppressed. Field experimental results show that the proposed approach achieves a 78.3% improvement in 3D position RMSE and a 71.8% reduction in the maximum component-wise position error compared with the baseline IMU+DVL method, providing a robust solution for improving long-term SINS/DVL navigation performance.
 image: "/images/research/a_dvl_adied_2026/abstractfig.png"
 links:
   - icon: fas fa-file-pdf
-    url: "https://example.com"
+    name: "PDF"
+    url: "https://arxiv.org/pdf/2601.19509"
+  - icon: fas fa-link
+    name: "arXiv"
+    url: "https://arxiv.org/abs/2601.19509"
+  - icon: fas fa-quote-right
+    name: "CITE"
+    url: "https://arxiv.org/bibtex/2601.19509"
+  - icon: fas fa-link
+    name: "DOI"
+    url: "https://doi.org/10.48550/arXiv.2601.19509"
+citationFileName: "a_dvl_adied_2026.bib"
+citation: |-
+  @misc{huangDVLAidedLoosely2026,
+    title = {A DVL Aided Loosely Coupled Inertial Navigation Strategy for AUVs with Attitude Error Modeling and Variance Propagation},
+    author = {Huang, Jin and Liu, Zichen and Li, Haoda and Wang, Zhikun and Chen, Ying},
+    year = 2026,
+    number = {arXiv:2601.19509},
+    eprint = {2601.19509},
+    primaryclass = {cs},
+    publisher = {arXiv},
+    doi = {10.48550/arXiv.2601.19509},
+    urldate = {2026-01-28},
+    archiveprefix = {arXiv}
+  }
 tags:
   - "Underwater integrated navigation"
   - "SINS/DVL loosely coupled fusion"

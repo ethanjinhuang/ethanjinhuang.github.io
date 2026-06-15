@@ -1,0 +1,48 @@
+{{- $src := .Get "src" -}}
+{{- $title := .Get "title" | default (.Get "caption") -}}
+{{- $inner := trim .Inner "\n " -}}
+{{- $caption := $title | default $inner -}}
+{{- $alt := .Get "alt" | default ($caption | plainify) -}}
+{{- $width := .Get "width" -}}
+{{- $maxWidth := .Get "maxWidth" | default (.Get "max-width") -}}
+{{- $align := lower (.Get "align" | default "center") -}}
+{{- $class := .Get "class" -}}
+{{- $link := .Get "link" -}}
+{{- $label := .Get "label" | default (.Get "id") -}}
+{{- $prefix := .Get "prefix" | default "Figure" -}}
+{{- $number := .Get "number" | default "true" -}}
+
+{{- if not $src -}}
+  {{- errorf "shortcode figure requires src: %s" .Position -}}
+{{- end -}}
+
+{{- $styles := slice -}}
+{{- with $width -}}
+  {{- $styles = $styles | append (printf "width:%s" .) -}}
+{{- end -}}
+{{- with $maxWidth -}}
+  {{- $styles = $styles | append (printf "max-width:%s" .) -}}
+{{- end -}}
+{{- $styleAttr := delimit $styles ";" -}}
+
+{{- $figureNumber := 0 -}}
+{{- if and $caption (ne (lower $number) "false") -}}
+  {{- $.Page.Scratch.Add "researchFigureNumber" 1 -}}
+  {{- $figureNumber = $.Page.Scratch.Get "researchFigureNumber" -}}
+{{- end -}}
+
+<figure{{ with $label }} id="{{ . }}"{{ end }} class="md-img-wrap md-figure align-{{ $align }}{{ with $class }} {{ . }}{{ end }}">
+  {{- if $link -}}
+  <a class="md-figure-link" href="{{ $link }}" target="_blank" rel="noopener noreferrer">
+    <img src="{{ $src }}" alt="{{ $alt }}" {{ with $styleAttr }}{{ printf "style=%q" (printf "%s;" .) | safeHTMLAttr }}{{ end }}>
+  </a>
+  {{- else -}}
+  <img src="{{ $src }}" alt="{{ $alt }}" {{ with $styleAttr }}{{ printf "style=%q" (printf "%s;" .) | safeHTMLAttr }}{{ end }}>
+  {{- end -}}
+  {{- with $caption }}
+  <figcaption class="md-img-caption">
+    {{- if gt $figureNumber 0 -}}<strong>{{ $prefix }} {{ $figureNumber }}.</strong> {{- end -}}
+    {{ . | markdownify }}
+  </figcaption>
+  {{- end }}
+</figure>

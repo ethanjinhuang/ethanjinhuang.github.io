@@ -19,10 +19,18 @@
         <div class="pr-lg-4">
           {{ if .Params.showTitle | default true }}
           <header class="research-hero mb-4">
+            <div class="research-paper-kicker">
+              {{ with (.Params.status | default .Params.typeLabel) }}<span>{{ . }}</span>{{ end }}
+              <span>{{ .Params.dateLabel | default (.Date.Format "January 2006") }}</span>
+            </div>
             <h1 class="research-hero-title">{{ .Title }}</h1>
 
             {{ with .Params.authors }}
             <div class="research-hero-authors">{{ . | safeHTML }}</div>
+            {{ end }}
+
+            {{ with (.Params.publication | default .Params.venue) }}
+            <div class="research-hero-publication">{{ . | safeHTML }}</div>
             {{ end }}
 
             {{ if .Params.links }}
@@ -79,14 +87,46 @@
           </div>
           {{ end }}
 
+          {{ with .Params.abstract }}
+          <section class="research-abstract-card">
+            <h2>Abstract</h2>
+            <div>{{ . | markdownify }}</div>
+          </section>
+          {{ end }}
+
           <article class="page-content p-2">
             {{ .Content | emojify }}
           </article>
+
+          {{ with .Params.citation }}
+          <section class="research-bibtex-card">
+            <h2>BibTeX</h2>
+            <pre><code>{{ . }}</code></pre>
+          </section>
+          {{ end }}
         </div>
       </div>
 
       <div class="col-sm-12 col-md-12 col-lg-3">
         <div id="stickySideBar" class="sticky-sidebar">
+          <aside class="research-meta-card">
+            <h5>Publication</h5>
+            <dl>
+              {{ with (.Params.typeLabel | default .Params.status) }}
+              <dt>Type</dt>
+              <dd>{{ . }}</dd>
+              {{ end }}
+              {{ with (.Params.publication | default .Params.venue) }}
+              <dt>Venue</dt>
+              <dd>{{ . | safeHTML }}</dd>
+              {{ end }}
+              {{ with .Params.doi }}
+              <dt>DOI</dt>
+              <dd><a href="https://doi.org/{{ . }}" target="_blank" rel="noopener noreferrer">{{ . }}</a></dd>
+              {{ end }}
+            </dl>
+          </aside>
+
           {{ if .Params.toc | default true }}
           <aside class="toc">
             <h5>{{ .Site.Params.terms.toc | default "Table Of Contents" }}</h5>
