@@ -21,6 +21,10 @@
                                 <span class="publications-sep">·</span>
                                 {{ end }}
                                 <span class="pub-title">{{ .title }}</span>
+                                {{ if .status }}
+                                <span class="publications-sep">·</span>
+                                <span class="pub-status">{{ .status }}</span>
+                                {{ end }}
                                 {{ if .venue }}
                                 <span class="publications-sep">·</span>
                                 <span class="pub-venue">{{ .venue }}</span>
@@ -32,6 +36,10 @@
                                 {{ if .doi }}
                                 <span class="publications-sep">·</span>
                                 <a href="https://doi.org/{{ .doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
+                                {{ end }}
+                                {{ if .url }}
+                                <span class="publications-sep">·</span>
+                                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .urlText | default "Link" }}</a>
                                 {{ end }}
                             </div>
                         </li>

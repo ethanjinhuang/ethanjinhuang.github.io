@@ -46,6 +46,9 @@
                                     <span class="pub-authors">{{ .authors | safeHTML }}</span>.
                                 {{ end }}
                                 <span class="pub-title">{{ .title }}</span>.
+                                {{ if .status }}
+                                    <span class="pub-status">{{ .status }}</span>
+                                {{ end }}
                                 {{ if .venue }}
                                     <span class="pub-venue"><em>{{ .venue }}</em></span>
                                 {{ end }}

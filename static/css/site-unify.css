@@ -199,6 +199,19 @@ body.light:not(.dark) #profileHeader .navbar {
     font-weight: 650;
 }
 
+#publications .pub-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.08rem 0.42rem;
+    border: 1px solid rgba(21, 101, 192, 0.28);
+    border-radius: 999px;
+    color: var(--primary-color);
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+    font-size: 0.78rem;
+    font-weight: 650;
+    line-height: 1.35;
+}
+
 @media (max-width: 768px) {
     #content section[id]:not(#hero) .container > h2,
     #content section[id]:not(#hero) .container > h3 {
