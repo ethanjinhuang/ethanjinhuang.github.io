@@ -43,7 +43,7 @@
                                 {{- $note := .note | default (.remark | default (.remarks | default .status)) -}}
                                 {{- with .authors }}<span class="pub-authors">{{ . | safeHTML }}</span>. {{ end }}
                                 <span class="pub-title">{{ .title }}</span>.
-                                {{- if .venue }} <span class="pub-venue"><em>{{ .venue }}</em></span>{{ if $date }}, {{ $date }}{{ end }}.{{ else if $date }} {{ $date }}.{{ end -}}
+                                {{- if .venue }} <span class="pub-venue"><em>{{ .venue }}</em></span>{{ with .pages }}, pp. {{ . }}{{ end }}{{ if $date }}, {{ $date }}{{ end }}.{{ else if $date }} {{ $date }}.{{ end -}}
                                 {{- if .doi -}}
                                     {{- $doiValue := printf "%v" .doi -}}
                                     {{- $doiLower := lower $doiValue -}}

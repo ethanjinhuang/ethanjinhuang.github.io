@@ -2,12 +2,12 @@
 title: "Journal Articles"
 weight: 1
 items:
-  - title: "Raspi²USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultra-Short Baseline Positioning System for Underwater Robotics"
+  - title: "Raspi²USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultrashort Baseline Positioning System for Underwater Robotics"
     authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Ying Chen"
-    venue: "IEEE Journal of Oceanic Engineering"
+    venue: "IEEE Journal of Oceanic Engineering, Early Access"
     year: "2026"
-    doi: "10.48550/arXiv.2511.06998"
-    note: "Accepted"
+    pages: "1-12"
+    doi: "10.1109/JOE.2026.3708044"
   - title: "Precise Time Delay Measurement and Compensation for Tightly Coupled Underwater SINS/piUSBL Navigation"
     authors: "<strong>Jin Huang</strong>, Yingqiang Wang, Haoda Li, Zichen Liu, Zhikun Wang, Ying Chen"
     venue: "IEEE Transactions on Instrumentation and Measurement"

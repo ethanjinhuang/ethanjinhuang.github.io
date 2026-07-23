@@ -1,17 +1,17 @@
 ---
-title: "Raspi²USBL: An open-source Raspberry Pi–Based Passive Inverted Ultra-Short Baseline Positioning System for Underwater Robotics"
+title: "Raspi²USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultrashort Baseline Positioning System for Underwater Robotics"
 date: 2026-06-15T00:00:00+08:00
-description: "An open-source Raspberry Pi–based passive inverted USBL (piUSBL) system for reproducible underwater acoustic positioning experiments, validated across tank, lake, and sea trials."
+description: "An open-source Raspberry Pi-based passive inverted USBL (piUSBL) system for reproducible underwater acoustic positioning experiments, validated across tank, lake, and sea trials."
 authors: "Jin Huang, Yingqiang Wang, Ying Chen"
-venue: "IEEE Journal of Oceanic Engineering (Accepted, 2026)"
+venue: "IEEE Journal of Oceanic Engineering, Early Access, 2026"
 publication: "IEEE Journal of Oceanic Engineering"
-status: "Accepted"
+status: "Early Access"
 typeLabel: "Journal article"
-dateLabel: "June 2026"
-doi: "10.48550/arXiv.2511.06998"
+dateLabel: "2026"
+doi: "10.1109/JOE.2026.3708044"
 zoteroKey: "UIMNH9KM"
 abstract: >-
-  In this work, we built Raspi²USBL, a Raspberry Pi-based passive inverted ultra-short baseline (piUSBL) positioning system for underwater robotics. The goal is simple: make underwater acoustic positioning easier to reproduce, modify, and test in real experiments. The system includes a compact acoustic receiver, an active beacon, OCXO-based one-way travel-time synchronization, and a C++ real-time processing framework for TOF and DOA estimation. We validated the system in an anechoic tank, a freshwater lake, and open-sea trials, achieving sub-0.1% slant-range accuracy, about 0.1° bearing precision, and stable tracking up to approximately 1.3 km.
+  In this work, we built Raspi²USBL, a Raspberry Pi-based passive inverted ultrashort baseline (piUSBL) positioning system for underwater robotics. The goal is simple: make underwater acoustic positioning easier to reproduce, modify, and test in real experiments. The system includes a compact acoustic receiver, an active beacon, OCXO-based one-way travel-time synchronization, and a C++ real-time processing framework for TOF and DOA estimation. We validated the system in an anechoic tank, a freshwater lake, and open-sea trials, achieving sub-0.1% slant-range accuracy, about 0.1° bearing precision, and stable tracking up to approximately 1.3 km.
 image: "/images/research/raspi2usbl_open_2025/fig_rxtxcabin.png"
 imageWidth: "clamp(280px, 72vw, 760px)"
 links:
@@ -23,26 +23,25 @@ links:
     url: "https://arxiv.org/abs/2511.06998"
   - icon: fas fa-quote-right
     name: "CITE"
-    url: "https://arxiv.org/bibtex/2511.06998" 
+    url: "#"
   - icon: fas fa-link
     name: "DOI"
-    url: "https://doi.org/10.48550/arXiv.2511.06998"
+    url: "https://doi.org/10.1109/JOE.2026.3708044"
   - icon: fab fa-github
     name: "Code & Data"
     url: "https://github.com/ethanjinhuang/Raspi2USBL"
-citationFileName: "raspi2usbl_open_2025.bib"
+citationFileName: "raspi2usbl_open_2026.bib"
 citation: |-
-  @misc{huangRaspi2USBLOpensourceRaspberry2025,
-    title = {Raspi2USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultra-Short Baseline Positioning System for Underwater Robotics},
-    author = {Huang, Jin and Wang, Yingqiang and Chen, Ying},
-    year = 2025,
-    number = {arXiv:2511.06998},
-    eprint = {2511.06998},
-    primaryclass = {cs},
-    publisher = {arXiv},
-    doi = {10.48550/arXiv.2511.06998},
-    urldate = {2025-11-11},
-    archiveprefix = {arXiv}
+  @ARTICLE{11615047,
+    author={Huang, Jin and Wang, Yingqiang and Chen, Ying},
+    journal={IEEE Journal of Oceanic Engineering},
+    title={Raspi$^{2}$USBL: An Open-Source Raspberry Pi-Based Passive Inverted Ultrashort Baseline Positioning System for Underwater Robotics},
+    year={2026},
+    volume={},
+    number={},
+    pages={1-12},
+    keywords={Distance measurement;Timing;Arrays;Oceans;Synchronization;Navigation;Software;Global navigation satellite system;Hardware;Location awareness;Acoustic positioning;open source;passive inverted ultrashort baseline (piUSBL);ultrashort baseline (USBL);underwater robotics},
+    doi={10.1109/JOE.2026.3708044}
   }
 tags:
   - "Underwater acoustic positioning"
