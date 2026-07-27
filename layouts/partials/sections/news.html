@@ -12,25 +12,20 @@
     <div class="container">
         <div class="home-section-inner">
             <h3 class="text-center">{{ $newsTitle }}</h3>
-            <div class="pt-3">
-                <div class="news-container">
-                    <div class="news-list">
-                        {{ range $homeNews }}
-                        <div class="news-item">
-                            <div class="news-content">
-                                {{ .content | markdownify }}
-                            </div>
-                            <div class="news-date">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>{{ .date }}</span>
-                            </div>
+            <div class="news-container">
+                <div class="news-list">
+                    {{ range $homeNews }}
+                    <div class="news-item">
+                        <time class="news-date">{{ .date }}</time>
+                        <div class="news-content">
+                            {{ .content | markdownify }}
                         </div>
-                        {{ end }}
                     </div>
+                    {{ end }}
                 </div>
-                <div class="home-more-wrap text-center mt-2">
-                    <a class="btn btn-sm home-more-btn" href="{{ "/news/" | relURL }}">Read more</a>
-                </div>
+            </div>
+            <div class="home-more-wrap mt-2">
+                <a class="home-more-link" href="{{ "/news/" | relURL }}">More news</a>
             </div>
         </div>
     </div>

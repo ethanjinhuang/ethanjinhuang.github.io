@@ -2,12 +2,12 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid var(--academic-border);
 }
 
 #awards .award-item {
-    padding: 0.9rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0.62rem 0;
+    border-bottom: 1px solid var(--academic-border);
 }
 
 #awards .award-item.empty {
@@ -23,13 +23,15 @@
 
 #awards .award-date {
     min-width: 5.5rem;
-    color: var(--primary-color);
-    font-weight: 600;
+    color: var(--text-secondary-color);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
 }
 
 #awards .award-item-title {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 #awards .award-meta,
@@ -37,14 +39,6 @@
     margin-left: 6.25rem;
     margin-top: 0.2rem;
     color: var(--text-secondary-color);
-}
-
-.dark #awards .award-items {
-    border-top-color: rgba(255, 255, 255, 0.18);
-}
-
-.dark #awards .award-item {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 767.98px) {

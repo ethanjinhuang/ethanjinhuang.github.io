@@ -42,6 +42,42 @@ body.light:not(.dark) #profileHeader .navbar {
     background-color: rgba(255, 255, 255, 0.96);
 }
 
+body.dark #profileHeader .navbar,
+html.dark body #profileHeader .navbar {
+    border: 0;
+    border-bottom: 1px solid rgba(182, 192, 204, 0.16);
+    box-shadow: none;
+    background-color: rgba(16, 20, 25, 0.96) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    backdrop-filter: blur(8px) saturate(120%);
+}
+
+body.dark #profileHeader .navbar-brand,
+body.dark #profileHeader .nav-link,
+html.dark body #profileHeader .navbar-brand,
+html.dark body #profileHeader .nav-link {
+    color: var(--text-color) !important;
+}
+
+body.dark #profileHeader .navbar-brand,
+html.dark body #profileHeader .navbar-brand {
+    color: var(--primary-color) !important;
+}
+
+body.dark #profileHeader .navbar-toggler,
+body.dark #profileHeader .navbar-toggler svg,
+html.dark body #profileHeader .navbar-toggler,
+html.dark body #profileHeader .navbar-toggler svg {
+    color: var(--text-color) !important;
+    fill: currentColor !important;
+}
+
+body.dark #profileHeader button#theme-toggle.theme-toggle-btn,
+html.dark body #profileHeader button#theme-toggle.theme-toggle-btn {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+}
+
 #profileHeader.showHeaderOnTop {
     box-shadow: none;
     z-index: 1100;
@@ -164,6 +200,114 @@ body.light:not(.dark) #profileHeader .navbar {
     background: color-mix(in srgb, var(--primary-color) 72%, transparent);
 }
 
+/* Shared academic page rhythm */
+#awards.py-5,
+#experiencePage.py-5,
+#newsPage.py-5,
+#publications.py-5,
+#education.py-5 {
+    padding-top: clamp(1.8rem, 3vw, 2.5rem) !important;
+    padding-bottom: clamp(1.8rem, 3vw, 2.5rem) !important;
+}
+
+#awards .container,
+#experiencePage .container,
+#newsPage .container,
+#publications .container,
+#education .container,
+#researchPage {
+    max-width: 980px;
+}
+
+#awards .container > h2,
+#experiencePage .container > h2,
+#newsPage .container > h2,
+#publications .container > h2,
+#education .container > h2,
+#researchPage > h2 {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0 !important;
+    color: var(--text-color) !important;
+    font-size: clamp(1.55rem, 2.4vw, 2rem);
+    font-weight: 650;
+    line-height: 1.18;
+    text-align: left !important;
+}
+
+#awards .container > h2::after,
+#experiencePage .container > h2::after,
+#newsPage .container > h2::after,
+#publications .container > h2::after,
+#education .container > h2::after,
+#researchPage > h2::after {
+    display: none !important;
+}
+
+#awards .row,
+#experiencePage .row,
+#newsPage .row,
+#publications .row,
+#education .row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#awards .row.justify-content-center.py-4,
+#experiencePage .row.justify-content-center.pt-4,
+#newsPage .row.justify-content-center.pt-4,
+#education .row.justify-content-center.py-5 {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0 !important;
+}
+
+#publications .row.justify-content-center {
+    margin-top: 0.25rem;
+}
+
+#researchPage .row.g-3.align-items-end.mb-4 {
+    margin-bottom: 1rem !important;
+}
+
+#awards .col-lg-10,
+#experiencePage .col-lg-10,
+#newsPage .col-lg-11,
+#publications .col-lg-10,
+#education .col-lg-10 {
+    width: 100%;
+    max-width: 940px;
+}
+
+#publications .publications-group {
+    margin-bottom: 1.2rem;
+}
+
+#publications .publications-title {
+    margin-bottom: 0.42rem;
+    color: var(--text-color);
+    font-size: 1.04rem;
+    font-weight: 650;
+}
+
+#publications .publications-list {
+    margin: 0;
+    padding-left: 1.12rem;
+}
+
+#publications .publications-item {
+    margin-bottom: 0.42rem;
+    padding-left: 0.12rem;
+}
+
+#publications .publications-item-meta {
+    color: var(--text-color);
+    font-size: 0.93rem;
+    line-height: 1.44;
+}
+
+#publications .pub-title {
+    font-weight: 600;
+}
+
 #content p {
     line-height: 1.55;
 }
@@ -197,7 +341,6 @@ body.light:not(.dark) #profileHeader .navbar {
     border-radius: 999px;
 }
 
-#news .news-container,
 #linkedin-feed .linkedin-static-card,
 #linkedin-feed .linkedin-static-empty,
 #about .about-shell,
@@ -205,6 +348,11 @@ body.light:not(.dark) #profileHeader .navbar {
 #newsPage .news-tl-events {
     border: 1px solid var(--academic-border);
     box-shadow: var(--academic-shadow);
+}
+
+#experiencePage .exp-page-item,
+#newsPage .news-tl-events {
+    box-shadow: none;
 }
 
 #research .card .card-title,

@@ -1,5 +1,5 @@
 #single .research-hero {
-    margin: 2.6rem 0 1.2rem;
+    margin: 1.7rem 0 1rem;
     text-align: left;
 }
 
@@ -20,9 +20,9 @@
 }
 
 #single .research-hero-title {
-    margin-bottom: 0.65rem;
-    font-size: clamp(1.9rem, 4vw, 3.15rem);
-    line-height: 1.12;
+    margin-bottom: 0.55rem;
+    font-size: clamp(1.62rem, 3vw, 2.25rem);
+    line-height: 1.16;
     letter-spacing: 0;
 }
 
@@ -43,14 +43,14 @@
 #single .research-hero-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.42rem;
     justify-content: flex-start;
 }
 
 #single .research-link-btn {
-    border-radius: 0.42rem !important;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.92rem;
+    border-radius: 0.25rem !important;
+    padding: 0.25rem 0.64rem;
+    font-size: 0.86rem;
 }
 
 /* Keep research figures readable instead of full-column oversized */
@@ -89,22 +89,24 @@
 #single .research-abstract-card,
 #single .research-bibtex-card,
 #single .research-meta-card {
-    border: 1px solid var(--academic-border);
-    border-radius: var(--academic-radius);
-    background: var(--secondary-color);
-    box-shadow: var(--academic-shadow);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 #single .research-abstract-card {
-    margin: 1.2rem 0 1.4rem;
-    padding: 1rem 1.15rem;
+    margin: 1rem 0 1.25rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--academic-border);
+    border-bottom: 1px solid var(--academic-border);
 }
 
 #single .research-abstract-card h2,
 #single .research-bibtex-card h2 {
-    margin-bottom: 0.65rem;
-    font-size: 1.32rem;
-    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 650;
 }
 
 #single .research-abstract-card p,
@@ -115,29 +117,33 @@
 }
 
 #single .research-bibtex-card {
-    margin: 1.5rem 0 2rem;
-    padding: 1rem 1.15rem;
+    margin: 1.25rem 0 1.8rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--academic-border);
 }
 
 #single .research-bibtex-card pre {
     margin: 0;
-    padding: 0.9rem;
+    padding: 0.75rem;
     overflow-x: auto;
-    border-radius: 0.42rem;
+    border: 1px solid var(--academic-border);
+    border-radius: 0.25rem;
     background: var(--background-color);
     color: var(--text-color);
     font-size: 0.86rem;
 }
 
 #single .research-meta-card {
-    padding: 0.95rem;
+    padding: 0.75rem 0;
     margin-bottom: 1rem;
+    border-top: 1px solid var(--academic-border);
+    border-bottom: 1px solid var(--academic-border);
 }
 
 #single .research-meta-card h5 {
-    margin-bottom: 0.75rem;
-    font-size: 1rem;
-    font-weight: 700;
+    margin-bottom: 0.55rem;
+    font-size: 0.98rem;
+    font-weight: 650;
 }
 
 #single .research-meta-card dl {
@@ -145,7 +151,7 @@
 }
 
 #single .research-meta-card dt {
-    margin-top: 0.65rem;
+    margin-top: 0.52rem;
     color: var(--text-color);
     font-size: 0.78rem;
     letter-spacing: 0.02em;
@@ -186,7 +192,7 @@
 #single aside.tags ul.tags-ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.28rem;
     margin: 0;
     padding: 0;
 }
@@ -200,10 +206,10 @@
 #single aside.tags ul.tags-ul li a {
     display: block;
     max-width: 100%;
-    padding: 0.32rem 0.58rem;
+    padding: 0.16rem 0.44rem;
     border: 1px solid var(--academic-border);
     border-radius: 999px;
-    background: var(--background-color);
+    background: transparent;
     color: var(--text-link-color) !important;
     line-height: 1.28;
     overflow-wrap: anywhere;
@@ -215,7 +221,7 @@
 }
 
 #single .md-img-wrap {
-    margin: 1.4rem auto;
+    margin: 1.15rem auto;
     text-align: center;
 }
 

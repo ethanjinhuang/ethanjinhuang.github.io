@@ -151,3 +151,105 @@
         padding: 0.78rem 0.82rem !important;
     }
 }
+
+/* Compact home research list */
+#research .research-compact-list {
+    display: grid;
+    gap: 0.72rem;
+}
+
+#research .research-compact-item {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 0.86rem;
+    padding: 0 0 0.72rem;
+    border-bottom: 1px solid var(--academic-border);
+}
+
+#research .research-compact-item:last-child {
+    border-bottom: 0;
+}
+
+#research .research-compact-thumb {
+    width: 118px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    display: block;
+    border: 1px solid var(--academic-border);
+    border-radius: 0.25rem;
+    background: var(--background-color);
+}
+
+#research .research-compact-thumb img,
+#research .research-compact-thumb .research-pdf-preview {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+    object-fit: var(--img-fit, cover);
+    object-position: var(--img-pos, 50% 50%);
+}
+
+#research .research-compact-body {
+    min-width: 0;
+}
+
+#research .research-compact-body h4 {
+    margin: 0 0 0.16rem;
+    font-size: 0.98rem;
+    font-weight: 650;
+    line-height: 1.28;
+}
+
+#research .research-compact-body h4 a {
+    color: var(--text-link-color);
+}
+
+#research .research-compact-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.5rem;
+    color: var(--text-secondary-color);
+    font-size: 0.82rem;
+    line-height: 1.36;
+}
+
+#research .research-compact-meta span:not(:last-child)::after {
+    content: ",";
+}
+
+#research .research-compact-body p {
+    margin: 0.24rem 0 0;
+    color: var(--text-color);
+    font-size: 0.88rem;
+    line-height: 1.42;
+}
+
+#research .research-compact-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.24rem;
+    margin-top: 0.34rem;
+}
+
+#research .research-compact-tags span {
+    padding: 0.08rem 0.38rem;
+    border: 1px solid var(--academic-border);
+    border-radius: 999px;
+    color: var(--text-secondary-color);
+    background: var(--background-color);
+    font-size: 0.72rem;
+    line-height: 1.25;
+}
+
+@media (max-width: 575.98px) {
+    #research .research-compact-item {
+        grid-template-columns: 1fr;
+        gap: 0.48rem;
+    }
+
+    #research .research-compact-thumb {
+        width: 100%;
+        max-width: 220px;
+    }
+}

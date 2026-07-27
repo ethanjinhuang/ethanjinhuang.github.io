@@ -43,11 +43,6 @@ Menus:
       title: Research
       url: /research
       weight: 4
-    - identifier: gallery
-      name: Gallery
-      title: Gallery
-      url: /gallery
-      weight: 7
     - identifier: publications
       name: Publications
       title: Publications
@@ -59,7 +54,7 @@ params:
   favicon: "/icons/wave.svg"
   description: "Welcome to my personal profile website!"
   # Whether the fade animations on the home page will be enabled
-  animate: true
+  animate: false
   # Whether to add mathjax support on all pages. Alternatively, you can opt-in per page by adding `mathjax: true` in the frontmatter.
   mathjax: true
   font:
@@ -84,7 +79,7 @@ params:
 
   navbar:
     align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
-    brandName: "Jin Huang's Profile"
+    brandName: "Jin Huang"
     disableSearch: true
     stickyNavBar:
       enable: true
@@ -130,11 +125,11 @@ params:
     title: "About Me"
     image: "/images/profile/profile.jpg"
     content: |-
-      I am a Ph.D. candidate supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096) at Zhejiang University.
-      My research interests include marine robotics, underwater integrated navigation, and acoustic positioning systems.
-      I have developed several underwater navigation/positioning systems and algorithms, which have been successfully applied in real-world underwater scenarios, and validated through extensive sea trials.
+      I am a Ph.D. candidate at Zhejiang University, supervised by Prof. [Ying Chen](https://person.zju.edu.cn/en/0089096). From 2025 to 2026, I am also a special research student at the University of Tokyo, supervised by Prof. [Moju Zhao](https://www.dragon.t.u-tokyo.ac.jp/author/moju-zhao/).
+
+      My research focuses on marine robotics, deeply integrated underwater navigation, and underwater acoustic sensing, with a particular interest in bio-inspired sensing and navigation for underwater robots. I develop underwater navigation and positioning systems, along with related algorithms, and validate them through real-world deployments and sea trials.
     interests:
-      enable: true
+      enable: false
       title: "Interests"
       items:
         - "Underwater Navigation & Positioning"
@@ -159,7 +154,7 @@ params:
 
   # LinkedIn Feed
   linkedinFeed:
-    enable: true
+    enable: false
     title: "LinkedIn Updates"
     description: "Recent LinkedIn activity and research notes."
     provider: "elfsight"

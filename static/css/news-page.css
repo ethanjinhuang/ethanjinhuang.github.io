@@ -1,6 +1,6 @@
 #newsPage .news-filter-panel {
-    margin-bottom: 0.88rem;
-    padding: 0 0 0.42rem;
+    margin-bottom: 0.9rem;
+    padding: 0 0 0.55rem;
     border-radius: 0;
     border: 0;
     background: transparent;
@@ -10,10 +10,10 @@
 #newsPage .news-filter-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 0.44rem;
     flex-wrap: wrap;
-    text-align: right;
+    text-align: left;
 }
 
 #newsPage .news-filter-title {
@@ -167,86 +167,70 @@
 #newsPage .news-timeline {
     display: grid;
     gap: 0;
+    border-top: 1px solid var(--academic-border);
 }
 
 #newsPage .news-tl-row {
     display: grid;
-    grid-template-columns: 84px 56px 1fr;
-    align-items: stretch;
-    column-gap: 0.68rem;
-    padding: 0.18rem 0;
+    grid-template-columns: 4.4rem 2.8rem minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: 0.75rem;
+    padding: 0.52rem 0;
+    border-bottom: 1px solid var(--academic-border);
 }
 
 #newsPage .news-tl-year {
     color: var(--text-secondary-color);
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.1;
-    text-align: right;
-    padding-top: 0.45rem;
-    padding-right: 0.2rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: left;
+    padding: 0;
 }
 
 #newsPage .news-tl-month {
-    position: relative;
-    color: var(--primary-color);
-    font-weight: 700;
+    color: var(--text-secondary-color);
+    font-weight: 500;
     font-size: 0.9rem;
-    line-height: 1.1;
-    text-align: center;
-    padding-top: 0.4rem;
+    line-height: 1.4;
+    text-align: left;
+    padding: 0;
 }
 
 #newsPage .news-tl-month::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -0.2rem;
-    bottom: -0.2rem;
-    width: 2px;
-    transform: translateX(-50%);
-    background: var(--primary-color);
-    opacity: 0.42;
-}
-
-#newsPage .news-tl-row:first-child .news-tl-month::before {
-    top: 50%;
-}
-
-#newsPage .news-tl-row:last-child .news-tl-month::before {
-    bottom: 50%;
+    content: none;
 }
 
 #newsPage .news-tl-month-label {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    min-width: 2.05rem;
-    padding: 0.05rem 0.2rem;
-    border-radius: 0.35rem;
-    background: var(--background-color);
+    display: inline;
+    min-width: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
 }
 
 #newsPage .news-tl-events {
     display: grid;
-    gap: 0.18rem;
-    padding: 0.38rem 0.58rem;
-    border-radius: 0.58rem;
-    background: var(--secondary-color);
-    border: 1px solid rgba(127, 127, 127, 0.12);
+    gap: 0.34rem;
+    padding: 0;
+    border: 0 !important;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none !important;
 }
 
 #newsPage .news-tl-event {
     margin: 0;
-    padding-left: 0.55rem;
-    border-left: 2px solid var(--primary-color);
-    line-height: 1.32;
+    padding: 0;
+    border-left: 0;
+    color: var(--text-color);
+    line-height: 1.42;
     font-size: 0.92rem;
 }
 
 #newsPage .news-tl-event p {
     margin: 0;
-    line-height: 1.32;
+    line-height: 1.42;
 }
 
 @media (max-width: 768px) {
@@ -261,7 +245,7 @@
 
     #newsPage .news-filter-controls {
         gap: 0.24rem;
-        justify-content: flex-end;
+        justify-content: flex-start;
     }
 
     #newsPage .news-range-wrap {
@@ -279,24 +263,24 @@
     }
 
     #newsPage .news-tl-row {
-        grid-template-columns: 62px 42px 1fr;
-        column-gap: 0.42rem;
-        padding: 0.14rem 0;
+        grid-template-columns: 1fr;
+        row-gap: 0.08rem;
+        padding: 0.52rem 0;
     }
 
     #newsPage .news-tl-year {
         font-size: 0.88rem;
-        padding-top: 0.42rem;
+        padding: 0;
     }
 
     #newsPage .news-tl-month {
         font-size: 0.82rem;
-        padding-top: 0.36rem;
+        padding: 0;
     }
 
     #newsPage .news-tl-events {
         gap: 0.15rem;
-        padding: 0.34rem 0.5rem;
+        padding: 0;
     }
 
     #newsPage .news-tl-event {

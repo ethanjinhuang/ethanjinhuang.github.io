@@ -8,67 +8,44 @@
             {{ $researchPages = where $researchPages "Params.showInHome" "ne" false }}
             {{ $researchPages = sort $researchPages "Date" "desc" }}
 
-            <div class="row justify-content-center g-3 mt-1">
+            <div class="research-compact-list mt-1">
                 {{ range first 3 $researchPages }}
                 {{ $keywords := .Params.tags | default (slice) }}
                 {{ $imageSrc := .Params.image }}
                 {{ $isPdfImage := eq (lower (path.Ext $imageSrc)) ".pdf" }}
                 {{ $pdfPreviewSrc := replaceRE `(?i)\.pdf$` ".png" $imageSrc }}
                 {{ $pdfPreviewPath := printf "static%s" $pdfPreviewSrc }}
-                <div class="col-lg-4 col-md-6 d-flex">
-                    <div class="card h-100 position-relative" title="{{ .Title }}">
-                    <div class="card-head" style="--img-fit: {{ (.Params.imageFit | default "cover") | safeCSS }};
+                <article class="research-compact-item" title="{{ .Title }}">
+                    <a class="research-compact-thumb" href="{{ .RelPermalink }}" aria-label="{{ .Title }}" style="--img-fit: {{ (.Params.imageFit | default "cover") | safeCSS }};
                         --img-pos: {{ (.Params.imagePosition | default "50% 50%") | safeCSS }};">
-                            {{ if and $isPdfImage (fileExists $pdfPreviewPath) }}
-                            <img class="card-img-top" src="{{ $pdfPreviewSrc }}" alt="{{ .Title }}">
-                            {{ else if $isPdfImage }}
-                            <object class="card-img-top research-pdf-preview" data="{{ $imageSrc }}#page=1&toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" aria-label="{{ .Title }} preview">
-                                <span class="research-pdf-fallback">PDF Preview</span>
-                            </object>
-                            {{ else }}
-                            <img class="card-img-top" src="{{ $imageSrc }}" alt="{{ .Title }}">
+                        {{ if and $isPdfImage (fileExists $pdfPreviewPath) }}
+                        <img src="{{ $pdfPreviewSrc }}" alt="{{ .Title }}">
+                        {{ else if $isPdfImage }}
+                        <object class="research-pdf-preview" data="{{ $imageSrc }}#page=1&toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" aria-label="{{ .Title }} preview">
+                            <span class="research-pdf-fallback">PDF Preview</span>
+                        </object>
+                        {{ else }}
+                        <img src="{{ $imageSrc }}" alt="{{ .Title }}">
+                        {{ end }}
+                    </a>
+                    <div class="research-compact-body">
+                        <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                        <div class="research-compact-meta">
+                            {{ with .Params.authors }}<span>{{ . | safeHTML }}</span>{{ end }}
+                            {{ with .Params.venue }}<span>{{ . | safeHTML }}</span>{{ end }}
+                        </div>
+                        {{ with (.Params.description | default .Summary) }}
+                        <p>{{ . | plainify | truncate 190 }}</p>
+                        {{ end }}
+                        {{ if gt (len $keywords) 0 }}
+                        <div class="research-compact-tags">
+                            {{ range first 3 $keywords }}
+                            <span>{{ . }}</span>
                             {{ end }}
                         </div>
-                        <div class="card-body bg-transparent p-3">
-                            <h5 class="card-title bg-transparent mb-1">{{ .Title | truncate 50 }}</h5>
-                            {{ with .Params.authors }}
-                            <div class="card-text bg-transparent secondary-font text-secondary">
-                                {{ . }}
-                            </div>
-                            {{ end }}
-                            {{ with .Params.venue }}
-                            <div class="card-text bg-transparent secondary-font text-secondary">
-                                {{ . }}
-                            </div>
-                            {{ end }}
-                            <div class="card-text bg-transparent secondary-font mt-1">
-                                {{ if gt (len $keywords) 0 }}
-                                <strong>Keywords:</strong>
-                                {{ range $keywords }}
-                                <span class="badge badge-secondary">{{ . }}</span>
-                                {{ end }}
-                                {{ else }}
-                                <strong>Keywords:</strong> N/A
-                                {{ end }}
-                            </div>
-                            <a class="stretched-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}"></a>
-                        </div>
-                        <div class="card-footer py-3">
-                            {{ range .Params.links }}
-                            <span class="m-1 mx-2">
-                                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
-                                    <i class="{{ .icon }}"></i>
-                                </a>
-                            </span>
-                            {{ end }}
-                            <span class="float-end">
-                                <a class="btn btn-sm" href="{{ .RelPermalink }}">
-                                    Know more
-                                </a>
-                            </span>
-                        </div>
+                        {{ end }}
                     </div>
-                </div>
+                </article>
                 {{ end }}
             </div>
 

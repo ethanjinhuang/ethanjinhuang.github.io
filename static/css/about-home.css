@@ -499,3 +499,208 @@
         font-size: 0.98rem;
     }
 }
+
+/* Compact academic homepage overrides */
+#about,
+#news,
+#publications,
+#research {
+    padding-top: clamp(1.45rem, 2.6vw, 2.2rem) !important;
+    padding-bottom: clamp(1.45rem, 2.6vw, 2.2rem) !important;
+    background-color: var(--secondary-color) !important;
+}
+
+#about .home-section-inner,
+#news .home-section-inner,
+#publications .row,
+#research .home-section-inner {
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#news h3,
+#publications h3,
+#research h3 {
+    margin-bottom: 0.78rem !important;
+    color: var(--text-color) !important;
+    font-size: 1.42rem;
+    font-weight: 650;
+    text-align: left !important;
+}
+
+#news h3::after,
+#publications h3::after,
+#research h3::after {
+    display: none !important;
+}
+
+#about .academic-home-intro {
+    padding-top: 0.85rem;
+}
+
+#about .academic-home-heading {
+    margin-bottom: 0.72rem;
+}
+
+#about .academic-home-heading h1 {
+    margin: 0 0 0.16rem;
+    color: var(--text-color) !important;
+    font-size: clamp(1.9rem, 4vw, 2.55rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: 0;
+}
+
+#about .academic-profile-role,
+#about .academic-profile-affiliation {
+    margin: 0.14rem 0 0;
+    color: var(--text-secondary-color);
+    font-size: 0.96rem;
+    line-height: 1.36;
+}
+
+#about .about-content {
+    font-size: 0.98rem;
+    line-height: 1.58;
+}
+
+#about .about-content > p {
+    margin-bottom: 0.5rem;
+}
+
+#about .about-content > p:first-child {
+    font-size: 0.98rem;
+}
+
+#about .academic-profile-card {
+    align-items: center;
+    padding: 0.1rem 0;
+}
+
+#about .about-avatar {
+    width: clamp(132px, 15vw, 174px);
+    box-shadow: none;
+}
+
+#about .academic-profile-social {
+    margin-top: 0.72rem;
+}
+
+#about .academic-profile-social .btn.social-icon {
+    width: 1.58rem;
+    height: 1.58rem;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    font-size: 0.96rem;
+}
+
+#about .academic-profile-social .btn.social-icon:hover,
+#about .academic-profile-social .btn.social-icon:focus {
+    color: var(--text-link-color) !important;
+    background: transparent !important;
+    text-decoration: underline;
+}
+
+#about .academic-profile-facts {
+    margin-top: 0.74rem;
+    padding-top: 0.72rem;
+}
+
+#about .academic-fact-title {
+    margin-bottom: 0.38rem;
+    font-size: 0.96rem;
+}
+
+#about .academic-profile-facts-single .academic-fact-list {
+    gap: 0.28rem 0.36rem;
+}
+
+#about .academic-profile-facts-single .academic-fact-list li {
+    padding: 0.08rem 0.46rem 0.08rem 0.9rem;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary-color);
+    font-size: 0.88rem;
+}
+
+#about .academic-profile-facts-single .academic-fact-list li::before {
+    left: 0.36rem;
+}
+
+#publications {
+    background-color: var(--background-color) !important;
+}
+
+#publications.py-5 {
+    padding-top: clamp(1.45rem, 2.6vw, 2.2rem) !important;
+    padding-bottom: clamp(1.45rem, 2.6vw, 2.2rem) !important;
+}
+
+#publications .container {
+    max-width: 980px;
+}
+
+#publications .row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#publications .col-lg-10 {
+    width: 100%;
+    max-width: 940px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+#publications .publications-group {
+    margin-bottom: 1.05rem;
+}
+
+#publications .publications-title {
+    margin-bottom: 0.38rem;
+    color: var(--text-color);
+    font-size: 1.02rem;
+    font-weight: 650;
+}
+
+#publications .publications-list {
+    margin: 0;
+    padding-left: 1.15rem;
+}
+
+#publications .publications-item {
+    margin-bottom: 0.38rem;
+    padding-left: 0.15rem;
+}
+
+#publications .publications-item-meta {
+    color: var(--text-color);
+    font-size: 0.92rem;
+    line-height: 1.42;
+}
+
+#publications .pub-title {
+    font-weight: 600;
+}
+
+@media (max-width: 767.98px) {
+    #about .academic-home-intro {
+        padding-top: 0.35rem;
+    }
+
+    #about .academic-profile-card {
+        align-items: flex-start;
+    }
+
+    #about .about-avatar {
+        width: 128px;
+    }
+
+    #news h3,
+    #publications h3,
+    #research h3 {
+        font-size: 1.28rem;
+    }
+}
