@@ -5,10 +5,32 @@
     --academic-shadow-hover: 0 7px 18px rgba(20, 35, 55, 0.1);
 }
 
+html.dark,
+body.dark {
+    --background-color: var(--background-color-dark) !important;
+    --secondary-background-color: var(--secondary-background-color-dark) !important;
+    --text-color: var(--text-color-dark) !important;
+    --text-secondary-color: var(--text-secondary-color-dark) !important;
+    --text-link-color: var(--text-link-color-dark) !important;
+    --primary-color: var(--primary-color-dark) !important;
+    --secondary-color: var(--secondary-color-dark) !important;
+    --academic-border: rgba(182, 192, 204, 0.18);
+    --academic-shadow: none;
+    --academic-shadow-hover: none;
+}
+
+html.dark,
+html.dark body,
+body.dark {
+    background-color: var(--background-color-dark) !important;
+    color: var(--text-color-dark) !important;
+}
+
 body {
     letter-spacing: 0.002em;
     max-width: 100%;
     overflow-x: hidden;
+    background-color: var(--background-color) !important;
 }
 
 #profileHeader {
@@ -21,6 +43,7 @@ body {
 #content {
     position: relative;
     z-index: 1;
+    background-color: var(--background-color) !important;
 }
 
 #content section[id] {
@@ -76,6 +99,62 @@ body.dark #profileHeader button#theme-toggle.theme-toggle-btn,
 html.dark body #profileHeader button#theme-toggle.theme-toggle-btn {
     background-color: transparent !important;
     color: var(--text-color) !important;
+}
+
+body.dark #content,
+html.dark body #content {
+    background-color: var(--background-color-dark) !important;
+}
+
+body.dark #hero,
+body.dark #experience,
+body.dark #news,
+body.dark #research,
+body.dark #contact,
+html.dark body #hero,
+html.dark body #experience,
+html.dark body #news,
+html.dark body #research,
+html.dark body #contact {
+    background-color: var(--secondary-color-dark) !important;
+}
+
+body.dark #about,
+body.dark #linkedin-feed,
+body.dark #achievements,
+body.dark #publications,
+body.dark #awards,
+body.dark #experiencePage,
+body.dark #newsPage,
+body.dark #education,
+body.dark #researchPage,
+body.dark #single,
+html.dark body #about,
+html.dark body #linkedin-feed,
+html.dark body #achievements,
+html.dark body #publications,
+html.dark body #awards,
+html.dark body #experiencePage,
+html.dark body #newsPage,
+html.dark body #education,
+html.dark body #researchPage,
+html.dark body #single {
+    background-color: var(--background-color-dark) !important;
+}
+
+body.dark .home-section-inner,
+body.dark #about .about-shell,
+body.dark .research-list-thumb,
+body.dark #single .research-bibtex-card pre,
+body.dark #single .cite-modal-panel,
+body.dark #single .cite-modal-text,
+html.dark body .home-section-inner,
+html.dark body #about .about-shell,
+html.dark body .research-list-thumb,
+html.dark body #single .research-bibtex-card pre,
+html.dark body #single .cite-modal-panel,
+html.dark body #single .cite-modal-text {
+    background-color: var(--secondary-color-dark) !important;
 }
 
 #profileHeader.showHeaderOnTop {
