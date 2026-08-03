@@ -115,7 +115,7 @@ params:
         - icon: ai ai-google-scholar
           url: "https://scholar.google.com/citations?hl=en&user=dFbcMfIAAAAJ&view_op=list_works&sortby=pubdate"
         - icon: fab fa-github
-          url: "https://github.com/ethan-jin-huang"
+          url: "https://github.com/ethanjinhuang"
         - icon: fab fa-linkedin
           url: "https://www.linkedin.com/in/jinhuang-zju"
 
