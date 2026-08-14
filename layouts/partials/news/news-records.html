@@ -11,14 +11,21 @@
 
   {{- if ge (len $parts) 1 -}}
     {{- $yearLabel = index $parts 0 -}}
-    {{- $year = int $yearLabel -}}
+    {{- if eq (len (findRE "^[0-9]+$" $yearLabel)) 1 -}}
+      {{- $year = int (replaceRE "^0+([0-9]+)$" "$1" $yearLabel) -}}
+    {{- end -}}
   {{- end -}}
   {{- if ge (len $parts) 2 -}}
-    {{- $month = int (index $parts 1) -}}
-    {{- if gt $month 0 -}}
-      {{- $monthLabel = printf "%02d" $month -}}
-    {{- else -}}
-      {{- $monthLabel = index $parts 1 -}}
+    {{- $monthRaw := index $parts 1 -}}
+    {{- if eq (len (findRE "^[0-9]+$" $monthRaw)) 1 -}}
+      {{- $month = int (replaceRE "^0+([0-9]+)$" "$1" $monthRaw) -}}
+      {{- if gt $month 0 -}}
+        {{- $monthLabel = printf "%02d" $month -}}
+      {{- else -}}
+        {{- $monthLabel = $monthRaw -}}
+      {{- end -}}
+    {{- else if ne $monthRaw "" -}}
+      {{- $monthLabel = $monthRaw -}}
     {{- end -}}
   {{- end -}}
 

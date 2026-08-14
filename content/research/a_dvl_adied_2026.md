@@ -1,6 +1,10 @@
 ---
 title: "A DVL-Aided Loosely Coupled Inertial Navigation Strategy for AUVs with Attitude Error Modeling and Variance Propagation"
 date: 2026-01-30T00:00:00+08:00
+build:
+  render: never
+  list: never
+  publishResources: false
 description: "A DVL-aided loosely coupled SINS navigation strategy that explicitly models attitude-induced velocity projection errors and statistically consistent variance propagation, achieving robust long-term accuracy for AUVs."
 authors: "Jin Huang, Zichen Liu, Haoda Li, Zhikun Wang, Ying Chen"
 venue: "arXiv preprint (2026)"
@@ -46,7 +50,7 @@ tags:
   - "Attitude error compensation"
   - "Covariance propagation"
   - "Autonomous underwater vehicle"
-showInHome: true
+showInHome: false
 showTitle: true
 ---
 
