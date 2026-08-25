@@ -17,7 +17,7 @@ items:
     authors: "<strong>Jin Huang</strong>, Zichen Liu, Haoda Li, Zhikun Wang, Yuan Zhao, Xianyu Peng, Yongqun Yu, Ying Chen"
     venue: "IEEE Sensors Journal"
     year: "2026"
-    note: "Accepted for publication"
+    doi: "10.1109/JSEN.2026.3724495"
   - title: "Hybrid-Driven Disc-Shaped Autonomous Underwater Vehicle with High Maneuverability and Gliding Capability: Design and Experiments"
     authors: "Haoda Li, Zhihang Jin, <strong>Jin Huang</strong>, Zichen Liu, Xianyu Peng, Zhikun Wang, Ying Chen"
     venue: "IEEE Robotics and Automation Letters"
