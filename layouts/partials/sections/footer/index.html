@@ -11,5 +11,19 @@
                 &copy; {{ now.Format "2006" }} All Rights Reserved @ Jin Huang
             </div>
         </div>
+        {{ $color := .Site.Params.color }}
+        {{ $lightBg := strings.TrimPrefix "#" ($color.backgroundColor | default "#eaedf0") }}
+        {{ $lightText := strings.TrimPrefix "#" ($color.textColor | default "#343a40") }}
+        {{ $darkBg := strings.TrimPrefix "#" ($color.darkmode.backgroundColor | default "#18191a") }}
+        {{ $darkText := strings.TrimPrefix "#" ($color.darkmode.textColor | default "#e4e6eb") }}
+        {{ $url := "https://s01.flagcounter.com/count2/5TzS/bg_%s/txt_%s/border_%s/columns_4/maxflags_12/viewers_3/labels_0/pageviews_1/flags_0/percent_0/" }}
+        {{ $lightSrc := printf $url $lightBg $lightText $lightBg }}
+        {{ $darkSrc := printf $url $darkBg $darkText $darkBg }}
+        <div class="text-center mt-3 footer-flag-counter">
+            <a href="https://info.flagcounter.com/5TzS">
+                <img id="footerFlagCounter" src="{{ $lightSrc }}" data-light-src="{{ $lightSrc }}" data-dark-src="{{ $darkSrc }}" alt="Flag Counter">
+            </a>
+        </div>
     </div>
 </footer>
+<script defer src="{{ .Site.Params.staticPath }}/js/flag-counter.js"></script>

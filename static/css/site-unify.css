@@ -5,6 +5,13 @@
     --academic-shadow-hover: 0 7px 18px rgba(20, 35, 55, 0.1);
 }
 
+.footer-flag-counter img {
+    width: 320px;
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
 html.dark,
 body.dark {
     --background-color: var(--background-color-dark) !important;
